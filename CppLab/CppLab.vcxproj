@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ExternTest\deVar2.cpp" />
+    <ClCompile Include="ExternTest\deVar4.cpp" />
+    <ClCompile Include="ExternTest\deVar5.c" />
+    <ClCompile Include="ExternTest\deVar6.c" />
+    <ClCompile Include="ExternTest\deVar7.cpp" />
+    <ClCompile Include="ExternTest\extern1.cpp" />
+    <ClCompile Include="ExternTest\extern2.cpp" />
+    <ClCompile Include="ExternTest\extern3.cpp" />
+    <ClCompile Include="ExternTest\extern4.cpp" />
+    <ClCompile Include="ExternTest\extern5.cpp" />
+    <ClCompile Include="ExternTest\extern6.cpp" />
+    <ClCompile Include="ExternTest\extern7.c" />
+    <ClCompile Include="OtherTest\AAA.cpp" />
+    <ClCompile Include="OtherTest\ACompareSort.cpp" />
+    <ClCompile Include="OtherTest\AutoDecltypeTest.cpp" />
+    <ClCompile Include="OtherTest\BinaryTree.cpp" />
+    <ClCompile Include="OtherTest\BinaryTreeBigestDist.cpp" />
+    <ClCompile Include="OtherTest\BitTest.cpp" />
+    <ClCompile Include="OtherTest\ByteAlign.cpp" />
+    <ClCompile Include="OtherTest\ConstTest.cpp" />
+    <ClCompile Include="OtherTest\DeconstructTest.cpp" />
+    <ClCompile Include="OtherTest\DeepCopy.cpp" />
+    <ClCompile Include="OtherTest\DelegatingConstructor.cpp" />
+    <ClCompile Include="OtherTest\EnumClassScope.cpp" />
+    <ClCompile Include="OtherTest\ExceptionTest.cpp" />
+    <ClCompile Include="OtherTest\FileIOTest.cpp" />
+    <ClCompile Include="OtherTest\FriendTrest.cpp" />
+    <ClCompile Include="OtherTest\greedyTest.cpp" />
+    <ClCompile Include="OtherTest\HeapSort.cpp" />
+    <ClCompile Include="OtherTest\Lambda.cpp" />
+    <ClCompile Include="OtherTest\lruTest.cpp" />
+    <ClCompile Include="OtherTest\MakeEnumToString.cpp" />
+    <ClCompile Include="OtherTest\MergeSort.cpp" />
+    <ClCompile Include="OtherTest\MoveConstruct.cpp" />
+    <ClCompile Include="OtherTest\MutipleArgsTest.cpp" />
+    <ClCompile Include="OtherTest\MyString.cpp" />
+    <ClCompile Include="OtherTest\OptimalBST.cpp" />
+    <ClCompile Include="OtherTest\OptimalBST2.cpp" />
+    <ClCompile Include="OtherTest\OverrideTest.cpp" />
+    <ClCompile Include="OtherTest\PartialTemplateSpecialization.cpp" />
+    <ClCompile Include="OtherTest\PodTest.cpp" />
+    <ClCompile Include="OtherTest\QuickSort.cpp" />
+    <ClCompile Include="OtherTest\RandomNum.cpp" />
+    <ClCompile Include="OtherTest\RightValueRef.cpp" />
+    <ClCompile Include="OtherTest\SizeofTest.cpp" />
+    <ClCompile Include="OtherTest\SmartPointTest.cpp" />
+    <ClCompile Include="OtherTest\STLtest.cpp" />
+    <ClCompile Include="OtherTest\TemplateTest.cpp" />
+    <ClCompile Include="OtherTest\TemplateTest2.cpp" />
+    <ClCompile Include="OtherTest\UnionTest.cpp" />
+    <ClCompile Include="OtherTest\UsingTest.cpp" />
+    <ClCompile Include="OtherTest\VitualTableTest.cpp" />
+    <ClCompile Include="OtherTest\源.cpp" />
+    <ClCompile Include="OtherTest\源1.cpp" />
+    <ClCompile Include="ThreadTest\main.cpp" />
+    <ClCompile Include="ThreadTest\main2.cpp" />
+    <ClCompile Include="ThreadTest\main3.cpp" />
+    <ClCompile Include="ThreadTest\main4.cpp" />
+    <ClCompile Include="ThreadTest\main5.cpp" />
+    <ClCompile Include="ThreadTest\main6.cpp" />
+    <ClCompile Include="ThreadTest\main8.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ExternTest\deVar3.h" />
+    <ClInclude Include="ExternTest\deVar6.h" />
+    <ClInclude Include="OtherTest\AAA.h" />
+    <ClInclude Include="OtherTest\MyString.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3BA5E7FD-C85E-4C9F-803F-092BF6ED40F2}</ProjectGuid>
+    <RootNamespace>CppLab</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ThreadTest">
+      <UniqueIdentifier>{656ff3a0-501f-460a-b49f-3c76365f5fce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OtherTest">
+      <UniqueIdentifier>{3508a2ff-48d1-4c07-a2e6-35da230c254e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExternTest">
+      <UniqueIdentifier>{ceceb9d4-28b8-436d-9a52-1ad94f89646a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ThreadTest\main.cpp">
+      <Filter>ThreadTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadTest\main2.cpp">
+      <Filter>ThreadTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadTest\main3.cpp">
+      <Filter>ThreadTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadTest\main4.cpp">
+      <Filter>ThreadTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadTest\main5.cpp">
+      <Filter>ThreadTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadTest\main6.cpp">
+      <Filter>ThreadTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadTest\main8.cpp">
+      <Filter>ThreadTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternTest\deVar2.cpp">
+      <Filter>ExternTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternTest\deVar4.cpp">
+      <Filter>ExternTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternTest\deVar5.c">
+      <Filter>ExternTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternTest\deVar6.c">
+      <Filter>ExternTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternTest\deVar7.cpp">
+      <Filter>ExternTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternTest\extern1.cpp">
+      <Filter>ExternTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternTest\extern2.cpp">
+      <Filter>ExternTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternTest\extern3.cpp">
+      <Filter>ExternTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternTest\extern4.cpp">
+      <Filter>ExternTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternTest\extern5.cpp">
+      <Filter>ExternTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternTest\extern6.cpp">
+      <Filter>ExternTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternTest\extern7.c">
+      <Filter>ExternTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\AAA.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\ACompareSort.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\AutoDecltypeTest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\BinaryTree.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\BinaryTreeBigestDist.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\BitTest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\ByteAlign.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\ConstTest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\DeconstructTest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\DeepCopy.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\DelegatingConstructor.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\EnumClassScope.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\ExceptionTest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\FileIOTest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\FriendTrest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\greedyTest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\HeapSort.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\Lambda.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\lruTest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\MakeEnumToString.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\MergeSort.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\MoveConstruct.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\MutipleArgsTest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\MyString.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\OptimalBST.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\OptimalBST2.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\OverrideTest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\PartialTemplateSpecialization.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\PodTest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\QuickSort.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\RandomNum.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\RightValueRef.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\SizeofTest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\SmartPointTest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\STLtest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\TemplateTest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\TemplateTest2.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\UnionTest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\UsingTest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\VitualTableTest.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\源.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\源1.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ExternTest\deVar3.h">
+      <Filter>ExternTest</Filter>
+    </ClInclude>
+    <ClInclude Include="ExternTest\deVar6.h">
+      <Filter>ExternTest</Filter>
+    </ClInclude>
+    <ClInclude Include="OtherTest\AAA.h">
+      <Filter>OtherTest</Filter>
+    </ClInclude>
+    <ClInclude Include="OtherTest\MyString.h">
+      <Filter>OtherTest</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
