@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AlgorithmTest\Entry.cpp" />
     <ClCompile Include="ExternTest\deVar2.cpp" />
     <ClCompile Include="ExternTest\deVar4.cpp" />
     <ClCompile Include="ExternTest\deVar5.c" />

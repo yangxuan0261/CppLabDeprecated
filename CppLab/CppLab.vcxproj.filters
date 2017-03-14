@@ -10,6 +10,9 @@
     <Filter Include="ExternTest">
       <UniqueIdentifier>{ceceb9d4-28b8-436d-9a52-1ad94f89646a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AlgorithmTest">
+      <UniqueIdentifier>{77a3f6b2-54be-4131-8b16-09cfbfca62c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ThreadTest\main.cpp">
@@ -194,6 +197,9 @@
     </ClCompile>
     <ClCompile Include="OtherTest\源1.cpp">
       <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgorithmTest\Entry.cpp">
+      <Filter>AlgorithmTest</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -72,11 +72,11 @@ namespace UnionTest {
 	}
 };
 
-int main()
-{
-	//testUnion();
-	//test222();
-	UnionTest::testLittleOrBigEndian();
-	system("pause");
-	return 0;
-}
+//int main()
+//{
+//	//testUnion();
+//	//test222();
+//	UnionTest::testLittleOrBigEndian();
+//	system("pause");
+//	return 0;
+//}
