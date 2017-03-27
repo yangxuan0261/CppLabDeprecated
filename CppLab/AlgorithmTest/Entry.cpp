@@ -94,7 +94,7 @@ namespace AT1 {
 	}
 
 	//https://discuss.leetcode.com/topic/12187/simple-c-solution-8ms-13-lines
-	//查找最长的回文子字符串
+	//查找最长的回文子字符串 
 	void test3()
 	{
 		string src = "bababd";
