@@ -36,6 +36,7 @@ namespace AT1 {
 		std::cout << reverse(123) << std::endl;
 	}
 
+	//---------------------------------------------------------------
 	/* 查找重复元素
 	// when find a number i, flip the number at position i-1 to negative.
 	// if the number at position i-1 is already negative, i is the number that occurs twice.
@@ -76,7 +77,7 @@ namespace AT1 {
 		printVecInt(findDuplicates2(srcVec));
 	}
 
-	//------------------------------ 
+	//---------------------------------------------------------------
 	string longestPalindrome(string s) {
 		if (s.empty()) return "";
 		if (s.size() == 1) return s;
@@ -102,7 +103,7 @@ namespace AT1 {
 		printf("%s\n", str.c_str());
 	}
 
-
+	//---------------------------------------------------------------
 	/*
 	 def median(A, B):
 	m, n = len(A), len(B)
@@ -138,15 +139,133 @@ namespace AT1 {
 			return (max_of_left + min_of_right) / 2.0
 	*/
 
-	double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-		int m = nums1.size();
-		int n = nums2.size();
-	}
+	//double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+	//	int m = nums1.size();
+	//	int n = nums2.size();
+	//}
 
 	//https://leetcode.com/problems/median-of-two-sorted-arrays/#/solutions
 	// 两个已排序的数组的中位数
-	void test3() {
+	//void test3() {
 
+	//}
+
+
+	//---------------------------------------------------------------
+	class ListNode {
+	public:
+		int val = 0;
+		ListNode* next = nullptr;
+	};
+	auto printList = [](ListNode* node) -> void {
+		while (node != nullptr) {
+			printf("%d ->", node->val);
+			node = node->next;
+		}
+		printf("\n");
+	};
+
+	ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
+		if (l1 == NULL) return l2;
+		if (l2 == NULL) return l1;
+
+		if (l1->val < l2->val) {
+			l1->next = mergeTwoLists(l1->next, l2);
+			return l1;
+		} else {
+			l2->next = mergeTwoLists(l2->next, l1);
+			return l2;
+		}
+	}
+
+	//https://leetcode.com/problems/merge-two-sorted-lists/#/solutions
+	//合并两个有序链表
+	void test4() {
+		ListNode* n1 = new ListNode();
+		n1->val = 1;
+		ListNode* n2 = new ListNode();
+		n2->val = 2;
+		ListNode* n3 = new ListNode();
+		n3->val = 6;
+		ListNode* n4 = new ListNode();
+		n4->val = 9;
+		n1->next = n2;
+		n2->next = n3;
+		n3->next = n4;
+		printList(n1);
+
+		ListNode* n5 = new ListNode();
+		n5->val = 4;
+		ListNode* n6 = new ListNode();
+		n6->val = 7;
+		ListNode* n7 = new ListNode();
+		n7->val = 8;
+		ListNode* n8 = new ListNode();
+		n8->val = 10;
+		n5->next = n6;
+		n6->next = n7;
+		n7->next = n8;
+		printList(n5);
+
+		ListNode* n9 = mergeTwoLists(n1, n5);
+		printList(n9);
+	}
+
+	//---------------------------------------------------------------
+	ListNode* removeNthFromEnd(ListNode* head, int n) {
+		ListNode* start = new ListNode();
+		ListNode* slow = start;
+		ListNode* fast = start;
+		slow->next = head;
+
+		//Move fast in front so that the gap between slow and fast becomes n
+		for (int i = 1; i < n+1; i++) {
+			fast = fast->next;
+		}
+
+		//Move fast to the end, maintaining the gap
+		while (fast != nullptr) {
+			slow = slow->next;
+			fast = fast->next;
+		}
+
+		//Skip the desired node
+		slow->next = slow->next->next;
+		return start->next;
+	}
+
+	//https://leetcode.com/problems/remove-nth-node-from-end-of-list/#/solutions
+	//移除链表中倒数第二个节点
+	void test5() {
+		ListNode* n1 = new ListNode();
+		n1->val = 1;
+		ListNode* n2 = new ListNode();
+		n2->val = 2;
+		ListNode* n3 = new ListNode();
+		n3->val = 6;
+		ListNode* n4 = new ListNode();
+		n4->val = 9;
+		ListNode* n5 = new ListNode();
+		n5->val = 4;
+		ListNode* n6 = new ListNode();
+		n6->val = 7;
+		ListNode* n7 = new ListNode();
+		n7->val = 8;
+		ListNode* n8 = new ListNode();
+		n8->val = 10;
+
+		n1->next = n2;
+		n2->next = n3;
+		n3->next = n4;
+		n4->next = n5;
+		n5->next = n6;
+		n6->next = n7;
+		n7->next = n8;
+
+		printList(n1);
+
+		removeNthFromEnd(n1, 2);
+		printList(n1);
 	}
 };
 
@@ -154,7 +273,9 @@ int main()
 {
 	//AT1::test1();
 	//AT1::test2();
-	AT1::test3();
+	//AT1::test3();
+	//AT1::test4();
+	AT1::test5();
 
 	system("pause");
 	return 0;
