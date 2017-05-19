@@ -267,6 +267,42 @@ namespace AT1 {
 		removeNthFromEnd(n1, 2);
 		printList(n1);
 	}
+
+	//---------------------------------------------------------------
+
+	//https://leetcode.com/problems/swap-nodes-in-pairs/#/solutions
+	//成对交换相邻的两个节点
+
+	ListNode* swapPairs(ListNode* head) {
+		if (head == nullptr || head->next == nullptr)
+			return head;
+		ListNode* n = head->next;
+		head->next = swapPairs(head->next->next);
+		n->next = head;
+		return n;
+	}
+
+	void test6() {
+		ListNode* n1 = new ListNode();
+		n1->val = 1;
+		ListNode* n2 = new ListNode();
+		n2->val = 2;
+		ListNode* n3 = new ListNode();
+		n3->val = 3;
+		ListNode* n4 = new ListNode();
+		n4->val = 4;
+		ListNode* n5 = new ListNode();
+		n5->val = 5;
+
+		n1->next = n2;
+		n2->next = n3;
+		n3->next = n4;
+		n4->next = n5;
+		printList(n1);
+
+		ListNode* nx = swapPairs(n1);
+		printList(nx);
+	}
 };
 
 int main()
@@ -275,7 +311,8 @@ int main()
 	//AT1::test2();
 	//AT1::test3();
 	//AT1::test4();
-	AT1::test5();
+	//AT1::test5();
+	AT1::test6();
 
 	system("pause");
 	return 0;
