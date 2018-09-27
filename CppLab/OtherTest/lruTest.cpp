@@ -9,6 +9,12 @@
 #include <functional>
 using namespace std;
 
+
+namespace lruTest
+{
+	
+
+
 struct SObj {
 	SObj(std::string _tex) : mTex(_tex){}
 	std::string mTex;
@@ -233,11 +239,10 @@ void testQueue()
 	printf("--- empty:%d\n", (int)tmp.empty());
 }
 
-//int main()
-//{
-//	test();
-//	//testQueue();
-//
-//	system("pause");
-//	return 0;
-//}
+void main()
+{
+	test();
+	//testQueue();
+}
+
+} // lruTest

@@ -1,23 +1,29 @@
-//ÕıÌ«·Ö²¼
+//æ­£å¤ªåˆ†å¸ƒ
 #include <iostream>
 #include <time.h>
 #include <random>
 #include <functional>
 
+
+namespace RandomNum
+{
+
+
 void randNumTest()
 {
-	std::minstd_rand0 generator0(time(NULL)); // linear_congruential_engine ÏßĞÔÍ¬Óà·¨
-	std::default_random_engine generator1(time(NULL)); // mersenne_twister_engine Ã·É­Ğı×ª·¨
-	std::uniform_int_distribution<int> distInt(100, 200); // uniform_int_distribution ÕûÊı¾ùÔÈ·Ö²¼
-	std::uniform_real_distribution<float> distFloat(0.f, 100.f); // uniform_real_distribution ¸¡µãÊı¾ùÔÈ·Ö²¼
+	std::minstd_rand0 generator0(time(NULL)); // linear_congruential_engine çº¿æ€§åŒä½™æ³•
+	std::default_random_engine generator1(time(NULL)); // mersenne_twister_engine æ¢…æ£®æ—‹è½¬æ³•
+	std::uniform_int_distribution<int> distInt(100, 200); // uniform_int_distribution æ•´æ•°å‡åŒ€åˆ†å¸ƒ
+	std::uniform_real_distribution<float> distFloat(0.f, 100.f); // uniform_real_distribution æµ®ç‚¹æ•°å‡åŒ€åˆ†å¸ƒ
 
 	auto dice = std::bind(distInt, generator1);
 	for (int i = 0; i < 5; i++)
 		std::cout << dice() << std::endl;
 }
 
-//int main()
-//{
-//	randNumTest();
-//	system("pause");
-//}
+void main()
+{
+	randNumTest();
+}
+
+} // RandomNum

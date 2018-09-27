@@ -1,140 +1,142 @@
-//#include <stdlib.h>
-//#include <iostream>
-//#include <sstream>
-//#include <string>
-//#include <memory>
-//
-//class Human
-//{
-//public:
-//	Human() : mNum(nullptr)
-//	{
-//		mNum = new int(123);
-//		printf("Human ¹¹Ôì\n"); 
-//	}
-//	Human(const Human& _h)
-//	{
-//		mNum = new int(*_h.mNum);
-//		printf("Human ¿½±´¹¹Ôì\n");
-//	}
-//	Human(Human && _h)
-//	{
-//		mNum = _h.mNum; //
-//		_h.mNum = nullptr; //±ØĞë½«±»ÍµÕßµÄÖ¸ÕëÖÃ¿Õ£¬²»È»ÁÙÊ±¶ÔÏóÎö¹¹Ê±»áÊÍ·ÅÄÚ´æ
-//		printf("Human ÒÆ¶¯¹¹Ôì\n");
-//	}
-//	virtual ~Human() 
-//	{
-//		printf("Human Îö¹¹\n");
-//		if (mNum) delete mNum;
-//	}
-//	void show(){ if(mNum) printf("--- num:%d\n", *mNum); }
-//private:
-//	int* mNum;
-//};
-//
-//void testSmartPoint1()
-//{
-//	std::unique_ptr<Human> up1(new Human);
-//	//std::unique_ptr<Human> h2 = h1; //±àÒëÊ§°Ü£¬
-//	up1->show();
-//
-//	std::unique_ptr<Human> up3 = std::move(up1); //½«h1¶Ônew HumanµÄËùÓĞÈ¨½»¸øh3£¬h1ÖÃ¿Õempty
-//	up3->show(); //¶ÔÏó»áËæ×Å×îºóÓµÓĞ¶ÔÏóµÄÎ¨Ò»Ö¸ÕëµÄÉúÃüÖÜÆÚµÄ½áÊø¶ø½áÊø
-//
-//	//h1->show();//ÔËĞĞÊ±±ÀÀ££¬h1ÒÑ½»³ö¶ÔÏóËùÓĞÈ¨£¬ÏÖÔÚÎªempty×´Ì¬
-//
-//	up3.reset();//ÒÑÏÔÊ½ÊÍ·Å¶ÔÏóÄÚ´æ
-//	//h3->show();//ÔËĞĞÊ±±ÀÀ££¬ÒÑÏÔÊ½ÊÍ·Å¶ÔÏóÄÚ´æ£¬ÏÖÔÚÎªempty×´Ì¬
-//	system("pause");
-//}
-//
-//void testSmartPoint2()
-//{
-//	//Èç¹ûstd::shared_ptr<Human> sp1Îªempty×´Ì¬£¬Ôò²»»á½øÈëÕâÑùµÄÅĞ¶Ïif(sp1)
-//	//void reset() _NOEXCEPT 
-//	//{	// release resource and convert to empty shared_ptr object
-//	//	shared_ptr().swap(*this);
-//	//}
-//	//use_count() {return (_Rep ? _Rep->_Use_count() : 0);}
-//	/*
-//	resetº¯Êı
-//	ÊÇÓÃ³õÊ¼»¯Ò»¸öshared_ptr()¶ÔÏó£¨ÀïÃæµÄ_RepºÍ_Ptr³õÊ¼»¯¶¼ÊÇnullptr£©£¬
-//	È»ºóµ÷ÓÃswap(T&a),ÊµÏÖ½«aµÄ_RepºÍ_Ptr¶¼ÖÃÎªnullptr
-//	µ÷ÓÃ¹ıÒ»´Îºó£¬Ö®ºóËùÒÔÎŞÂÛµ÷¶àÉÙ´Îreset£¬¶¼ÊÇ×öÎŞÓÃ¹¦
-//
-//	use_countº¯Êı
-//	ÅĞ¶Ï_RepÊÇ·ñnullptr£¬²»ÎªnullptrÔò·µ»Ø¶ÔÏóµÄÒıÓÃ´ÎÊı
-//	*/
-//	std::shared_ptr<Human> sp1(new Human());
-//	std::shared_ptr<Human> sp2 = sp1;
-//	std::shared_ptr<Human> sp3 = sp1;
-//	printf("--- ref count:%ld\n", sp2.use_count());//3
-//
-//	sp1.reset(); //ÏÔÊ½¼õÉÙÒıÓÃ£¬_RepºÍ_Ptr¶¼ÖÃÎªnullptr£¬sp1Îªempty×´Ì¬
-//	sp1.reset(); //×öÎŞÓÃ¹¦
-//	sp1.reset(); //×öÎŞÓÃ¹¦
-//	printf("--- sp1 ref count:%ld\n", sp1.use_count()); //0 
-//	//sp1->show(); //´ËÊ±sp1Îªempty×´Ì¬£¬²»¿ÉÒÔÔÚÊ¹ÓÃsp1->show()
-//
-//	printf("--- sp2 ref count:%ld\n", sp2.use_count()); //2 //ÒòÎª´ËÊ±sp3ºÍsp2»¹±£³ÖÕâ¶Ô¶ÔÏóµÄÒıÓÃ£¬ËùÒÔ¶ÔÏó»¹Î´±»ÊÍ·Å
-//	printf("--- sp3 ref count:%ld\n", sp3.use_count()); //2 
-//
-//	sp2.reset();//¼õÉÙÒıÓÃºó£¬_RepºÍ_Ptr¶¼ÖÃÎªnullptr£¬sp2Îªempty×´Ì¬
-//	printf("--- sp2 ref count:%ld\n", sp2.use_count()); //0
-//	printf("--- sp3 ref count:%ld\n", sp3.use_count()); //1 //ÒòÎª´ËÊ±sp3»¹±£³ÖÕâ¶Ô¶ÔÏóµÄÒıÓÃ£¬ËùÒÔ¶ÔÏó»¹Î´±»ÊÍ·Å
-//
-//	sp3.reset();//¼õÉÙÒıÓÃºó£¬_RepºÍ_Ptr¶¼ÖÃÎªnullptr£¬sp3Îªempty×´Ì¬ //´ËÊ±ÒÑÎŞshared_ptr¶Ôsp3±£³ÖÒıÓÃ£¬¶ÔÏó±»ÊÍ·Å
-//	printf("--- sp3 ref count:%ld\n", sp3.use_count()); //0 
-//	system("pause");
-//}
-///*
-//Human ¹¹Ôì
-//--- ref count:3
-//--- sp1 ref count:0
-//--- sp2 ref count:2
-//--- sp3 ref count:2
-//--- sp2 ref count:0
-//--- sp3 ref count:1
-//Human Îö¹¹
-//--- sp3 ref count:0
-//Çë°´ÈÎÒâ¼ü¼ÌĞø. . .
-//*/
-//
-//void testSmartPoint3()
-//{
-//	std::shared_ptr<Human> sp1(new Human());
-//	std::shared_ptr<Human> sp2 = sp1;
-//	std::weak_ptr<Human> wp = sp1; //²»»áÓ°ÏìÒıÓÃ¼ÆÊı
-//
-//	printf("--- ref count:%ld\n", sp2.use_count());//2
-//
-//	sp2.reset();
-//
-//	printf("--- sp1 count:%ld\n", sp1.use_count());//1
-//	std::shared_ptr<Human> sp4 = wp.lock(); //Èç¹û´ËÊ±»¹ÓĞ¶Ô¶ÔÏó±£³ÖÒıÓÃ£¬ÕâĞĞ´úÂë½áÊøºósp4Ò²½«»á±£³ÖÒıÓÃ£¬ÒıÓÃ¼ÆÊı+1
-//	if (sp4)
-//		printf("--- sp4 ref count:%ld\n", sp4.use_count());//2
-//
-//
-//	sp1.reset();
-//	printf("--- wp ref count:%ld\n", wp.use_count());//1
-//	if (sp4)
-//		sp4.reset(); //ÕâĞĞ´úÂëºó£¬½«ÎŞstd::shared_ptr¶Ô¶ÔÏó±£³ÖÒıÓÃ£¬¶ÔÏó½«Îö¹¹
-//	printf("--- wp ref count:%ld\n", wp.use_count());//0
-//
-//	std::shared_ptr<Human> sp5 = wp.lock(); //Èç¹û´ËÊ±Ã»ÓĞ¶Ô¶ÔÏó±£³ÖÒıÓÃ£¬Ôòsp5ÊÇempty×´Ì¬
-//	if (sp5)
-//		printf("--- sp5 ref count:%ld\n", sp4.use_count());
-//
-//}
-//
-//int main()
-//{
-//	//testSmartPoint1();
-//	//testSmartPoint2();
-//	testSmartPoint3();
-//
-//	system("pause");
-//	return 0;
-//}
+#include <stdlib.h>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <memory>
+
+namespace SmartPointTest {
+
+
+class Human
+{
+public:
+	Human() : mNum(nullptr)
+	{
+		mNum = new int(123);
+		printf("Human æ„é€ \n"); 
+	}
+	Human(const Human& _h)
+	{
+		mNum = new int(*_h.mNum);
+		printf("Human æ‹·è´æ„é€ \n");
+	}
+	Human(Human && _h)
+	{
+		mNum = _h.mNum; //
+		_h.mNum = nullptr; //å¿…é¡»å°†è¢«å·è€…çš„æŒ‡é’ˆç½®ç©ºï¼Œä¸ç„¶ä¸´æ—¶å¯¹è±¡ææ„æ—¶ä¼šé‡Šæ”¾å†…å­˜
+		printf("Human ç§»åŠ¨æ„é€ \n");
+	}
+	virtual ~Human() 
+	{
+		printf("Human ææ„\n");
+		if (mNum) delete mNum;
+	}
+	void show(){ if(mNum) printf("--- num:%d\n", *mNum); }
+private:
+	int* mNum;
+};
+
+void testSmartPoint1()
+{
+	std::unique_ptr<Human> up1(new Human);
+	//std::unique_ptr<Human> h2 = h1; //ç¼–è¯‘å¤±è´¥ï¼Œ
+	up1->show();
+
+	std::unique_ptr<Human> up3 = std::move(up1); //å°†h1å¯¹new Humançš„æ‰€æœ‰æƒäº¤ç»™h3ï¼Œh1ç½®ç©ºempty
+	up3->show(); //å¯¹è±¡ä¼šéšç€æœ€åæ‹¥æœ‰å¯¹è±¡çš„å”¯ä¸€æŒ‡é’ˆçš„ç”Ÿå‘½å‘¨æœŸçš„ç»“æŸè€Œç»“æŸ
+
+	//h1->show();//è¿è¡Œæ—¶å´©æºƒï¼Œh1å·²äº¤å‡ºå¯¹è±¡æ‰€æœ‰æƒï¼Œç°åœ¨ä¸ºemptyçŠ¶æ€
+
+	up3.reset();//å·²æ˜¾å¼é‡Šæ”¾å¯¹è±¡å†…å­˜
+	//h3->show();//è¿è¡Œæ—¶å´©æºƒï¼Œå·²æ˜¾å¼é‡Šæ”¾å¯¹è±¡å†…å­˜ï¼Œç°åœ¨ä¸ºemptyçŠ¶æ€
+	system("pause");
+}
+
+void testSmartPoint2()
+{
+	//å¦‚æœstd::shared_ptr<Human> sp1ä¸ºemptyçŠ¶æ€ï¼Œåˆ™ä¸ä¼šè¿›å…¥è¿™æ ·çš„åˆ¤æ–­if(sp1)
+	//void reset() _NOEXCEPT 
+	//{	// release resource and convert to empty shared_ptr object
+	//	shared_ptr().swap(*this);
+	//}
+	//use_count() {return (_Rep ? _Rep->_Use_count() : 0);}
+	/*
+	resetå‡½æ•°
+	æ˜¯ç”¨åˆå§‹åŒ–ä¸€ä¸ªshared_ptr()å¯¹è±¡ï¼ˆé‡Œé¢çš„_Repå’Œ_Ptråˆå§‹åŒ–éƒ½æ˜¯nullptrï¼‰ï¼Œ
+	ç„¶åè°ƒç”¨swap(T&a),å®ç°å°†açš„_Repå’Œ_Ptréƒ½ç½®ä¸ºnullptr
+	è°ƒç”¨è¿‡ä¸€æ¬¡åï¼Œä¹‹åæ‰€ä»¥æ— è®ºè°ƒå¤šå°‘æ¬¡resetï¼Œéƒ½æ˜¯åšæ— ç”¨åŠŸ
+
+	use_countå‡½æ•°
+	åˆ¤æ–­_Repæ˜¯å¦nullptrï¼Œä¸ä¸ºnullptråˆ™è¿”å›å¯¹è±¡çš„å¼•ç”¨æ¬¡æ•°
+	*/
+	std::shared_ptr<Human> sp1(new Human());
+	std::shared_ptr<Human> sp2 = sp1;
+	std::shared_ptr<Human> sp3 = sp1;
+	printf("--- ref count:%ld\n", sp2.use_count());//3
+
+	sp1.reset(); //æ˜¾å¼å‡å°‘å¼•ç”¨ï¼Œ_Repå’Œ_Ptréƒ½ç½®ä¸ºnullptrï¼Œsp1ä¸ºemptyçŠ¶æ€
+	sp1.reset(); //åšæ— ç”¨åŠŸ
+	sp1.reset(); //åšæ— ç”¨åŠŸ
+	printf("--- sp1 ref count:%ld\n", sp1.use_count()); //0 
+	//sp1->show(); //æ­¤æ—¶sp1ä¸ºemptyçŠ¶æ€ï¼Œä¸å¯ä»¥åœ¨ä½¿ç”¨sp1->show()
+
+	printf("--- sp2 ref count:%ld\n", sp2.use_count()); //2 //å› ä¸ºæ­¤æ—¶sp3å’Œsp2è¿˜ä¿æŒè¿™å¯¹å¯¹è±¡çš„å¼•ç”¨ï¼Œæ‰€ä»¥å¯¹è±¡è¿˜æœªè¢«é‡Šæ”¾
+	printf("--- sp3 ref count:%ld\n", sp3.use_count()); //2 
+
+	sp2.reset();//å‡å°‘å¼•ç”¨åï¼Œ_Repå’Œ_Ptréƒ½ç½®ä¸ºnullptrï¼Œsp2ä¸ºemptyçŠ¶æ€
+	printf("--- sp2 ref count:%ld\n", sp2.use_count()); //0
+	printf("--- sp3 ref count:%ld\n", sp3.use_count()); //1 //å› ä¸ºæ­¤æ—¶sp3è¿˜ä¿æŒè¿™å¯¹å¯¹è±¡çš„å¼•ç”¨ï¼Œæ‰€ä»¥å¯¹è±¡è¿˜æœªè¢«é‡Šæ”¾
+
+	sp3.reset();//å‡å°‘å¼•ç”¨åï¼Œ_Repå’Œ_Ptréƒ½ç½®ä¸ºnullptrï¼Œsp3ä¸ºemptyçŠ¶æ€ //æ­¤æ—¶å·²æ— shared_ptrå¯¹sp3ä¿æŒå¼•ç”¨ï¼Œå¯¹è±¡è¢«é‡Šæ”¾
+	printf("--- sp3 ref count:%ld\n", sp3.use_count()); //0 
+	system("pause");
+}
+/*
+Human æ„é€ 
+--- ref count:3
+--- sp1 ref count:0
+--- sp2 ref count:2
+--- sp3 ref count:2
+--- sp2 ref count:0
+--- sp3 ref count:1
+Human ææ„
+--- sp3 ref count:0
+è¯·æŒ‰ä»»æ„é”®ç»§ç»­. . .
+*/
+
+void testSmartPoint3()
+{
+	std::shared_ptr<Human> sp1(new Human());
+	std::shared_ptr<Human> sp2 = sp1;
+	std::weak_ptr<Human> wp = sp1; //ä¸ä¼šå½±å“å¼•ç”¨è®¡æ•°
+
+	printf("--- ref count:%ld\n", sp2.use_count());//2
+
+	sp2.reset();
+
+	printf("--- sp1 count:%ld\n", sp1.use_count());//1
+	std::shared_ptr<Human> sp4 = wp.lock(); //å¦‚æœæ­¤æ—¶è¿˜æœ‰å¯¹å¯¹è±¡ä¿æŒå¼•ç”¨ï¼Œè¿™è¡Œä»£ç ç»“æŸåsp4ä¹Ÿå°†ä¼šä¿æŒå¼•ç”¨ï¼Œå¼•ç”¨è®¡æ•°+1
+	if (sp4)
+		printf("--- sp4 ref count:%ld\n", sp4.use_count());//2
+
+
+	sp1.reset();
+	printf("--- wp ref count:%ld\n", wp.use_count());//1
+	if (sp4)
+		sp4.reset(); //è¿™è¡Œä»£ç åï¼Œå°†æ— std::shared_ptrå¯¹å¯¹è±¡ä¿æŒå¼•ç”¨ï¼Œå¯¹è±¡å°†ææ„
+	printf("--- wp ref count:%ld\n", wp.use_count());//0
+
+	std::shared_ptr<Human> sp5 = wp.lock(); //å¦‚æœæ­¤æ—¶æ²¡æœ‰å¯¹å¯¹è±¡ä¿æŒå¼•ç”¨ï¼Œåˆ™sp5æ˜¯emptyçŠ¶æ€
+	if (sp5)
+		printf("--- sp5 ref count:%ld\n", sp4.use_count());
+
+}
+
+void main()
+{
+	//testSmartPoint1();
+	//testSmartPoint2();
+	testSmartPoint3();
+}
+
+}

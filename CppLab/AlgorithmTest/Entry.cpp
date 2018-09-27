@@ -303,17 +303,15 @@ namespace AT1 {
 		ListNode* nx = swapPairs(n1);
 		printList(nx);
 	}
+
+	void main() {
+		//AT1::test1();
+		//AT1::test2();
+		//AT1::test3();
+		//AT1::test4();
+		//AT1::test5();
+		AT1::test6();
+	}
 };
 
-int main()
-{
-	//AT1::test1();
-	//AT1::test2();
-	//AT1::test3();
-	//AT1::test4();
-	//AT1::test5();
-	AT1::test6();
 
-	system("pause");
-	return 0;
-}

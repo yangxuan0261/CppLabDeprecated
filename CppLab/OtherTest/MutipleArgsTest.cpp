@@ -1,230 +1,233 @@
-//#include <stdlib.h>
-//#include <iostream>
-//#include <sstream>
-//#include <string>
-//#include <vector>
-//#include <tuple>
-//
-////---------------------------- test1 for function
-//enum  LuaParameterType
-//{
-//	LPT_NUM = 0,
-//	LPT_STR,
-//	LPT_BOOL,
-//	LPT_CUSTOM,
-//	LPT_COUNT,
-//};
-//struct  LuaParameter
-//{
-//	LuaParameterType type;     //ÀàĞÍ
-//	void* value;		       //×Ô¶¨ÒåÀàĞÍÖµ
-//	double num;                //number
-//	bool b;                //bool
-//	std::string str;          //×Ö·û´®ÀàĞÍ
-//	std::string typeName;      //ÔÚÀàĞÍÎª×Ô¶¨ÒåÀàĞÍÊ±ÓĞĞ§
-//	std::string name;          //Ô¤ÉèÊ±ÓÃµ½Õâ¸öÊı¾İ
-//};
-//
-//
-//std::vector<LuaParameter> mutipleArgsVec;
-//void insertArg(bool _b)
-//{
-//	LuaParameter para;
-//	para.type = LPT_BOOL;
-//	para.b = _b;
-//	mutipleArgsVec.push_back(para);
-//}
-//void insertArg(char _c)
-//{
-//	LuaParameter para;
-//	para.type = LPT_STR;
-//	char tmp[2] = { _c, '\0' };
-//	para.str = std::string(tmp);
-//	mutipleArgsVec.push_back(para);
-//}
-//void insertArg(const char* _str)
-//{
-//	LuaParameter para;
-//	para.type = LPT_STR;
-//	para.str = std::string(_str);
-//	mutipleArgsVec.push_back(para);
-//}
-//void insertArg(std::string _str)
-//{
-//	LuaParameter para;
-//	para.type = LPT_STR;
-//	para.str = std::string(_str);
-//	mutipleArgsVec.push_back(para);
-//}
-//void insertArg(int _num)
-//{
-//	LuaParameter para;
-//	para.type = LPT_NUM;
-//	para.num = _num;
-//	mutipleArgsVec.push_back(para);
-//}
-//void insertArg(float _num)
-//{
-//	LuaParameter para;
-//	para.type = LPT_NUM;
-//	para.num = _num;
-//	mutipleArgsVec.push_back(para);
-//}
-//
-//void printData()
-//{
-//	for (LuaParameter para : mutipleArgsVec)
-//	{
-//		if (para.type == LPT_NUM)
-//		{
-//			printf("--- is number:%lf\n", para.num);
-//		}
-//		else if (para.type == LPT_STR)
-//		{
-//			printf("--- is string:%s\n", para.str.c_str());
-//		}
-//		else if (para.type == LPT_BOOL)
-//		{
-//			printf("--- is bool:%d\n", (int)para.b);
-//		}
-//	}
-//}
-//
-////--------------------- ÊµÏÖÄ£°åµÄµİ¹é begin ------------------
-//template <typename... Args>
-//void showArgs(Args... _args); //±ä³¤Ä£°åÉùÃ÷£¬Ò»¶¨Òª×îÉÏÃæ£¬²»È»±àÒë±¨´í
-//
-////definition for 0 parameters -- ÎŞ²ÎÊıÊ±£¬×îºóÒ»´Îµİ¹éÊ±»áµ÷ÓÃ£¬Í£Ö¹µİ¹é£¬ÊµÏÖÎª¿Õ¼´¿É
-//void showArgs() {} //±ß½çÌõ¼ş
-//
-////definition for 1 or more parameters -- ÓĞ²ÎÊıÊÇµ÷ÓÃÕâ¸öº¯Êı
-//template < typename T, typename... Args> //Æ«ÌØ»¯µİ¹é¶¨Òå
-//void showArgs(T value, Args... _args)
-//{
-//	insertArg(value);
-//	showArgs(_args...);
-//}
-////--------------------- ÊµÏÖÄ£°åµÄµİ¹é end ------------------
-//
-//void testArgsForFunc()
-//{
-//	mutipleArgsVec.clear();
-//	showArgs(123, "aaa", 23.23f, 'c', true);
-//	printData();
-//}
-//
-////---------------------------- test2 for class
-////--------------------- ÊµÏÖÄ£°åµÄµİ¹é begin ------------------
-//template < typename... Args>
-//class MultiArgs; //±ä³¤Ä£°åÉùÃ÷£¬Ò»¶¨Òª×îÉÏÃæ£¬²»È»±àÒë±¨´í
-//
-//template <>
-//class MultiArgs<> {}; //±ß½çÌõ¼ş£¬ÖÕÖ¹¼Ì³Ğµİ¹é
-//
-//template < typename T, typename... Args>
-//class MultiArgs<T, Args...> : public MultiArgs<Args...> //Æ«ÌØ»¯µİ¹é¶¨Òå
-//{
-//public:
-//	MultiArgs(T _t, Args... _args) : MultiArgs<Args...>(_args...)
-//	{ 
-//		value = _t;
-//		std::cout << "--- addr:0x" << this << ", value:" << _t << std::endl;
-//		//TODO:ÕâÀï¿ÉÒÔÊµÏÖ´¦Àí²ÎÊı_tµÄÂß¼­£¬
-//		//±ÈÈç¶ªÖØÔØ¸÷ÖÖÆ¥Åä²ÎÊıµÄº¯Êı£¬µ½×Ô¶¨ÒåÊı¾İ½á¹¹µÄÈİÆ÷ÖĞ
-//	}
-//public:
-//	T value;
-//};
-////--------------------- ÊµÏÖÄ£°åµÄµİ¹é begin ------------------
-//
-//template <typename... Args>
-//void sendMsg(Args... _args)
-//{
-//	//¼ÆËã±ä³¤±¨µÄ³¤¶È£ºsizeof...(Args)
-//	int argsLength = sizeof...(Args);
-//	std::cout << "--- _args length:" << argsLength << std::endl; //¶à²ÎÊıÊ¹ÓÃÊ±Ò»¶¨Òª´øÉÏ...
-//	MultiArgs<Args...> ma(_args...);
-//}
-//
-//void testArgsForClass()
-//{
-//	sendMsg(111, "yang", 22.22f, true);
-//}
-///*
-//½á¹û£º
-//--- _args length:4
-//--- addr:0x0016F72C, value:1
-//--- addr:0x0016F72C, value:22.22
-//--- addr:0x0016F72C, value:yang
-//--- addr:0x0016F72C, value:111
-//ÀàµÄ³õÊ¼»¯Ë³ĞòÊÇÏÈ³õÊ¼»¯¹¹Ôìº¯Êı£ººóÃæµÄ¶«Î÷£¬ÔÙ³õÊ¼»¯{}¿éÀïµÄ¶«Î÷£¬
-//ËùÒÔ´òÓ¡µÄË³ĞòÊÇ´«ÈësendMsg²ÎÊıÊ±µÄË³Ğò·´¹ıÀ´
-//*/
-//
-////---------------------------- test3 std::tupleÔÚÍ·ÎÄ¼ş<tuple>ÖĞ
-//using MyPairRet = std::pair<int, std::string>;
-//using MyTupleRet = std::tuple<int, std::string, float, char>; //×Ô¶¨Òå¶àÀàĞÍµÄpair-tuple
-//
-////----- print begin
-//template <typename Tuple, std::size_t N>
-//struct TuplePrinter {
-//	static void print(const Tuple& t)
-//	{
-//		TuplePrinter<Tuple, N - 1>::print(t);
-//		std::cout << ", " << std::get<N - 1>(t);
-//	}
-//};
-//
-//template <typename Tuple>
-//struct TuplePrinter<Tuple, 1>{
-//	static void print(const Tuple& t)
-//	{
-//		std::cout << std::get<0>(t);
-//	}
-//};
-//
-//template <typename... Args>
-//void PrintTuple(const std::tuple<Args...>& t)
-//{
-//	std::cout << "(";
-//	TuplePrinter<decltype(t), sizeof...(Args)>::print(t);
-//	std::cout << ")\n";
-//}
-////----- print end
-//
-//MyPairRet GetPairRet()
-//{
-//	return MyPairRet(111, "aaa");
-//}
-//
-//MyTupleRet GetTupleRet()
-//{
-//	return MyTupleRet(222, "bbb", 333.33f, 'w');
-//}
-//
-//void testTuple()
-//{
-//	MyPairRet pairRet = GetPairRet();
-//	printf("--- pair first:%d, second:%s\n", pairRet.first, pairRet.second.c_str());
-//
-//	MyTupleRet tupleRet = GetTupleRet();
-//	//std::tuple_element<0, MyTupleRet>::type e1 = std::get<0>(tupleRet); //Ã»ÓĞautoÓÃµÄ·½±ã
-//	//auto e1 = std::get<0>(tupleRet);
-//	//auto e2 = std::get<1>(tupleRet);
-//	//auto e3 = std::get<2>(tupleRet);
-//	//auto e4 = std::get<3>(tupleRet);
-//	//printf("--- e1:%d, e2:%s, e3:%f, e4:%c\n", e1, e2.c_str(), e3, e4); //±È½Ï´ìµÄÊä³ö
-//
-//	PrintTuple(tupleRet); //±È½Ï´ÏÃ÷Êä³ö
-//}
-//
-//
-//int main()
-//{
-//	//testArgsForFunc();
-//	testArgsForClass();
-//	//testTuple();
-//
-//	system("pause");
-//	return 0;
-//}
+#include <stdlib.h>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <tuple>
+
+
+namespace MutipleArgsTest
+{
+
+
+//---------------------------- test1 for function
+enum  LuaParameterType
+{
+	LPT_NUM = 0,
+	LPT_STR,
+	LPT_BOOL,
+	LPT_CUSTOM,
+	LPT_COUNT,
+};
+struct  LuaParameter
+{
+	LuaParameterType type;     //ç±»å‹
+	void* value;		       //è‡ªå®šä¹‰ç±»å‹å€¼
+	double num;                //number
+	bool b;                //bool
+	std::string str;          //å­—ç¬¦ä¸²ç±»å‹
+	std::string typeName;      //åœ¨ç±»å‹ä¸ºè‡ªå®šä¹‰ç±»å‹æ—¶æœ‰æ•ˆ
+	std::string name;          //é¢„è®¾æ—¶ç”¨åˆ°è¿™ä¸ªæ•°æ®
+};
+
+
+std::vector<LuaParameter> mutipleArgsVec;
+void insertArg(bool _b)
+{
+	LuaParameter para;
+	para.type = LPT_BOOL;
+	para.b = _b;
+	mutipleArgsVec.push_back(para);
+}
+void insertArg(char _c)
+{
+	LuaParameter para;
+	para.type = LPT_STR;
+	char tmp[2] = { _c, '\0' };
+	para.str = std::string(tmp);
+	mutipleArgsVec.push_back(para);
+}
+void insertArg(const char* _str)
+{
+	LuaParameter para;
+	para.type = LPT_STR;
+	para.str = std::string(_str);
+	mutipleArgsVec.push_back(para);
+}
+void insertArg(std::string _str)
+{
+	LuaParameter para;
+	para.type = LPT_STR;
+	para.str = std::string(_str);
+	mutipleArgsVec.push_back(para);
+}
+void insertArg(int _num)
+{
+	LuaParameter para;
+	para.type = LPT_NUM;
+	para.num = _num;
+	mutipleArgsVec.push_back(para);
+}
+void insertArg(float _num)
+{
+	LuaParameter para;
+	para.type = LPT_NUM;
+	para.num = _num;
+	mutipleArgsVec.push_back(para);
+}
+
+void printData()
+{
+	for (LuaParameter para : mutipleArgsVec)
+	{
+		if (para.type == LPT_NUM)
+		{
+			printf("--- is number:%lf\n", para.num);
+		}
+		else if (para.type == LPT_STR)
+		{
+			printf("--- is string:%s\n", para.str.c_str());
+		}
+		else if (para.type == LPT_BOOL)
+		{
+			printf("--- is bool:%d\n", (int)para.b);
+		}
+	}
+}
+
+//--------------------- å®ç°æ¨¡æ¿çš„é€’å½’ begin ------------------
+template <typename... Args>
+void showArgs(Args... _args); //å˜é•¿æ¨¡æ¿å£°æ˜ï¼Œä¸€å®šè¦æœ€ä¸Šé¢ï¼Œä¸ç„¶ç¼–è¯‘æŠ¥é”™
+
+//definition for 0 parameters -- æ— å‚æ•°æ—¶ï¼Œæœ€åä¸€æ¬¡é€’å½’æ—¶ä¼šè°ƒç”¨ï¼Œåœæ­¢é€’å½’ï¼Œå®ç°ä¸ºç©ºå³å¯
+void showArgs() {} //è¾¹ç•Œæ¡ä»¶
+
+//definition for 1 or more parameters -- æœ‰å‚æ•°æ˜¯è°ƒç”¨è¿™ä¸ªå‡½æ•°
+template < typename T, typename... Args> //åç‰¹åŒ–é€’å½’å®šä¹‰
+void showArgs(T value, Args... _args)
+{
+	insertArg(value);
+	showArgs(_args...);
+}
+//--------------------- å®ç°æ¨¡æ¿çš„é€’å½’ end ------------------
+
+void testArgsForFunc()
+{
+	mutipleArgsVec.clear();
+	showArgs(123, "aaa", 23.23f, 'c', true);
+	printData();
+}
+
+//---------------------------- test2 for class
+//--------------------- å®ç°æ¨¡æ¿çš„é€’å½’ begin ------------------
+template < typename... Args>
+class MultiArgs; //å˜é•¿æ¨¡æ¿å£°æ˜ï¼Œä¸€å®šè¦æœ€ä¸Šé¢ï¼Œä¸ç„¶ç¼–è¯‘æŠ¥é”™
+
+template <>
+class MultiArgs<> {}; //è¾¹ç•Œæ¡ä»¶ï¼Œç»ˆæ­¢ç»§æ‰¿é€’å½’
+
+template < typename T, typename... Args>
+class MultiArgs<T, Args...> : public MultiArgs<Args...> //åç‰¹åŒ–é€’å½’å®šä¹‰
+{
+public:
+	MultiArgs(T _t, Args... _args) : MultiArgs<Args...>(_args...)
+	{ 
+		value = _t;
+		std::cout << "--- addr:0x" << this << ", value:" << _t << std::endl;
+		//TODO:è¿™é‡Œå¯ä»¥å®ç°å¤„ç†å‚æ•°_tçš„é€»è¾‘ï¼Œ
+		//æ¯”å¦‚ä¸¢é‡è½½å„ç§åŒ¹é…å‚æ•°çš„å‡½æ•°ï¼Œåˆ°è‡ªå®šä¹‰æ•°æ®ç»“æ„çš„å®¹å™¨ä¸­
+	}
+public:
+	T value;
+};
+//--------------------- å®ç°æ¨¡æ¿çš„é€’å½’ begin ------------------
+
+template <typename... Args>
+void sendMsg(Args... _args)
+{
+	//è®¡ç®—å˜é•¿æŠ¥çš„é•¿åº¦ï¼šsizeof...(Args)
+	int argsLength = sizeof...(Args);
+	std::cout << "--- _args length:" << argsLength << std::endl; //å¤šå‚æ•°ä½¿ç”¨æ—¶ä¸€å®šè¦å¸¦ä¸Š...
+	MultiArgs<Args...> ma(_args...);
+}
+
+void testArgsForClass()
+{
+	sendMsg(111, "yang", 22.22f, true);
+}
+/*
+ç»“æœï¼š
+--- _args length:4
+--- addr:0x0016F72C, value:1
+--- addr:0x0016F72C, value:22.22
+--- addr:0x0016F72C, value:yang
+--- addr:0x0016F72C, value:111
+ç±»çš„åˆå§‹åŒ–é¡ºåºæ˜¯å…ˆåˆå§‹åŒ–æ„é€ å‡½æ•°ï¼šåé¢çš„ä¸œè¥¿ï¼Œå†åˆå§‹åŒ–{}å—é‡Œçš„ä¸œè¥¿ï¼Œ
+æ‰€ä»¥æ‰“å°çš„é¡ºåºæ˜¯ä¼ å…¥sendMsgå‚æ•°æ—¶çš„é¡ºåºåè¿‡æ¥
+*/
+
+//---------------------------- test3 std::tupleåœ¨å¤´æ–‡ä»¶<tuple>ä¸­
+using MyPairRet = std::pair<int, std::string>;
+using MyTupleRet = std::tuple<int, std::string, float, char>; //è‡ªå®šä¹‰å¤šç±»å‹çš„pair-tuple
+
+//----- print begin
+template <typename Tuple, std::size_t N>
+struct TuplePrinter {
+	static void print(const Tuple& t)
+	{
+		TuplePrinter<Tuple, N - 1>::print(t);
+		std::cout << ", " << std::get<N - 1>(t);
+	}
+};
+
+template <typename Tuple>
+struct TuplePrinter<Tuple, 1>{
+	static void print(const Tuple& t)
+	{
+		std::cout << std::get<0>(t);
+	}
+};
+
+template <typename... Args>
+void PrintTuple(const std::tuple<Args...>& t)
+{
+	std::cout << "(";
+	TuplePrinter<decltype(t), sizeof...(Args)>::print(t);
+	std::cout << ")\n";
+}
+//----- print end
+
+MyPairRet GetPairRet()
+{
+	return MyPairRet(111, "aaa");
+}
+
+MyTupleRet GetTupleRet()
+{
+	return MyTupleRet(222, "bbb", 333.33f, 'w');
+}
+
+void testTuple()
+{
+	MyPairRet pairRet = GetPairRet();
+	printf("--- pair first:%d, second:%s\n", pairRet.first, pairRet.second.c_str());
+
+	MyTupleRet tupleRet = GetTupleRet();
+	//std::tuple_element<0, MyTupleRet>::type e1 = std::get<0>(tupleRet); //æ²¡æœ‰autoç”¨çš„æ–¹ä¾¿
+	//auto e1 = std::get<0>(tupleRet);
+	//auto e2 = std::get<1>(tupleRet);
+	//auto e3 = std::get<2>(tupleRet);
+	//auto e4 = std::get<3>(tupleRet);
+	//printf("--- e1:%d, e2:%s, e3:%f, e4:%c\n", e1, e2.c_str(), e3, e4); //æ¯”è¾ƒæŒ«çš„è¾“å‡º
+
+	PrintTuple(tupleRet); //æ¯”è¾ƒèªæ˜è¾“å‡º
+}
+
+
+void main()
+{
+	//testArgsForFunc();
+	testArgsForClass();
+	//testTuple();
+}
+} // MutipleArgsTest

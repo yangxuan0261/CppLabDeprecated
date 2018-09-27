@@ -1,185 +1,190 @@
-//#include <stdlib.h>
-//#include <iostream>
-//#include <sstream>
-//#include <string>
-//#include <vector>
-//#include <algorithm>
-//#include <functional>
-//
-//typedef std::function<int(const std::string&)> CustomFunc;
-//
-//void testFunc(CustomFunc _pFunc)
-//{
-//	std::string arg0 = "aaabbb";
-//	int result = _pFunc(arg0);
-//	printf("--- result:%d\n", result);
-//}
-//
-//void testptrFunc()
-//{
-//	int num = 123;
-//	int num2 = 789;
-//
-//	//°´ÖµÒıÓÃ
-//	auto func = [&](const std::string&  _str)->int 
-//	{
-//		printf("--- input str:%s\n", _str.c_str());
-//		num = 456;
-//		return 100 + num;
-//	};
-//
-//	//Íâ²¿±äÁ¿°´Öµ²¶»ñ£¬num2°´ÒıÓÃ²¶»ñ
-//	auto func2 = [=, &num2](const std::string&  _str)->int
-//	{
-//		printf("--- input str:%s\n", _str.c_str());
-//		//num = 456; //È¡Ïû×¢ÊÍ±àÒë±¨´í£¬ÒòÎªÊÇ°´Öµ²¶»ñ²»ÄÜĞŞ¸ÄÍâ²¿±äÁ¿Öµ
-//		num2 = 987; //num2ÊÇ°´ÒıÓÃ²¶»ñ£¬ËùÒÔ¿ÉÒÔĞŞ¸Ä±äÁ¿Öµ
-//		return 100 + num;
-//	};
-//
-//	testFunc(func2);
-//
-//	printf("--- num:%d\n", num);
-//	printf("--- num2:%d\n", num2);
-//}
-//
-//void testLambda()
-//{
-//	/*
-//	ÒÔÏÂÊÇ¹ØÓÚ²¶×½¿éµÄÏêÏ¸½éÉÜ£º
-//	[=]Í¨¹ıÖµ²¶×½ËùÓĞ±äÁ¿
-//	[&]Í¨¹ıÒıÓÃ²¶×½ËùÓĞ±äÁ¿
-//	[value]Í¨¹ıÖµ²¶×½value£¬²»²¶×½ÆäËü±äÁ¿
-//	[&value]Í¨¹ıÒıÓÃ²¶×½value£¬²»²¶×½ÆäËü±äÁ¿
-//	[=, &value]Ä¬ÈÏÍ¨¹ıÖµ²¶×½£¬±äÁ¿valueÀıÍâ£¬Í¨¹ıÒıÓÃ²¶×½
-//	[&, value]Ä¬ÈÏÍ¨¹ıÒıÓÃ²¶×½£¬±äÁ¿valueÀıÍâ£¬Í¨¹ıÖµ²¶×½
-//	*/
-//
-//	printf("--------- test1\n");
-//	//Î²²¿µÄÀ¨ºÅÊ¹¸Ã±í´ïÊ½¿ÉÁ¢¼´Ö´ĞĞ£¬}·ûºÅÇ°¾Í±íÊ¾Ò»¸ö·½·¨£¬¼Ó()±íÊ¾Ö´ĞĞ¸Ã·½·¨
-//	[]{std::cout << "Hello from Lambda!" << std::endl; }();
-//
-//	printf("--------- test2\n");
-//	std::string result = [](const std::string& str)->std::string{return "Hello from " + str; }("second Lambda");
-//	std::cout << result << std::endl;
-//
-//	printf("--------- test3\n");
-//	auto fn = [](const std::string& str)->std::string{return "Hello from " + str; };
-//	std::cout << fn("call 1") << std::endl;
-//	std::cout << fn("call 2") << std::endl;
-//
-//	printf("--------- test4\n");
-//	std::vector<int> vec = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-//	int num = 7;
-//	auto func = [=](int value)->bool{return value > num; };
-//	int counter = std::count_if(vec.begin(), vec.end(), func);
-//	std::cout << "Found " << counter << " values > " << num << std::endl;
-//
-//	printf("--------- test5\n");
-//	std::vector<int> vec2 = { 11, 22, 33, 44 };
-//	int index = 0;
-//	for_each(vec2.begin(), vec2.end(), 
-//		[&index](int i)
-//	{
-//		printf("index:%d, value%d\n", index, i);
-//		index++;
-//	});
-//}
-//
-//class Animal
-//{
-//public:
-//	Animal(int _age, std::string _name) : mAge(0), mName("")
-//	{
-//		mAge = _age;
-//		mName = _name;
-//	}
-//
-//	virtual ~Animal() {}
-//
-//	int Show(const std::string& _str, int _num)
-//	{
-//		printf("---- show str:%s\n", _str.c_str());
-//		printf("---- show num:%d\n", _num);
-//		return mAge;
-//	}
-//
-//public:
-//	int mAge;
-//	std::string mName;
-//};
-//
-//void testBind()
-//{
-//	Animal* am = new Animal(22, "uuu");
-//	CustomFunc func = std::bind(&Animal::Show, am, std::placeholders::_1, 123);
-//	std::string str = "hello2";
-//	int ret = func(str);
-//	printf("--- age:%d\n", ret);
-//
-//	delete am;
-//	/*
-//	std::placeholders::_1 ÊÇµ÷ÓÃÊ±´«½ø²ÎÊıµÄÕ¼Î»·û£¬CustomFunc¶¨ÁË¼¸²ÎÊı£¬¾Í±ØĞëÕ¼¶àÉÙÎ»£¬ÑÏ¸ñÒ»ÖÂ
-//	123 ÊÇ°ó¶¨Ê±¿ÉÒÔ´«½ø¸Ãº¯ÊıµÄÖµ
-//	*/
-//}
-//
-//void testRefAndValCapture()
-//{
-//	int j = 12;
-//	auto by_val = [=]() ->int{ return j + 1; };
-//	auto by_ref = [&]() ->int{ return j + 1; };
-//	printf("--- by_val:%d\n", by_val()); //13
-//	printf("--- by_ref:%d\n", by_ref()); //13
-//
-//	j++;
-//	printf("--- by_val:%d\n", by_val()); //13
-//	printf("--- by_ref:%d\n", by_ref()); //14
-//	//°´Öµ²¶×½£¬j±»ÊÓÎªÁËÒ»¸ö³£Á¿£¬Ò»µ©³õÊ¼»¯ºó¾Í²»»áÔÙ¸Ä±ä
-//	//°´ÒıÓÃ²»×ö£¬jÈÔÔÚÊ¹ÓÃ¸¸×÷ÓÃÓòÖĞµÄÖµ
-//}
-//
-//void testModifyVal()
-//{
-//	//lambda±í´ïÊ½{}Âß¼­¿éÄÚÄ¬ÈÏÊÇconstµÄ£¬Èç¹ûÊÇÏëĞŞ¸ÄÍâ²¿ÖµµÄ»°£¬±ØĞë°´ÒıÓÃ²¶×½£¬Íâ²¿Öµ»áËæ×Å¸Ä±ä
-//	//Èç¹ûÊÇ°´Öµ²¶×½£¬ÏëÒªĞŞ¸Ä²¶×½¿½±´½øÀ´µÄÍâ²¿Öµ£¬¾Í±ØĞëÖ¸¶¨mutable£¬µ«Íâ²¿Öµ²»»á¸Ä±ä
-//
-//	int j = 12;
-//	printf("--- j addr:0x%x\n", &j); 
-//	auto by_ref = [&]()->void
-//	{ 
-//		j++; 
-//		printf("--- by_ref j addr:0x%x\n", &j);
-//	};
-//	by_ref();
-//	printf("--- by_ref:%d\n", j); //13
-//
-//	//auto by_val = [=]()->void{ j++; };//±àÒëÊ§°Ü
-//	auto by_val = [=]() mutable->void
-//	{ 
-//		j = 10; //j¿ÉÒÔ±»ĞŞ¸ÄÁË£¬µ«Íâ²¿»¹ÊÇ13
-//		printf("--- by_val j addr:0x%x\n", &j);
-//	}; 
-//	by_val();
-//	printf("--- by_val:%d\n", j); //13
-//	/*
-//	--- j addr:0x23fe10
-//	--- by_ref j addr:0x23fe10
-//	--- by_ref:13
-//	--- by_val j addr:0x23fdf8
-//	--- by_val:13
-//	Ã÷ÏÔ°´Öµ²¶×½µÄÊÇ¿½±´³öÀ´µÄ£¬µØÖ·¶¼²»Ò»ÑùÁË
-//	*/
-//}
-//
-//int main()
-//{
-//	//testLambda();
-//	//testptrFunc();
-//	//testBind();
-//	//testRefAndValCapture();
-//	testModifyVal();
-//
-//	system("pause");
-//	return 0;
-//}
+#include <stdlib.h>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <functional>
+
+
+namespace Lambda
+{
+    
+
+
+typedef std::function<int(const std::string&)> CustomFunc;
+
+void testFunc(CustomFunc _pFunc)
+{
+	std::string arg0 = "aaabbb";
+	int result = _pFunc(arg0);
+	printf("--- result:%d\n", result);
+}
+
+void testptrFunc()
+{
+	int num = 123;
+	int num2 = 789;
+
+	//æŒ‰å€¼å¼•ç”¨
+	auto func = [&](const std::string&  _str)->int 
+	{
+		printf("--- input str:%s\n", _str.c_str());
+		num = 456;
+		return 100 + num;
+	};
+
+	//å¤–éƒ¨å˜é‡æŒ‰å€¼æ•è·ï¼Œnum2æŒ‰å¼•ç”¨æ•è·
+	auto func2 = [=, &num2](const std::string&  _str)->int
+	{
+		printf("--- input str:%s\n", _str.c_str());
+		//num = 456; //å–æ¶ˆæ³¨é‡Šç¼–è¯‘æŠ¥é”™ï¼Œå› ä¸ºæ˜¯æŒ‰å€¼æ•è·ä¸èƒ½ä¿®æ”¹å¤–éƒ¨å˜é‡å€¼
+		num2 = 987; //num2æ˜¯æŒ‰å¼•ç”¨æ•è·ï¼Œæ‰€ä»¥å¯ä»¥ä¿®æ”¹å˜é‡å€¼
+		return 100 + num;
+	};
+
+	testFunc(func2);
+
+	printf("--- num:%d\n", num);
+	printf("--- num2:%d\n", num2);
+}
+
+void testLambda()
+{
+	/*
+	ä»¥ä¸‹æ˜¯å…³äºæ•æ‰å—çš„è¯¦ç»†ä»‹ç»ï¼š
+	[=]é€šè¿‡å€¼æ•æ‰æ‰€æœ‰å˜é‡
+	[&]é€šè¿‡å¼•ç”¨æ•æ‰æ‰€æœ‰å˜é‡
+	[value]é€šè¿‡å€¼æ•æ‰valueï¼Œä¸æ•æ‰å…¶å®ƒå˜é‡
+	[&value]é€šè¿‡å¼•ç”¨æ•æ‰valueï¼Œä¸æ•æ‰å…¶å®ƒå˜é‡
+	[=, &value]é»˜è®¤é€šè¿‡å€¼æ•æ‰ï¼Œå˜é‡valueä¾‹å¤–ï¼Œé€šè¿‡å¼•ç”¨æ•æ‰
+	[&, value]é»˜è®¤é€šè¿‡å¼•ç”¨æ•æ‰ï¼Œå˜é‡valueä¾‹å¤–ï¼Œé€šè¿‡å€¼æ•æ‰
+	*/
+
+	printf("--------- test1\n");
+	//å°¾éƒ¨çš„æ‹¬å·ä½¿è¯¥è¡¨è¾¾å¼å¯ç«‹å³æ‰§è¡Œï¼Œ}ç¬¦å·å‰å°±è¡¨ç¤ºä¸€ä¸ªæ–¹æ³•ï¼ŒåŠ ()è¡¨ç¤ºæ‰§è¡Œè¯¥æ–¹æ³•
+	[]{std::cout << "Hello from Lambda!" << std::endl; }();
+
+	printf("--------- test2\n");
+	std::string result = [](const std::string& str)->std::string{return "Hello from " + str; }("second Lambda");
+	std::cout << result << std::endl;
+
+	printf("--------- test3\n");
+	auto fn = [](const std::string& str)->std::string{return "Hello from " + str; };
+	std::cout << fn("call 1") << std::endl;
+	std::cout << fn("call 2") << std::endl;
+
+	printf("--------- test4\n");
+	std::vector<int> vec = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	int num = 7;
+	auto func = [=](int value)->bool{return value > num; };
+	int counter = std::count_if(vec.begin(), vec.end(), func);
+	std::cout << "Found " << counter << " values > " << num << std::endl;
+
+	printf("--------- test5\n");
+	std::vector<int> vec2 = { 11, 22, 33, 44 };
+	int index = 0;
+	for_each(vec2.begin(), vec2.end(), 
+		[&index](int i)
+	{
+		printf("index:%d, value%d\n", index, i);
+		index++;
+	});
+}
+
+class Animal
+{
+public:
+	Animal(int _age, std::string _name) : mAge(0), mName("")
+	{
+		mAge = _age;
+		mName = _name;
+	}
+
+	virtual ~Animal() {}
+
+	int Show(const std::string& _str, int _num)
+	{
+		printf("---- show str:%s\n", _str.c_str());
+		printf("---- show num:%d\n", _num);
+		return mAge;
+	}
+
+public:
+	int mAge;
+	std::string mName;
+};
+
+void testBind()
+{
+	Animal* am = new Animal(22, "uuu");
+	CustomFunc func = std::bind(&Animal::Show, am, std::placeholders::_1, 123);
+	std::string str = "hello2";
+	int ret = func(str);
+	printf("--- age:%d\n", ret);
+
+	delete am;
+	/*
+	std::placeholders::_1 æ˜¯è°ƒç”¨æ—¶ä¼ è¿›å‚æ•°çš„å ä½ç¬¦ï¼ŒCustomFuncå®šäº†å‡ å‚æ•°ï¼Œå°±å¿…é¡»å å¤šå°‘ä½ï¼Œä¸¥æ ¼ä¸€è‡´
+	123 æ˜¯ç»‘å®šæ—¶å¯ä»¥ä¼ è¿›è¯¥å‡½æ•°çš„å€¼
+	*/
+}
+
+void testRefAndValCapture()
+{
+	int j = 12;
+	auto by_val = [=]() ->int{ return j + 1; };
+	auto by_ref = [&]() ->int{ return j + 1; };
+	printf("--- by_val:%d\n", by_val()); //13
+	printf("--- by_ref:%d\n", by_ref()); //13
+
+	j++;
+	printf("--- by_val:%d\n", by_val()); //13
+	printf("--- by_ref:%d\n", by_ref()); //14
+	//æŒ‰å€¼æ•æ‰ï¼Œjè¢«è§†ä¸ºäº†ä¸€ä¸ªå¸¸é‡ï¼Œä¸€æ—¦åˆå§‹åŒ–åå°±ä¸ä¼šå†æ”¹å˜
+	//æŒ‰å¼•ç”¨ä¸åšï¼Œjä»åœ¨ä½¿ç”¨çˆ¶ä½œç”¨åŸŸä¸­çš„å€¼
+}
+
+void testModifyVal()
+{
+	//lambdaè¡¨è¾¾å¼{}é€»è¾‘å—å†…é»˜è®¤æ˜¯constçš„ï¼Œå¦‚æœæ˜¯æƒ³ä¿®æ”¹å¤–éƒ¨å€¼çš„è¯ï¼Œå¿…é¡»æŒ‰å¼•ç”¨æ•æ‰ï¼Œå¤–éƒ¨å€¼ä¼šéšç€æ”¹å˜
+	//å¦‚æœæ˜¯æŒ‰å€¼æ•æ‰ï¼Œæƒ³è¦ä¿®æ”¹æ•æ‰æ‹·è´è¿›æ¥çš„å¤–éƒ¨å€¼ï¼Œå°±å¿…é¡»æŒ‡å®šmutableï¼Œä½†å¤–éƒ¨å€¼ä¸ä¼šæ”¹å˜
+
+	int j = 12;
+	printf("--- j addr:0x%x\n", &j); 
+	auto by_ref = [&]()->void
+	{ 
+		j++; 
+		printf("--- by_ref j addr:0x%x\n", &j);
+	};
+	by_ref();
+	printf("--- by_ref:%d\n", j); //13
+
+	//auto by_val = [=]()->void{ j++; };//ç¼–è¯‘å¤±è´¥
+	auto by_val = [=]() mutable->void
+	{ 
+		j = 10; //jå¯ä»¥è¢«ä¿®æ”¹äº†ï¼Œä½†å¤–éƒ¨è¿˜æ˜¯13
+		printf("--- by_val j addr:0x%x\n", &j);
+	}; 
+	by_val();
+	printf("--- by_val:%d\n", j); //13
+	/*
+	--- j addr:0x23fe10
+	--- by_ref j addr:0x23fe10
+	--- by_ref:13
+	--- by_val j addr:0x23fdf8
+	--- by_val:13
+	æ˜æ˜¾æŒ‰å€¼æ•æ‰çš„æ˜¯æ‹·è´å‡ºæ¥çš„ï¼Œåœ°å€éƒ½ä¸ä¸€æ ·äº†
+	*/
+}
+
+void main()
+{
+	//testLambda();
+	//testptrFunc();
+	//testBind();
+	//testRefAndValCapture();
+	testModifyVal();
+}
+
+} // Lambda

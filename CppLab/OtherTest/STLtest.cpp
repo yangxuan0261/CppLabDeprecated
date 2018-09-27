@@ -1,1190 +1,1192 @@
-//#include <stdlib.h>
-//#include <iostream>
-//#include <sstream>
-//#include <string>
-//#include <map>
-//#include <vector>
-//#include <array>
-//#include <algorithm>
-//#include <numeric>
-//#include <utility>
-//#include <list>
-//#include <queue>
-//#include <functional>
-//#include <time.h>
-//#include <random>
-//#include <unordered_map>
-//
-////lambda±í´ïÊ½ Êä³övector
-//auto printVec = [](const std::vector<int>& _vec)
-//{
-//	int index = 0;
-//	std::for_each(_vec.begin(), _vec.end(),
-//		[&index](int value)
-//	{
-//		printf("--- index:%d, value:%d\n", index, value);
-//		index++;
-//	});
-//	printf("\n");
-//};
-//
-//auto printMap = [](const std::map<int, std::string>& _map)
-//{
-//	for (auto iter = _map.begin(); iter != _map.end(); iter++)
-//		printf("--- key:%d, value:%s\n", iter->first, iter->second.c_str());
-//	printf("\n");
-//};
-//
-//class Person
-//{
-//public:
-//	Person(int _age, std::string _name) : mName(""), mAge(0) 
-//	{
-//		mAge = _age;
-//		mName = _name;
-//	}
-//
-//	virtual ~Person() {}
-//
-//	//ÖØĞ´==²Ù×÷·û
-//	bool operator ==(const Person& ps) const
-//	{
-//			return ps.mAge == mAge ? true : false;
-//	}
-//
-//	bool operator <(const Person& ps) const
-//	{
-//			return mAge > ps.mAge ? true : false;
-//	}
-//
-//	void operator()() const
-//	{
-//		printf("------------ operator(), name:%s\n", mName.c_str());
-//	}
-//
-//	void ShowName() const { printf("--- name:%s, age:%d\n", mName.c_str(), mAge); }
-//
-//public:
-//	std::string mName;
-//	int mAge;
-//};
-//
-//void testSTLVec()
-//{
-//	//lambda±í´ïÊ½ Êä³övector
-//	auto printVec = [](std::vector<int>& _vec)
-//	{
-//		int index = 0;
-//		std::for_each(_vec.begin(), _vec.end(),
-//			[&index](int value)
-//		{
-//			printf("--- index:%d, value:%d\n", index, value);
-//			index++;
-//		});
-//	};
-//
-//	std::vector<int> vec = { 100, 2, 30, 4, 5, 6, 17, 8, 39 };
-//
-//	printVec(vec);
-//	printf("--- \n");
-//
-//	//std::stable_sortÊ¹ÓÃ
-//	//std::sort()Óëstd::stable_sort() ,Ô­Àí¶¼ÊÇ¿ìËÙÅÅĞò, 
-//	//Çø±ğÊÇstable_sortº¯ÊıÓöµ½Á½¸öÊıÏàµÈÊ±£¬²»¶ÔÆä½»»»Ë³Ğò£¬Ò²¾ÍÊÇÊÇÎÈ¶¨ÅÅĞò
-//	std::stable_sort(std::begin(vec), std::end(vec));
-//
-//	printVec(vec);
-//	printf("--- \n");
-//
-//	//std::findÊ¹ÓÃ vecÖĞÊÇ»ù´¡Êı¾İint
-//	auto iter = std::find(vec.begin(), vec.end(), 101);
-//	if (iter != vec.end())
-//		printf("--- find dest num:%d\n", *iter);
-//	else
-//		printf("--- not find\n");
-//
-//	printf("--- \n");
-//
-//	//lambda±í´ïÊ½ Êä³övector
-//	auto printVecPs = [](std::vector<Person>& _vec)
-//	{
-//		int index = 0;
-//		std::for_each(_vec.begin(), _vec.end(),
-//			[&index](Person& value)
-//		{
-//			printf("--- index:%d, name:%s, age:%d\n", index, value.mName.c_str(), value.mAge);
-//			index++;
-//		});
-//	};
-//
-//	//std::findÊ¹ÓÃ vecÖĞÊÇ×Ô¶¯ÒåÀà
-//	Person p1(12, "aaa");
-//	Person p2(65, "bbb");
-//	Person p3(78, "ccc");
-//	Person p4(26, "ddd");
-//	Person p5(34, "eee");
-//	std::vector<Person> vecPs = { p1, p2, p3, p4, p5 };
-//
-//	printVecPs(vecPs);
-//	printf("--- \n");
-//
-//	Person p6(78, "www");
-//
-//	//std::findÊ¹ÓÃ vecÖĞÊÇÀà
-//	auto iterPs = std::find(vecPs.begin(), vecPs.end(), p6);
-//	if (iterPs != vecPs.end())
-//		printf("--- find dest Pserson name:%s, age:%d\n", (*iterPs).mName.c_str(), (*iterPs).mAge);
-//	else
-//		printf("--- not find\n");
-//
-//	printf("--- \n");
-//
-//	//ÅÅĞòÒ»ÏÂ lambda°æ
-//	//std::stable_sort(std::begin(vecPs), std::end(vecPs),
-//	//	[](const Person& _a,const Person& _b)
-//	//{
-//	//	if (_a.mAge > _b.mAge)
-//	//		return true;
-//	//	else
-//	//		return false;
-//	//}
-//	//	);
-//	//	printVecPs(vecPs);
-//
-//	//ÅÅĞòÒ»ÏÂ ÖØĞ´<²Ù×÷·û°æ
-//	std::stable_sort(std::begin(vecPs), std::end(vecPs));
-//	printVecPs(vecPs);
-//}
-//
-//void testSTLMap()
-//{
-//	//lambda±í´ïÊ½ Êä³ömap
-//	auto printMap = [](std::map<int, std::string>& _map)
-//	{
-//		for (auto iter = _map.begin(); iter != _map.end(); iter++)
-//			printf("--- key:%d, value:%s\n", iter->first, iter->second.c_str());
-//	};
-//
-//	//std::make_pair ÔÚÍ·ÎÄ¼ş<utility>ÖĞ
-//	std::map<int, std::string> myMap;
-//	myMap.insert(std::make_pair(3, "aaa"));
-//	myMap.insert(std::make_pair(2, "bbb"));
-//	myMap.insert(std::make_pair(5, "ccc"));
-//	myMap.insert(std::make_pair(8, "ddd"));
-//
-//	printMap(myMap);
-//}
-//
-//void testVecDel()
-//{
-//	std::vector<int> vec = {};
-//	for (size_t i = 0; i < 10; i++)
-//		vec.push_back(i);
-//
-//	printVec(vec);
-//	printf("--- \n");
-//
-//	//É¾³ıÔªËØ
-//	for (auto iter = vec.begin(); iter != vec.end();)
-//	{
-//		if (*iter > 4 && *iter < 8)
-//			iter = vec.erase(iter);
-//		else
-//			++iter;
-//	}
-//
-//	printVec(vec);
-//	printf("--- \n");
-//}
-//
-//void testMapDel()
-//{
-//	//lambda±í´ïÊ½ Êä³ömap
-//	auto printMap = [](std::map<int, int>& _map)
-//	{
-//		for (auto iter = _map.begin(); iter != _map.end(); iter++)
-//			printf("--- key:%d, value:%d\n", iter->first, iter->second);
-//	};
-//
-//	std::map<int, int> tmpMap;
-//	tmpMap.clear();
-//	for (size_t i = 0; i < 10; i++)
-//		tmpMap.insert(std::make_pair(i, i));
-//
-//	printMap(tmpMap);
-//	printf("--- \n");
-//
-//	for (auto iter = tmpMap.begin(); iter != tmpMap.end();)
-//	{
-//		if (iter->first > 4 && iter->first < 8)
-//			iter = tmpMap.erase(iter);
-//		else
-//			++iter;
-//	}
-//
-//	printMap(tmpMap);
-//}
-//
-//void testInsertVector()
-//{
-//	std::vector<int> numVec = {};
-//	numVec.push_back(1);
-//	numVec.push_back(2);
-//	numVec.push_back(3);
-//	printVec(numVec);
-//	printf("\n");
-//
-//	auto iter = numVec.begin();
-//	numVec.insert(iter + 0, 99); //²åÈëµ¥¸öÔªËØ
-//	iter = numVec.begin();
-//	numVec.insert(iter + 3, 88);//²åÈëµ¥¸öÔªËØ
-//	printVec(numVec);
-//	printf("\n");
-//
-//	std::vector<int> tmp = { -1, -2, -3 };
-//	numVec.insert(numVec.begin() + 3, tmp.begin(), tmp.end()); //²åÈëÇø¼ä
-//	printVec(numVec);
-//}
-//
-//void testList()
-//{
-//	auto func = [](const std::list<int>& _list)
-//	{
-//		for (auto iter = _list.begin(); iter != _list.end(); iter++)
-//			printf("%d ", (*iter));
-//		printf("\n");
-//	};
-//
-//	std::list<int> tmplist = {5, 7, 2, 4, 9, 7};
-//	func(tmplist);
-//	printf("--- list size:%d\n", tmplist.size());
-//
-//	//tmplist.remove(7); //listÔÚ±ê×¼ÈİÆ÷±È½ÏÌØÊâ£¬removeºó²»ĞèÒªerase£¬Êµ¼Ê´óĞ¡Ò²»á±ä¸ü
-//	//func(tmplist);
-//	//printf("--- list size:%d\n", tmplist.size());
-//
-//	//É¾³ı·ûºÏÌõ¼şµÄÔªËØ
-//	//tmplist.remove_if([](const int& _src)->bool{ return _src == 7 ? true : false; });
-//	//func(tmplist);
-//	//printf("--- list size:%d\n", tmplist.size());
-//
-//	//Ö»»áÕÒµ½µÚÒ»¸öiter
-//	//auto iter = std::find_if(tmplist.begin(), tmplist.end(), [](const int& _src)->bool{ return _src == 7 ? true : false; });
-//	//tmplist.erase(iter);
-//	//func(tmplist);
-//	//printf("--- list size:%d\n", tmplist.size());
-//
-//	std::stable_sort(tmplist.begin(), tmplist.end(), [](const int& _a, const int& _b){ return _a > _b ? true : false; });
-//	func(tmplist);
-//	printf("--- list size:%d\n", tmplist.size());
-//}
-//
-//void testVecInsert()
-//{
-//	int data[5] = {1,2,3,4,5};
-//	std::vector<int> vec;
-//	vec.insert(vec.begin(), data, data + 5);
-//	printVec(vec);
-//
-//	std::vector<int> vec2;
-//	vec2.insert(vec2.begin(), vec.begin(), vec.end()); //²åÈëÒ»¸öÇø¼ä
-//	vec2.insert(vec2.begin() + 2, 100); //²åÈëµ¥¸öÔªËØ
-//	printVec(vec2);
-//
-//	bool b = std::binary_search(vec.begin(), vec.end(), 0);
-//	std::cout << "--- find result : " << b << std::endl;
-//}
-//
-//void testPartialSort()
-//{
-//	std::vector<int> values = { 5, 6, 2, 7, 4, 1, 8, 9, 0, 3 };
-//	printVec(values);
-//
-//	std::partial_sort(values.begin(), // °Ñ¶ÓÁĞÖĞ×îºÃµÄ3¸öÔªËØ
-//		values.begin() + 3, // £¨°´Ë³Ğò£©·ÅÔÚvaluesµÄÇ°¶Ë
-//		values.end(),
-//		[](const int& _a, const int& _b)->bool //Êı×éÖĞÁ½¸öÔªËØµÄÅĞ¶Ï£¬´«Á½¸ö²ÎÊı
-//	{
-//		return _a > _b ? true : false;
-//	});
-//
-//	printVec(values);
-//}
-//
-//void testNth_element()
-//{
-//	std::vector<int> values = { 5, 6, 2, 7, 4, 1, 8, 9, 0, 3 };
-//	printVec(values);
-//
-//	std::nth_element(values.begin(), // °Ñ¶ÓÁĞÖĞ×îºÃµÄ3¸öÔªËØ
-//		values.begin() + 3, // £¨²»°´Ë³Ğò£©·ÅÔÚvaluesµÄÇ°¶Ë
-//		values.end(),
-//		[](const int& _a, const int& _b)->bool //Êı×éÖĞÁ½¸öÔªËØµÄÅĞ¶Ï£¬´«Á½¸ö²ÎÊı
-//	{
-//		return _a > _b ? true : false;
-//	});
-//
-//	printVec(values);
-//}
-//
-//
-//void testPartition()
-//{
-//	std::vector<int> values = { 5, 6, 2, 7, 4, 1, 8, 9, 0, 3 };
-//	printVec(values);
-//
-//	//°ÑËùÓĞÂú×ã>3µÄÅÅµ½¶ÓÁĞÇ°¶Ë£¬·µ»Ø iter ÊÇ²»Âú×ã>3µÄµÚÒ»¸öµü´úÆ÷£¬ËùÒÔ±éÀúÊ±±éÀúµ½ != iter¼´¿É
-//	auto iter = std::partition(values.begin(), //
-//		values.end(),
-//		[](const int& _a)->bool //Êı×éÖĞµ¥¸öÔªËØ¶ÔÌØ±ğÅĞ¶Ï£¬Ö»´«Ò»¸ö²ÎÊı
-//	{
-//		return _a > 3 ? true : false;
-//	});
-//
-//	for (auto iter2 = values.begin(); iter2 != iter; iter2++)
-//		printf("--- value:%d\n", *iter2);
-//}
-//
-//void testRemoveAndErase()
-//{
-//	std::vector<int> values = { 5, 6, 2, 7, 4, 1, 8, 9, 0, 3 };
-//	printVec(values);
-//	printf("--- size:%d\n", values.size());
-//
-//	int beDelNum = 99;
-//	values[3] = values[5] = values[8] = beDelNum;
-//	auto iter = std::remove(values.begin(), values.end(), beDelNum);
-//		
-//	values.erase(iter, values.end());
-//	printVec(values);
-//	printf("--- size:%d\n", values.size());
-//}
-//
-//void testSearch()
-//{
-//	auto cmpFunc = [](const int& a, const int& b)->bool
-//	{
-//		return a < b ? true : false;
-//	};
-//
-//	auto printIter = [](const std::vector<int>& _vec, const std::vector<int>::iterator& _iter)
-//	{
-//		for (auto iter = _vec.begin(); iter != _iter; iter++)
-//			printf("--- value:%d\n", (*iter));
-//	};
-//
-//	std::vector<int> values = { 5, 6, 2, 7, 4, 1, 8, 4, 4, 9, 4, 0, 3, 4 };
-//	std::stable_sort(values.begin(), values.end(), cmpFunc);
-//	printVec(values); //ÏÈ½øĞĞÉıĞòÅÅĞò
-//
-//	//lower_bound ·µ»ØµÚÒ»¸ö²»·ûºÏÌõ¼şµÄµü´úÆ÷£¬ Ö¸Ïò4
-//	auto iter = std::lower_bound(values.begin(), values.end(), 4, cmpFunc);
-//	printf("----- *iter value:%d\n", *iter);
-//	printIter(values, iter);
-//	printf("\n");
-//
-//	//upper_bound ·µ»Ø×îºóÒ»¸ö·ûºÏÌõ¼şµÄµü´úÆ÷µÄÏÂÒ»¸öµü´úÆ÷£¬Ö¸Ïò 5 
-//	auto iter2 = std::upper_bound(values.begin(), values.end(), 4, cmpFunc);
-//	printf("----- *iter2 value:%d\n", *iter2);
-//	printIter(values, iter2);
-//	printf("\n");
-//
-//	//equal_range ·µ»Ø lower_bound ºÍ upper_bound µÄµü´úÆ÷
-//	auto aaapair = std::equal_range(values.begin(), values.end(), 4, cmpFunc);
-//	int dist = distance(aaapair.first, aaapair.second);
-//	std::for_each(aaapair.first, aaapair.second,
-//		[](const int& num)
-//	{
-//		printf("--- num:%d\n", num);
-//	});
-//	printf("\n");
-//
-//	bool exist = std::binary_search(values.begin(), values.end(), 4, cmpFunc);
-//	if (exist)
-//		printf("--- exist\n");
-//	else
-//		printf("--- not exist\n");
-//	printf("\n");
-//
-//	printf("--- erase some date\n");
-//	//values.erase(values.begin(), iter);
-//	values.erase(values.begin(), iter2);
-//	printVec(values);
-//}
-//
-//void testSearchForMap()
-//{
-//	std::map<int, std::string> datas;
-//	datas.insert(std::make_pair(5, "aaa"));
-//	datas.insert(std::make_pair(3, "bbb"));
-//	datas.insert(std::make_pair(8, "ccc"));
-//	datas.insert(std::make_pair(7, "ddd"));
-//	datas.insert(std::make_pair(1, "eee"));
-//
-//	std::for_each(datas.begin(), datas.end(),
-//		[](const std::pair<int, std::string>& iter)
-//	{
-//		std::cout << iter.first << "\t" << iter.second << std::endl;
-//	});
-//	printf("\n");
-//
-//	printf("--- map lower_bound 3\n");
-//	auto iter1 = datas.lower_bound(3); // Ö¸Ïò3
-//	printf("--- iter1.first:%d\n", iter1->first);
-//	for (auto iter = datas.begin(); iter != iter1; iter++)
-//		std::cout << iter->first << "\t" << iter->second << std::endl;
-//	printf("\n");
-//
-//	printf("--- map upper_bound 7\n");
-//	auto iter2 = datas.upper_bound(7); //Ö¸Ïò7
-//	for (auto iter = datas.begin(); iter != iter2; iter++)
-//		std::cout << iter->first << "\t" << iter->second << std::endl;
-//	printf("\n");
-//
-//	printf("--- map lower_bound 3 upper_bound 7\n");
-//	for (auto iter = iter1; iter != iter2; iter++)
-//		std::cout << iter->first << "\t" << iter->second << std::endl;
-//	printf("\n");
-//}
-//
-////ÓĞĞòĞòÁĞ¹é²¢
-//void testMerge()
-//{
-//	auto cmpFunc = [](const int& a, const int& b)->bool
-//	{
-//		return a < b ? true : false;
-//	};
-//
-//	std::vector<int> v1 = { 7, 5, 9 };
-//	std::vector<int> v2 = { 4, 8, 6 };
-//	std::stable_sort(v1.begin(), v1.end(), cmpFunc);
-//	std::stable_sort(v2.begin(), v2.end(), cmpFunc);
-//
-//	std::vector<int> v3(v1.size() + v2.size());
-//	std::merge(v1.begin(), v1.end(), v2.begin(), v2.end(), v3.begin());
-//	printVec(v3);
-//}
-//
-//void ppfunctest(const Person* _p)
-//{
-//	_p->ShowName();
-//}
-//
-//void testMemFun()
-//{
-//	Person* p1 = new Person(111, "aaa");
-//	Person* p2 = new Person(222, "bbb");
-//	Person* p3 = new Person(333, "ccc");
-//
-//	//ĞèÒªinclude <functional>
-//	std::vector<Person*> perVec = { p1, p2, p3 };
-//
-//	//ptr_fun
-//	std::for_each(perVec.begin(), perVec.end(), std::ptr_fun(ppfunctest));
-//	printf("\n");
-//
-//	//vecÖĞÊÇÖ¸Õë¶ÔÏóÊ±Ê¹ÓÃmem_fun
-//	std::for_each(perVec.begin(), perVec.end(), std::mem_fun(&Person::ShowName));
-//	printf("\n");
-//
-//	//vecÖĞÊÇÊµÌå¶ÔÏóÊ±Ê¹ÓÃmem_fun_ref
-//	std::vector<Person> perVec2 = { *p1, *p2, *p3 };
-//	std::for_each(perVec2.begin(), perVec2.end(), std::mem_fun_ref(&Person::ShowName));
-//}
-//
-//void testbind1stAndBind2nd()
-//{
-//	std::vector<int> coll;
-//	for (int i = 1; i <= 10; ++i)
-//		coll.push_back(i);
-//
-//	/*
-//	¼òµ¥µÄËµ£¬bind1st(const Operation& op, const T& x)¾ÍÊÇÕâÃ´Ò»¸ö²Ù×÷£ºvalue op x£¬
-//	¶øbind2nd(const Operation& op, const T& x)¾ÍÊÇÕâÃ´Ò»¸ö²Ù×÷£ºx op value£¬
-//	ÆäÖĞvalueÊÇ±»Ó¦ÓÃbindµÄ¶ÔÏó¡£ÕâÁ½¸öÅä½ÓÆ÷¶¼ÓÃÓÚ½«Ò»¸ö¶şÔªËã×Ó×ª»»³ÉÒ»¸öÒ»ÔªËã×Ó¡£
-//	*/
-//
-//	//²éÕÒÔªËØÖµ´óÓÚ10µÄÔªËØµÄ¸öÊı
-//	//Ò²¾ÍÊÇÊ¹µÃ10 < elem³ÉÁ¢µÄÔªËØ¸öÊı 
-//	int res = std::count_if(coll.begin(), coll.end(), std::bind1st(std::less<int>(), 10));
-//	printf("--- res:%d\n", res); //0
-//
-//	//²éÕÒÔªËØÖµĞ¡ÓÚ10µÄÔªËØµÄ¸öÊı
-//	//Ò²¾ÍÊÇÊ¹µÃelem < 10³ÉÁ¢µÄÔªËØ¸öÊı 
-//	res = std::count_if(coll.begin(), coll.end(), std::bind2nd(std::less<int>(), 10));
-//	printf("--- res:%d\n", res);  //9
-//
-//	//»¹²»Èç×Ô¼ºÊµÏÖµÄlambda±í´ïÊ½À´µÄÇåÎú
-//	res = std::count_if(coll.begin(), coll.end(), [&](const int& a)->bool{ return 10 > a ? true : false; });
-//	printf("--- res:%d\n", res);  //9
-//}
-//
-//void testTransform()
-//{
-//	std::vector<int> src = { 1, 2, 3, 4, 5 }; // ½¨Á¢±¾µØÊı×é£¬
-//	std::vector<int> d = { 10, 11, 12 };
-//
-//	//°ÑdataÖĞÍ·Îå¸öÔªËØÒÆµ½dÇ°¶Î£¬²¢ÇÒdataÖĞµÄËùÓĞÔªËØ¶¼ + 41
-//	std::transform(src.begin(), src.begin() + 5,
-//		std::inserter(d, d.begin() + 1),//²åÈëµ½dÖ¸¶¨Î»ÖÃ
-//		//std::back_inserter(d), //²åÈëµ½dÎ²²¿
-//		std::bind2nd(std::plus<int>(), 40));  //ĞèÒªinclude <functional>
-//	printVec(d);
-//}
-//
-//void testFindIfRemoveIfReplaceIf()
-//{
-//	//µ«·²´ø_ifµÄ¶¼ÊÇ¿ÉÒÔÖ¸¶¨×Ô¶¨ÒåµÄº¯Êı£¬´ó²¿·ÖÇé¿öÏÂ¶¼ÊÇ±È½Ïº¯Êı£¬return true or false
-//
-//	int findNum = 6;
-//	std::vector<int> values = { 2, 6, 2, 7, 4, 1, 8, 9, 0, 2 };
-//	printf("--- size:%d\n", values.size());
-//
-//	//²éÕÒµÚÒ»¸ö·ûºÏÌõ¼şµÄ¶ÔÏó
-//	auto iter = std::find_if(values.begin(), values.end(), [&](const int& _src)->bool{ return _src == findNum ? true : false; });
-//	if (iter != values.end())
-//		printf("--- find:%d\n", *iter);
-//	else
-//		printf("--- not find\n");
-//	printf("\n");
-//
-//	int srcNum = 2;
-//	int dstNum = 99; //°Ñ·ûºÏÌõ¼şµÄ¶¼Ìæ»»µô
-//	std::replace_if(values.begin(), values.end(), [&](const int& _src)->bool{ return _src == srcNum ? true : false; }, dstNum);
-//	 printVec(values);
-//	printf("\n");
-//
-//	int delNum = dstNum; //°Ñ·ûºÏÌõ¼şµÄ¶¼É¾³ıµô
-//	auto iter2 = std::remove_if(values.begin(), values.end(), [&](const int& _src)->bool{ return _src == delNum ? true : false; });
-//	values.erase(iter2, values.end());
-//	printf("--- size:%d\n", values.size());
-//	printVec(values);
-//}
-//
-//void testBinarysearch()
-//{
-//	auto printPer = [](const Person* _p) { _p->ShowName(); };
-//	auto sortFunc = [](const Person* _p1, const Person* _p2)->bool { return _p1->mAge > _p2->mAge ? true : false; };
-//
-//	Person* p0 = new Person(5, "aaa");
-//	Person* p1 = new Person(3, "bbb");
-//	Person* p2 = new Person(1, "ccc");
-//	Person* p3 = new Person(0, "ddd");
-//	Person* p4 = new Person(6, "eee");
-//	Person* p5 = new Person(2, "fff");
-//	Person* p6 = new Person(7, "ggg");
-//	Person* p7 = new Person(4, "hhh");
-//	Person* p8 = new Person(9, "iii");
-//	Person* p9 = new Person(8, "jjj");
-//	Person* p10 = new Person(100, "zzz");
-//	std::vector<Person*> perVec = { p0, p1, p2, p3, p4, p5, p6, p7, p8, p9 };
-//
-//	std::for_each(perVec.begin(), perVec.end(), printPer);
-//	printf("\n");
-//	std::stable_sort(perVec.begin(), perVec.end(), sortFunc); //°´Ö¸¶¨±È½Ïº¯ÊıÅÅĞò
-//	std::for_each(perVec.begin(), perVec.end(), printPer);
-//	printf("\n");
-//
-//	bool b = std::binary_search(perVec.begin(), perVec.end(), p10, sortFunc); //Ö¸¶¨º¯Êı±ØĞëÓëÅÅĞòµÄº¯ÊıÒ»ÖÂ
-//	if (b)
-//		printf("--- find\n");
-//	else
-//		printf("--- not find\n");
-//
-//	(*p10)();//µ÷ÓÃÖØĞ´²Ù×÷·û()
-//}
-//
-//void testShinkToFit()
-//{
-//	std::vector<int> vec3;
-//	vec3.reserve(100);
-//	printf("--- vec3 size1:%d\n", vec3.capacity());
-//	vec3.push_back(1);
-//	vec3.push_back(1);
-//	vec3.push_back(1);
-//	std::vector<int>(vec3).swap(vec3); //¸øÈİÆ÷ÈİÁ¿ÊİÉíµ½size´óĞ¡
-//	printf("--- vec3 size2:%d\n", vec3.capacity());
-//}
-//
-//void testArr()
-//{
-//	//std::array<int, 5> arr1; //È«²¿ÖµÎ´³õÊ¼»¯
-//	//std::array<int, 5> arr1 = { 1 }; //µÚÒ»¸ö³õÊ¼»¯Îª1£¬ÆäÓàÈ«²¿Îª0
-//	std::array<int, 5> arr1 = { 20, 1, 1, 10, 1 }; //È«²¿³õÊ¼»¯Îª1
-//	printf("--- arr1 size : %d, addr:0x%x\n", sizeof(arr1), &arr1);
-//	printf("--- arr1 first element:%d\n", arr1);
-//	printf("--- arr1[3] element:%d\n", arr1[3]);
-//
-//	//std::for_each(arr1.begin(), arr1.end(),
-//	//	[](const int& num)
-//	//{
-//	//	printf("--- value:%d\n", num);
-//	//});
-//
-//	std::array<int, 5> arr2 = arr1; //È«²¿³õÊ¼»¯Îª1
-//	printf("--- arr2 size : %d, addr:0x%x\n", sizeof(arr2), &arr2);
-//}
-//
-////¶ÓÁĞÖĞÔªËØÀÛ¼Æ
-//void testAccumulate()
-//{
-//	std::vector<int> values = { 5, 6, 2 };
-//	//int sum = accumulate(values.begin(), values.end(), 3, std::multiplies<int>());
-//	int sum = std::accumulate(values.begin(), values.end(), 0, //ps: accumulateÔÚ<numeric>Í·ÎÄ¼şÖĞ
-//		[](const int& _a, const int& _b)->int
-//	{
-//		return _a + _b;
-//	});
-//	printf("--- sum:%d\n", sum);
-//}
-//
-//void testInnerProduct()
-//{
-//	auto myaccumulator = [](int x, int y)->int{ return x - y; };
-//	auto myproduct = [](int x, int y)->int{ return x + y; };
-//
-//	int init = 100;
-//	std::vector<int> series1 = { 10, 20, 30 };
-//	std::vector<int> series2 = { 1, 2, 3 };
-//
-//    //  ²Ù×÷Ç°:[beg1,end1)ºÍ[beg2,...)±êÊ¾ÊäÈëĞòÁĞ.initÊÇµÚÒ»¸ö²ÎÓëÔËËãµÄÖµ.  
-//    //  ²Ù×÷ºó:¼ÆËãinitÒÀ´Î¼ÓÁ½¸öÊäÈëĞòÁĞ¸÷×Ô¶ÔÓ¦ÔªËØµÄ³Ë»ı.  
-//    //  ·µ»ØÖµ:¼ÆËãËùµÃµÄÖµ.  
-//    //  ±¸×¢:     initÊÇµÚÒ»¸ö²ÎÓëÔËËãµÄÔªËØ.initµÄÀàĞÍ¾ö¶¨·µ»ØÖµµÄÀàĞÍ.  
-//    //                  [beg2,...)ĞòÁĞÖÁÉÙÍ¬[beg1,end1)ĞòÁĞÒ»Ñù´ó.·ñÔò½«Å×³öÒì³£.  
-//    //                  [beg2,...)ÖĞ³¬³ö[beg1,end1)³¤¶ÈµÄĞòÁĞ²»²ÎÓëÔËËã.  
-//	//10*1 + 20*2 + 30*3 + 100 = 240;
-//	std::cout << "--- using default inner_product: ";
-//	std::cout << std::inner_product(series1.begin(), series1.end(), series2.begin(), init);
-//	std::cout << '\n'; //240
-//
-//	//  inner_product (beg1, end1, beg2, init, minus<int> (), divides<int> ()) ;  
-//	//  ²Ù×÷Ç°:[beg1,end1)ºÍ[beg2,...)±êÊ¾ÊäÈëĞòÁĞ.initÊÇµÚÒ»¸ö²ÎÓëÔËËãµÄÖµ.minus<int> ()ºÍdivides<int> ()ÊÇ¶şÔªº¯Êı¶ÔÏó.  
-//	//  ²Ù×÷ºó:¼ÆËãinitÒÀ´Î¼ÓÁ½¸öÊäÈëĞòÁĞ¸÷×Ô¶ÔÓ¦ÔªËØµÄ³Ë»ı.  
-//	//  ·µ»ØÖµ:¼ÆËãËùµÃµÄÖµ.  
-//	//  ±¸×¢:     initÊÇµÚÒ»¸ö²ÎÓëÔËËãµÄÔªËØ.initµÄÀàĞÍ¾ö¶¨·µ»ØÖµµÄÀàĞÍ.  
-//	//                  [beg2,...)ĞòÁĞÖÁÉÙÍ¬[beg1,end1)ĞòÁĞÒ»Ñù´ó.·ñÔò½«Å×³öÒì³£.  
-//	//                  [beg2,...)ÖĞ³¬³ö[beg1,end1)³¤¶ÈµÄĞòÁĞ²»²ÎÓëÔËËã.  
-//	//                  minus<int> ()ËùÔÚÎ»ÖÃÓÃÀ´Ìæ»»²»´ø´Ë²ÎÊı°æ±¾Ëã·¨µÄ¼Ó.  
-//	//                  divides<int> ()ËùÔÚÎ»ÖÃÓÃÀ´Ìæ»»²»´ø´Ë²ÎÊı°æ±¾Ëã·¨µÄ³Ë.  
-//	//100-(10/1) = 90
-//	//90-(20/2) = 80
-//	//80-(30/3) = 70
-//	std::cout << "--- using functional operations: ";
-//	std::cout << std::inner_product(series1.begin(), series1.end(), series2.begin(), init,
-//		std::minus<int>(), std::divides<int>());
-//	std::cout << '\n'; //70
-//
-//	//100-(10+1) = 89
-//	//89-(20+2) = 67
-//	//67-(30+3) = 34
-//	std::cout << "--- using custom functions: ";
-//	std::cout << std::inner_product(series1.begin(), series1.end(), series2.begin(), init,
-//		myaccumulator, myproduct);
-//	std::cout << '\n'; //34
-//}
-//
-//void testPartialSum()
-//{
-//	auto  myop = [](int x, int y) { return x + y + 1; };
-//
-//	std::vector<int> val = { 1, 2, 3, 4, 5 };
-//	std::vector<int> result(5);
-//
-//	//Ä¬ÈÏÀÛ¼Ó
-//	std::partial_sum(val.begin(), val.end(), result.begin());
-//	std::cout << "using default partial_sum: \n";
-//	printVec(result);
-//
-//	//resultÀïÃæ¶ÔÓ¦µÄ5¸öÔªËØ
-//	//1=1
-//	//1*2=2
-//	//2*3=6
-//	//6*4=24
-//	//24*5=120
-//	std::partial_sum(val.begin(), val.end(), result.begin(), std::multiplies<int>());
-//	std::cout << "using functional operation multiplies: \n";
-//	printVec(result);
-//
-//	//resultÀïÃæ¶ÔÓ¦µÄ5¸öÔªËØ
-//	//1=1
-//	//1+2+1 = 4
-//	//4+3+1 = 8
-//	//8+4+1 = 13
-//	//13+5+1 = 19
-//	std::partial_sum(val.begin(), val.end(), result.begin(), myop);
-//	std::cout << "using custom function: \n";
-//	printVec(result);
-//}
-//
-//void testAdjacentDifference()
-//{
-//	std::array<int, 6> ia = { 1, 1, 2, 3, 5, 8 };
-//	std::list<int> ilist(ia.begin(), ia.end());
-//	std::list<int> ilist_result(ilist.size());
-//	std::adjacent_difference(ilist.begin(), ilist.end(), ilist_result.begin());
-//	std::for_each(ilist_result.begin(), ilist_result.end(), [](const int& num){ printf("--- num:%d\n", num); });
-//	printf("\n"); //1 0 1 1 2 3
-//
-//
-//	//1	2	3	5	8
-//	//1	1	2	3	5
-////1 1	2	6	15 40 //ilist_result
-//	std::adjacent_difference(ilist.begin(), ilist.end(), ilist_result.begin(), std::multiplies<int>());
-//	std::for_each(ilist_result.begin(), ilist_result.end(), [](const int& num){ printf("--- num:%d\n", num); });
-//	printf("\n"); //1 1 2 6 15 40
-//}
-//
-//void testMinMaxElement()
-//{
-//	int val1 = 2;
-//	int val2 = 5;
-//	const int& c = std::min(val2, val1, [](const int& _a, const int& _b) {return _a < _b ? true : false; });
-//	const int& d = std::max(val1, val2, [](const int& _a, const int& _b) {return _a < _b ? true : false; });
-//	printf("--- val1:0x%x, val2:0x%x\n", &val1, &val2);
-//	printf("--- min val:%d, 0x%x\n", c, &c);
-//	printf("--- max val:%d, 0x%x\n", d, &d);
-//
-//	auto  e = std::minmax(val1, val2, [](const int& _a, const int& _b) {return _a < _b ? true : false; });
-//	printf("--- min:%d, max:%d\n", e.first, e.second);
-//	printf("\n");
-//
-//	std::array<int, 6> ia = { 1, 1, 2, 3, 5, 8 };
-//	// ¸ù¾İ¸ø¶¨µÄ±È½Ïº¯Êı£¬ÕÒ³ö×îĞ¡ÔªËØ
-//	auto ret1 = std::min_element(ia.begin(), ia.end(), [](const int& _a, const int& _b) {return _a < _b ? true : false; });
-//	printf("--- min:%d\n", *ret1);
-//
-//	// ¸ù¾İ¸ø¶¨µÄ±È½Ïº¯Êı£¬ÕÒ³ö×î´óÔªËØ
-//	auto ret2 = std::max_element(ia.begin(), ia.end(), [](const int& _a, const int& _b) {return _a < _b ? true : false; });
-//	printf("--- max:%d\n", *ret2);
-//
-//	// ¸ù¾İ¸ø¶¨µÄ±È½Ïº¯Êı£¬ÕÒ³ö×î´óºÍ×îĞ¡ÔªËØ
-//	auto ret3 = std::minmax_element(ia.begin(), ia.end(), [](const int& _a, const int& _b) {return _a < _b ? true : false; });
-//	printf("--- min:%d, max:%d\n", *ret3.first, *ret3.second);
-//}
-//
-//void testShuffle()
-//{
-//	//ÕıÕæµÄÏ´ÅÆ£¬¸ù¾İËæ»úÊı
-//	std::default_random_engine generator1(time(NULL)); //Ëæ»úÊıÉú²úÆ÷
-//	std::vector<int> datas = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-//	std::shuffle(datas.begin(), datas.end(), generator1); //
-//	printVec(datas);
-//
-//	//Ã¿´ÎÔËĞĞ¶¼ÊÇÒ»ÑùµÄ½á¹û
-//	auto myrandom = [](int i) { return std::rand() % i; };
-//	std::vector<int> datas2 = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-//	//std::random_shuffle(datas2.begin(), datas2.end());
-//	std::random_shuffle(datas2.begin(), datas2.end(), myrandom);
-//	printVec(datas2);
-//}
-//
-//void testHeap()
-//{
-//	//´ó¶¥¶Ñ
-//	auto cmpFunc = [](const int& _a, const int& _b)->bool{ return _a < _b ? true: false; };
-//	std::vector<int> datas = { 5, 1, 9, 4, 3, 6, 2, 7, 8, 0 };
-//
-//	printf("--- ¶Ñ»¯Êı×é\n");
-//	std::make_heap(datas.begin(), datas.end(), cmpFunc);
-//	printVec(datas); //
-//
-//	printf("--- ÒÆ³ı¶Ñ¶¥ÔªËØ\n");
-//	std::pop_heap(datas.begin(), datas.end(), cmpFunc);
-//	datas.pop_back();//É¾³ı¸Ã½Úµã£¬ÒòÎªÖ»ÊÇ°Ñ¶Ñ¶¥ÔªËØÒÆ¶¯µ½ÁË¶ÑÎ²
-//	printVec(datas);
-//
-//	printf("--- ÒÆ³ı¶Ñ¶¥ÔªËØ\n");
-//	std::pop_heap(datas.begin(), datas.end(), cmpFunc);
-//	datas.pop_back();//É¾³ı¸Ã½Úµã£¬ÒòÎªÖ»ÊÇ°Ñ¶Ñ¶¥ÔªËØÒÆ¶¯µ½ÁË¶ÑÎ²
-//	printVec(datas);
-//
-//	printf("--- ¶ÑÎ²Ìí¼ÓÔªËØ5\n");
-//	datas.push_back(5);
-//	std::push_heap(datas.begin(), datas.end(), cmpFunc);
-//	printVec(datas);
-//
-//	printf("--- ½«¶Ñ±ä³ÉÓĞĞòÊı×é\n");
-//	std::sort(datas.begin(), datas.end(), cmpFunc);
-//	printVec(datas);
-//}
-//
-//void testNextPermutation()
-//{
-//	/*
-//	ÔÚ¡¶STLÔ´Âë½âÎö¡·ÖĞÕÒµ½ÁËÕâ¸öº¯Êı£¬ÔÚ´ËÒ²¼òµ¥ĞğÊöÒ»ÏÂÔ­Àí£º
-//	ÔÚSTLÖĞ£¬³ıÁËnext_permutationÍâ£¬»¹ÓĞÒ»¸öº¯Êıprev_permutation£¬
-//	Á½Õß¶¼ÊÇÓÃÀ´¼ÆËãÅÅÁĞ×éºÏµÄº¯Êı¡£Ç°ÕßÊÇÇó³öÏÂÒ»¸öÅÅÁĞ×éºÏ£¬¶øºóÕßÊÇÇó³öÉÏÒ»¸öÅÅÁĞ×éºÏ¡£
-//	ËùÎ½¡°ÏÂÒ»¸ö¡±ºÍ¡°ÉÏÒ»¸ö¡±£¬ÊéÖĞ¾ÙÁËÒ»¸ö¼òµ¥µÄÀı×Ó£º
-//	¶ÔĞòÁĞ {a, b, c}£¬Ã¿Ò»¸öÔªËØ¶¼±ÈºóÃæµÄĞ¡£¬°´ÕÕ×ÖµäĞòÁĞ£¬¹Ì¶¨aÖ®ºó£¬a±Èbc¶¼Ğ¡£¬c±Èb´ó£¬
-//	ËüµÄÏÂÒ»¸öĞòÁĞ¼´Îª{a, c, b}£¬¶ø{a, c, b}µÄÉÏÒ»¸öĞòÁĞ¼´Îª{a, b, c}£¬
-//	Í¬Àí¿ÉÒÔÍÆ³öËùÓĞµÄÁù¸öĞòÁĞÎª£º{a, b, c}¡¢{a, c, b}¡¢{b, a, c}¡¢{b, c, a}¡¢{c, a, b}¡¢{c, b, a}£¬
-//	ÆäÖĞ{a, b, c}Ã»ÓĞÉÏÒ»¸öÔªËØ£¬{c, b, a}Ã»ÓĞÏÂÒ»¸öÔªËØ¡£
-//	*/
-//
-//	auto cmpFunc = [](const int& _a, const int& _b)->bool{ return _a < _b ? true : false; };
-//	std::vector<int> datas = { 1, 2, 3 };
-//	printVec(datas);
-//	std::next_permutation(datas.begin(), datas.end(), cmpFunc);
-//	printVec(datas);
-//	std::next_permutation(datas.begin(), datas.end(), cmpFunc);
-//	printVec(datas);
-//
-//	//std::prev_permutation(datas.begin(), datas.end(), cmpFunc);
-//
-//}
-//
-//void testMismatch()
-//{
-//	auto cmpFunc = [](const int& _a, const int& _b)->bool{ return _a == _b ? true : false; };
-//	std::vector<int> datas1 = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-//	std::vector<int> datas2 = { 0, 1, 2, 3, 4, 0, 6, 7, 8, 9 };
-//
-//	//·µ»ØÁ½¸övecµÄ²»Í¬ÏàÍ¬µÄÖµµÄµü´úÆ÷
-//	auto ret = std::mismatch(datas1.begin(), datas1.end(), datas2.begin(), cmpFunc);
-//	if (ret.first == datas1.end() && ret.second == datas2.end())
-//		printf("ÍêÈ«ÏàÍ¬\n");
-//	else
-//	{
-//		printf("--- ret.first:%d, ret.second:%d \n", *ret.first, *ret.second);
-//	}
-//}
-//
-//void testCopy()
-//{
-//	std::vector<int> datas1 = { 0, 1, 2, 3, 4, 0, 2, 7, 8, 2 };
-//	std::vector<int> datas2(datas1.size());
-//	std::copy(datas1.begin(), datas1.end(), datas2.begin());
-//	printVec(datas2);
-//
-//	int dstNum = 2;
-//	auto cmpFunc = [&](const int& val)->bool{return val == dstNum ? true : false; };
-//	std::vector<int> datas3(datas1.size());
-//	std::copy_if(datas1.begin(), datas1.end(), datas3.begin(), cmpFunc); // ÏàµÈµÄ²Å¿½¹ıÈ¥
-//	printVec(datas3);
-//}
-//
-//void testUnorderMap()
-//{
-//	auto printMap = [](const std::unordered_map<int, std::string>& datas)
-//	{
-//		for (auto iter = datas.begin(); iter != datas.end(); iter++)
-//			printf("--- key:%d, value:%s\n", iter->first, iter->second.c_str());
-//		printf("\n");
-//	};
-//
-//	std::unordered_map<int, std::string> datas;
-//	datas.insert(std::pair<int, std::string>(1, "aaa"));
-//	datas.insert(std::pair<int, std::string>(9, "bbb"));
-//	datas.insert(std::pair<int, std::string>(5, "ccc"));
-//	datas.insert(std::pair<int, std::string>(2, "ddd"));
-//	datas.insert(std::pair<int, std::string>(7, "eee"));
-//	datas.insert(std::pair<int, std::string>(9, "fff"));
-//	datas.insert(std::pair<int, std::string>(6, "ggg"));
-//	datas.insert(std::pair<int, std::string>(3, "hhh"));
-//	datas.insert(std::pair<int, std::string>(4, "iii"));
-//	datas.insert(std::pair<int, std::string>(0, "jjj"));
-//	printMap(datas);
-//
-//
-//
-//	std::map<int, int> datas2;
-//}
-//
-//void testMapWithCmpFunc1()
-//{
-//	//-------------°´keyÖµÅÅĞò ------------------
-//	//×Ô¶¨Òåkey±È½ÏÀà£¬ÖØĞ´()²Ù×÷·û£¬map²åÈëÊ±Ôò»á°´Ë³Ğò²åÈëµ½ºÏÊÊµÄÎ»ÖÃ
-//	struct CmpByKey {
-//		bool operator()(const int& k1, const int& k2) {
-//			return k1 < k2 ? true : false;
-//		}
-//	};
-//
-//	// ÓĞĞòmap
-//	printf("--------- ÓĞĞòmap °´keyÖµÅÅĞò\n");
-//	std::map<int, std::string, CmpByKey> datas;
-//	datas.insert(std::pair<int, std::string>(1, "aaa"));
-//	datas.insert(std::pair<int, std::string>(9, "bbb"));
-//	datas.insert(std::pair<int, std::string>(5, "ccc"));
-//	datas.insert(std::pair<int, std::string>(2, "ddd"));
-//	datas.insert(std::pair<int, std::string>(7, "eee"));
-//	datas.insert(std::pair<int, std::string>(9, "fff"));
-//	datas.insert(std::pair<int, std::string>(6, "ggg"));
-//	datas.insert(std::pair<int, std::string>(3, "hhh"));
-//	datas.insert(std::pair<int, std::string>(4, "iii"));
-//	datas.insert(std::pair<int, std::string>(0, "jjj"));
-//
-//	for (auto iter = datas.begin(); iter != datas.end(); iter++)
-//		printf("--- key:%d, value:%s\n", iter->first, iter->second.c_str());
-//	printf("\n");
-//
-//	//-------------°´valueÖµÅÅĞò ------------------
-//	printf("--------- ÓĞĞòmap °´valueÖµÅÅĞò\n");
-//	typedef std::pair<int, std::string> PAIR;
-//	std::map<int, std::string> datas2;
-//	datas2.insert(std::pair<int, std::string>(1, "a"));
-//	datas2.insert(std::pair<int, std::string>(9, "bb"));
-//	datas2.insert(std::pair<int, std::string>(5, "ccc"));
-//	datas2.insert(std::pair<int, std::string>(5, "zzzzzzzzzzz")); //ÒÑ¾­ÓĞ¸ö5µÄkey£¬ËùÒÔ²»»á±»²åÈë
-//	datas2.insert(std::pair<int, std::string>(2, "ddd"));
-//	datas2[2] = "yyyyyyyyyyy"; //ÓĞÔòÌæ»»£¬ÎŞÔò²åÈë
-//	datas2.insert(std::pair<int, std::string>(7, "eeee"));
-//	datas2.insert(std::pair<int, std::string>(9, "fff"));
-//	datas2.insert(std::pair<int, std::string>(6, "g"));
-//	datas2.insert(std::pair<int, std::string>(3, "hh"));
-//	datas2.insert(std::pair<int, std::string>(4, "iiiiii"));
-//	datas2.insert(std::pair<int, std::string>(0, "j"));
-//
-//	auto cmpFunc = [](const PAIR& _a, PAIR& _b){return _a.second.length() < _b.second.length() ? true : false; };
-//	struct CmpByValue { //Ò²¿ÉÒÔÓÃÀàµÄĞÎÊ½
-//		bool operator()(const PAIR& _a, const PAIR& _b) {
-//			return _a.second.length() < _b.second.length() ? true : false;
-//		}
-//	};
-//
-//	std::vector<PAIR> vecData(datas2.begin(), datas2.end()); //½«ËùÓĞµÄpair¶ÔÏó´æ´¢µ½vecÖĞ£¬
-//	std::sort(vecData.begin(), vecData.end(), cmpFunc); //È»ºóÖ¸¶¨ÅÅĞò·½·¨ÅÅĞò
-//	//std::sort(vecData.begin(), vecData.end(), CmpByValue()); //È»ºóÖ¸¶¨ÅÅĞò·½·¨ÅÅĞò
-//	for (int i = 0; i != vecData.size(); ++i)
-//		printf("--- key:%d, value:%s\n", vecData[i].first, vecData[i].second.c_str());
-//	printf("\n");
-//
-//	//´ó¶àÊıÇé¿öÏÂ¶¼ÊÇÒªÓÃvalueÖµÅÅĞò£¬ÎŞĞòÁĞmap
-//	printf("--------- ÎŞĞòunorder_map °´valueÖµÅÅĞò\n");
-//	std::unordered_map<int, std::string> data5;
-//	data5.insert(std::pair<int, std::string>(1, "a"));
-//	data5.insert(std::pair<int, std::string>(9, "bb"));
-//	data5.insert(std::pair<int, std::string>(5, "ccc"));
-//	data5.insert(std::pair<int, std::string>(5, "zzzzzzzzzzz")); //ÒÑ¾­ÓĞ¸ö5µÄkey£¬ËùÒÔ²»»á±»²åÈë
-//	data5.insert(std::pair<int, std::string>(2, "ddd"));
-//	data5[2] = "yyyyyyyyyyy"; //ÓĞÔòÌæ»»£¬ÎŞÔò²åÈë
-//	data5.insert(std::pair<int, std::string>(7, "eeee"));
-//	data5.insert(std::pair<int, std::string>(9, "fff"));
-//	data5.insert(std::pair<int, std::string>(6, "g"));
-//	data5.insert(std::pair<int, std::string>(3, "hh"));
-//	data5.insert(std::pair<int, std::string>(4, "iiiiii"));
-//	data5.insert(std::pair<int, std::string>(0, "j"));
-//
-//	std::for_each(data5.begin(), data5.end(), 
-//		[](const PAIR& iter)
-//	{ printf("--- key:%d, value:%s\n", iter.first, iter.second.c_str()); });
-//	printf("\n");
-//
-//	std::vector<PAIR> vecData2(data5.begin(), data5.end()); //½«ËùÓĞµÄpair¶ÔÏó´æ´¢µ½vecÖĞ£¬
-//	std::sort(vecData2.begin(), vecData2.end(), cmpFunc); //È»ºóÖ¸¶¨ÅÅĞò·½·¨ÅÅĞò
-//	for (int i = 0; i != vecData2.size(); ++i)
-//		printf("--- key:%d, value:%s\n", vecData2[i].first, vecData2[i].second.c_str());
-//	printf("\n");
-//
-//	auto iter5 = data5.find(9);
-//	if (iter5 != data5.end())
-//		printf("--- key:%d, value:%s\n", iter5->first, iter5->second.c_str());
-//	else
-//		printf("--- not find\n");
-//	 
-//}
-//
-//struct person
-//{
-//	std::string name;
-//	int age;
-//
-//	person(std::string name, int age)
-//	{
-//		this->name = name;
-//		this->age = age;
-//	}
-//
-//	//bool operator== (const person& p) const
-//	//{
-//	//	return name == p.name && age == p.age;
-//	//}
-//
-//	bool operator < (const person& p) const
-//	{
-//		return age < p.age ? true : false;
-//	}
-//};
-//
-//void testMapWithCmpFunc2()
-//{
-//	/*
-//	ÓÃ·¨µÄÇø±ğ¾ÍÊÇ£¬stl::map µÄkeyĞèÒª¶¨Òåoperator< ¡£
-//	¶øboost::unordered_mapĞèÒª¶¨Òåhash_value¡¢equalº¯Êı¡£
-//	¶ÔÓÚÄÚÖÃÀàĞÍ£¬Èçstring£¬ÕâĞ©¶¼²»ÓÃ²ÙĞÄ¡£
-//	¶ÔÓÚ×Ô¶¨ÒåµÄÀàĞÍ×ökey£¬¾ÍĞèÒª×Ô¼ºÖØÔØoperator< »òÕßhash_value()ÁË¡£
-//	*/
-//	typedef std::pair<person, int> PAIR;
-//	std::map<person, int> m;
-//	person p1("Tom1", 20);
-//	person p2("Tom2", 22);
-//	person p3("Tom3", 22);
-//	person p4("Tom4", 23);
-//	person p5("Tom5", 24);
-//	m.insert(std::make_pair(p3, 100));
-//	m.insert(std::make_pair(p4, 100));
-//	m.insert(std::make_pair(p5, 100));
-//	m.insert(std::make_pair(p1, 100));
-//	m.insert(std::make_pair(p2, 100));
-//
-//	//mapµÄÁíÒ»ÖÖ±éÀú·½Ê½1 (c++11)
-//	printf("--- std::for_each(m.begin(), m.end(), \n");
-//	std::for_each(m.begin(), m.end(),
-//		[](const PAIR& iter)
-//	{
-//			std::cout << iter.first.name << "\t" << iter.first.age << std::endl;
-//	});
-//	printf("\n");
-//
-//	//mapµÄÁíÒ»ÖÖ±éÀú·½Ê½2 (c++11)
-//	printf("--- for (auto iter : m) \n");
-//	for (auto iter : m)
-//		std::cout << iter.first.name << "\t" << iter.first.age << std::endl;
-//	printf("\n");
-//
-//	//mapµÄÁíÒ»ÖÖ±éÀú·½Ê½3
-//	printf("--- for (auto iter = m.begin(); iter != m.end(); iter++) \n");
-//	for (auto iter = m.begin(); iter != m.end(); iter++)
-//		std::cout << iter->first.name << "\t" << iter->first.age << std::endl;
-//}
-//
-//
-////--------------------------- unorder_map ÖØĞ´hash¡¢equalº¯Êı begin ----------
-////¶¼ÊÇ¶ÔkeyÖµ¶øÑÔ
-////Èç¹ûÄãÏ£ÍûÀûÓÃÏµÍ³¶¨ÒåµÄ×Ö·û´®hashº¯Êı£¬Äã¿ÉÒÔÕâÑùĞ´£º
-//struct str_hash{
+#include <stdlib.h>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <map>
+#include <vector>
+#include <array>
+#include <algorithm>
+#include <numeric>
+#include <utility>
+#include <list>
+#include <queue>
+#include <functional>
+#include <time.h>
+#include <random>
+#include <unordered_map>
+
+
+namespace STLtest
+{
+
+//lambdaè¡¨è¾¾å¼ è¾“å‡ºvector
+auto printVec = [](const std::vector<int>& _vec)
+{
+	int index = 0;
+	std::for_each(_vec.begin(), _vec.end(),
+		[&index](int value)
+	{
+		printf("--- index:%d, value:%d\n", index, value);
+		index++;
+	});
+	printf("\n");
+};
+
+auto printMap = [](const std::map<int, std::string>& _map)
+{
+	for (auto iter = _map.begin(); iter != _map.end(); iter++)
+		printf("--- key:%d, value:%s\n", iter->first, iter->second.c_str());
+	printf("\n");
+};
+
+class Person
+{
+public:
+	Person(int _age, std::string _name) : mName(""), mAge(0) 
+	{
+		mAge = _age;
+		mName = _name;
+	}
+
+	virtual ~Person() {}
+
+	//é‡å†™==æ“ä½œç¬¦
+	bool operator ==(const Person& ps) const
+	{
+			return ps.mAge == mAge ? true : false;
+	}
+
+	bool operator <(const Person& ps) const
+	{
+			return mAge > ps.mAge ? true : false;
+	}
+
+	void operator()() const
+	{
+		printf("------------ operator(), name:%s\n", mName.c_str());
+	}
+
+	void ShowName() const { printf("--- name:%s, age:%d\n", mName.c_str(), mAge); }
+
+public:
+	std::string mName;
+	int mAge;
+};
+
+void testSTLVec()
+{
+	//lambdaè¡¨è¾¾å¼ è¾“å‡ºvector
+	auto printVec = [](std::vector<int>& _vec)
+	{
+		int index = 0;
+		std::for_each(_vec.begin(), _vec.end(),
+			[&index](int value)
+		{
+			printf("--- index:%d, value:%d\n", index, value);
+			index++;
+		});
+	};
+
+	std::vector<int> vec = { 100, 2, 30, 4, 5, 6, 17, 8, 39 };
+
+	printVec(vec);
+	printf("--- \n");
+
+	//std::stable_sortä½¿ç”¨
+	//std::sort()ä¸std::stable_sort() ,åŸç†éƒ½æ˜¯å¿«é€Ÿæ’åº, 
+	//åŒºåˆ«æ˜¯stable_sortå‡½æ•°é‡åˆ°ä¸¤ä¸ªæ•°ç›¸ç­‰æ—¶ï¼Œä¸å¯¹å…¶äº¤æ¢é¡ºåºï¼Œä¹Ÿå°±æ˜¯æ˜¯ç¨³å®šæ’åº
+	std::stable_sort(std::begin(vec), std::end(vec));
+
+	printVec(vec);
+	printf("--- \n");
+
+	//std::findä½¿ç”¨ vecä¸­æ˜¯åŸºç¡€æ•°æ®int
+	auto iter = std::find(vec.begin(), vec.end(), 101);
+	if (iter != vec.end())
+		printf("--- find dest num:%d\n", *iter);
+	else
+		printf("--- not find\n");
+
+	printf("--- \n");
+
+	//lambdaè¡¨è¾¾å¼ è¾“å‡ºvector
+	auto printVecPs = [](std::vector<Person>& _vec)
+	{
+		int index = 0;
+		std::for_each(_vec.begin(), _vec.end(),
+			[&index](Person& value)
+		{
+			printf("--- index:%d, name:%s, age:%d\n", index, value.mName.c_str(), value.mAge);
+			index++;
+		});
+	};
+
+	//std::findä½¿ç”¨ vecä¸­æ˜¯è‡ªåŠ¨ä¹‰ç±»
+	Person p1(12, "aaa");
+	Person p2(65, "bbb");
+	Person p3(78, "ccc");
+	Person p4(26, "ddd");
+	Person p5(34, "eee");
+	std::vector<Person> vecPs = { p1, p2, p3, p4, p5 };
+
+	printVecPs(vecPs);
+	printf("--- \n");
+
+	Person p6(78, "www");
+
+	//std::findä½¿ç”¨ vecä¸­æ˜¯ç±»
+	auto iterPs = std::find(vecPs.begin(), vecPs.end(), p6);
+	if (iterPs != vecPs.end())
+		printf("--- find dest Pserson name:%s, age:%d\n", (*iterPs).mName.c_str(), (*iterPs).mAge);
+	else
+		printf("--- not find\n");
+
+	printf("--- \n");
+
+	//æ’åºä¸€ä¸‹ lambdaç‰ˆ
+	//std::stable_sort(std::begin(vecPs), std::end(vecPs),
+	//	[](const Person& _a,const Person& _b)
+	//{
+	//	if (_a.mAge > _b.mAge)
+	//		return true;
+	//	else
+	//		return false;
+	//}
+	//	);
+	//	printVecPs(vecPs);
+
+	//æ’åºä¸€ä¸‹ é‡å†™<æ“ä½œç¬¦ç‰ˆ
+	std::stable_sort(std::begin(vecPs), std::end(vecPs));
+	printVecPs(vecPs);
+}
+
+void testSTLMap()
+{
+	//lambdaè¡¨è¾¾å¼ è¾“å‡ºmap
+	auto printMap = [](std::map<int, std::string>& _map)
+	{
+		for (auto iter = _map.begin(); iter != _map.end(); iter++)
+			printf("--- key:%d, value:%s\n", iter->first, iter->second.c_str());
+	};
+
+	//std::make_pair åœ¨å¤´æ–‡ä»¶<utility>ä¸­
+	std::map<int, std::string> myMap;
+	myMap.insert(std::make_pair(3, "aaa"));
+	myMap.insert(std::make_pair(2, "bbb"));
+	myMap.insert(std::make_pair(5, "ccc"));
+	myMap.insert(std::make_pair(8, "ddd"));
+
+	printMap(myMap);
+}
+
+void testVecDel()
+{
+	std::vector<int> vec = {};
+	for (size_t i = 0; i < 10; i++)
+		vec.push_back(i);
+
+	printVec(vec);
+	printf("--- \n");
+
+	//åˆ é™¤å…ƒç´ 
+	for (auto iter = vec.begin(); iter != vec.end();)
+	{
+		if (*iter > 4 && *iter < 8)
+			iter = vec.erase(iter);
+		else
+			++iter;
+	}
+
+	printVec(vec);
+	printf("--- \n");
+}
+
+void testMapDel()
+{
+	//lambdaè¡¨è¾¾å¼ è¾“å‡ºmap
+	auto printMap = [](std::map<int, int>& _map)
+	{
+		for (auto iter = _map.begin(); iter != _map.end(); iter++)
+			printf("--- key:%d, value:%d\n", iter->first, iter->second);
+	};
+
+	std::map<int, int> tmpMap;
+	tmpMap.clear();
+	for (size_t i = 0; i < 10; i++)
+		tmpMap.insert(std::make_pair(i, i));
+
+	printMap(tmpMap);
+	printf("--- \n");
+
+	for (auto iter = tmpMap.begin(); iter != tmpMap.end();)
+	{
+		if (iter->first > 4 && iter->first < 8)
+			iter = tmpMap.erase(iter);
+		else
+			++iter;
+	}
+
+	printMap(tmpMap);
+}
+
+void testInsertVector()
+{
+	std::vector<int> numVec = {};
+	numVec.push_back(1);
+	numVec.push_back(2);
+	numVec.push_back(3);
+	printVec(numVec);
+	printf("\n");
+
+	auto iter = numVec.begin();
+	numVec.insert(iter + 0, 99); //æ’å…¥å•ä¸ªå…ƒç´ 
+	iter = numVec.begin();
+	numVec.insert(iter + 3, 88);//æ’å…¥å•ä¸ªå…ƒç´ 
+	printVec(numVec);
+	printf("\n");
+
+	std::vector<int> tmp = { -1, -2, -3 };
+	numVec.insert(numVec.begin() + 3, tmp.begin(), tmp.end()); //æ’å…¥åŒºé—´
+	printVec(numVec);
+}
+
+void testList()
+{
+	auto func = [](const std::list<int>& _list)
+	{
+		for (auto iter = _list.begin(); iter != _list.end(); iter++)
+			printf("%d ", (*iter));
+		printf("\n");
+	};
+
+	std::list<int> tmplist = {5, 7, 2, 4, 9, 7};
+	func(tmplist);
+	printf("--- list size:%d\n", tmplist.size());
+
+	//tmplist.remove(7); //liståœ¨æ ‡å‡†å®¹å™¨æ¯”è¾ƒç‰¹æ®Šï¼Œremoveåä¸éœ€è¦eraseï¼Œå®é™…å¤§å°ä¹Ÿä¼šå˜æ›´
+	//func(tmplist);
+	//printf("--- list size:%d\n", tmplist.size());
+
+	//åˆ é™¤ç¬¦åˆæ¡ä»¶çš„å…ƒç´ 
+	//tmplist.remove_if([](const int& _src)->bool{ return _src == 7 ? true : false; });
+	//func(tmplist);
+	//printf("--- list size:%d\n", tmplist.size());
+
+	//åªä¼šæ‰¾åˆ°ç¬¬ä¸€ä¸ªiter
+	//auto iter = std::find_if(tmplist.begin(), tmplist.end(), [](const int& _src)->bool{ return _src == 7 ? true : false; });
+	//tmplist.erase(iter);
+	//func(tmplist);
+	//printf("--- list size:%d\n", tmplist.size());
+
+	std::stable_sort(tmplist.begin(), tmplist.end(), [](const int& _a, const int& _b){ return _a > _b ? true : false; });
+	func(tmplist);
+	printf("--- list size:%d\n", tmplist.size());
+}
+
+void testVecInsert()
+{
+	int data[5] = {1,2,3,4,5};
+	std::vector<int> vec;
+	vec.insert(vec.begin(), data, data + 5);
+	printVec(vec);
+
+	std::vector<int> vec2;
+	vec2.insert(vec2.begin(), vec.begin(), vec.end()); //æ’å…¥ä¸€ä¸ªåŒºé—´
+	vec2.insert(vec2.begin() + 2, 100); //æ’å…¥å•ä¸ªå…ƒç´ 
+	printVec(vec2);
+
+	bool b = std::binary_search(vec.begin(), vec.end(), 0);
+	std::cout << "--- find result : " << b << std::endl;
+}
+
+void testPartialSort()
+{
+	std::vector<int> values = { 5, 6, 2, 7, 4, 1, 8, 9, 0, 3 };
+	printVec(values);
+
+	std::partial_sort(values.begin(), // æŠŠé˜Ÿåˆ—ä¸­æœ€å¥½çš„3ä¸ªå…ƒç´ 
+		values.begin() + 3, // ï¼ˆæŒ‰é¡ºåºï¼‰æ”¾åœ¨valuesçš„å‰ç«¯
+		values.end(),
+		[](const int& _a, const int& _b)->bool //æ•°ç»„ä¸­ä¸¤ä¸ªå…ƒç´ çš„åˆ¤æ–­ï¼Œä¼ ä¸¤ä¸ªå‚æ•°
+	{
+		return _a > _b ? true : false;
+	});
+
+	printVec(values);
+}
+
+void testNth_element()
+{
+	std::vector<int> values = { 5, 6, 2, 7, 4, 1, 8, 9, 0, 3 };
+	printVec(values);
+
+	std::nth_element(values.begin(), // æŠŠé˜Ÿåˆ—ä¸­æœ€å¥½çš„3ä¸ªå…ƒç´ 
+		values.begin() + 3, // ï¼ˆä¸æŒ‰é¡ºåºï¼‰æ”¾åœ¨valuesçš„å‰ç«¯
+		values.end(),
+		[](const int& _a, const int& _b)->bool //æ•°ç»„ä¸­ä¸¤ä¸ªå…ƒç´ çš„åˆ¤æ–­ï¼Œä¼ ä¸¤ä¸ªå‚æ•°
+	{
+		return _a > _b ? true : false;
+	});
+
+	printVec(values);
+}
+
+
+void testPartition()
+{
+	std::vector<int> values = { 5, 6, 2, 7, 4, 1, 8, 9, 0, 3 };
+	printVec(values);
+
+	//æŠŠæ‰€æœ‰æ»¡è¶³>3çš„æ’åˆ°é˜Ÿåˆ—å‰ç«¯ï¼Œè¿”å› iter æ˜¯ä¸æ»¡è¶³>3çš„ç¬¬ä¸€ä¸ªè¿­ä»£å™¨ï¼Œæ‰€ä»¥éå†æ—¶éå†åˆ° != iterå³å¯
+	auto iter = std::partition(values.begin(), //
+		values.end(),
+		[](const int& _a)->bool //æ•°ç»„ä¸­å•ä¸ªå…ƒç´ å¯¹ç‰¹åˆ«åˆ¤æ–­ï¼Œåªä¼ ä¸€ä¸ªå‚æ•°
+	{
+		return _a > 3 ? true : false;
+	});
+
+	for (auto iter2 = values.begin(); iter2 != iter; iter2++)
+		printf("--- value:%d\n", *iter2);
+}
+
+void testRemoveAndErase()
+{
+	std::vector<int> values = { 5, 6, 2, 7, 4, 1, 8, 9, 0, 3 };
+	printVec(values);
+	printf("--- size:%d\n", values.size());
+
+	int beDelNum = 99;
+	values[3] = values[5] = values[8] = beDelNum;
+	auto iter = std::remove(values.begin(), values.end(), beDelNum);
+		
+	values.erase(iter, values.end());
+	printVec(values);
+	printf("--- size:%d\n", values.size());
+}
+
+void testSearch()
+{
+	auto cmpFunc = [](const int& a, const int& b)->bool
+	{
+		return a < b ? true : false;
+	};
+
+	auto printIter = [](const std::vector<int>& _vec, const std::vector<int>::iterator& _iter)
+	{
+		for (auto iter = _vec.begin(); iter != _iter; iter++)
+			printf("--- value:%d\n", (*iter));
+	};
+
+	std::vector<int> values = { 5, 6, 2, 7, 4, 1, 8, 4, 4, 9, 4, 0, 3, 4 };
+	std::stable_sort(values.begin(), values.end(), cmpFunc);
+	printVec(values); //å…ˆè¿›è¡Œå‡åºæ’åº
+
+	//lower_bound è¿”å›ç¬¬ä¸€ä¸ªä¸ç¬¦åˆæ¡ä»¶çš„è¿­ä»£å™¨ï¼Œ æŒ‡å‘4
+	auto iter = std::lower_bound(values.begin(), values.end(), 4, cmpFunc);
+	printf("----- *iter value:%d\n", *iter);
+	printIter(values, iter);
+	printf("\n");
+
+	//upper_bound è¿”å›æœ€åä¸€ä¸ªç¬¦åˆæ¡ä»¶çš„è¿­ä»£å™¨çš„ä¸‹ä¸€ä¸ªè¿­ä»£å™¨ï¼ŒæŒ‡å‘ 5 
+	auto iter2 = std::upper_bound(values.begin(), values.end(), 4, cmpFunc);
+	printf("----- *iter2 value:%d\n", *iter2);
+	printIter(values, iter2);
+	printf("\n");
+
+	//equal_range è¿”å› lower_bound å’Œ upper_bound çš„è¿­ä»£å™¨
+	auto aaapair = std::equal_range(values.begin(), values.end(), 4, cmpFunc);
+	int dist = distance(aaapair.first, aaapair.second);
+	std::for_each(aaapair.first, aaapair.second,
+		[](const int& num)
+	{
+		printf("--- num:%d\n", num);
+	});
+	printf("\n");
+
+	bool exist = std::binary_search(values.begin(), values.end(), 4, cmpFunc);
+	if (exist)
+		printf("--- exist\n");
+	else
+		printf("--- not exist\n");
+	printf("\n");
+
+	printf("--- erase some date\n");
+	//values.erase(values.begin(), iter);
+	values.erase(values.begin(), iter2);
+	printVec(values);
+}
+
+void testSearchForMap()
+{
+	std::map<int, std::string> datas;
+	datas.insert(std::make_pair(5, "aaa"));
+	datas.insert(std::make_pair(3, "bbb"));
+	datas.insert(std::make_pair(8, "ccc"));
+	datas.insert(std::make_pair(7, "ddd"));
+	datas.insert(std::make_pair(1, "eee"));
+
+	std::for_each(datas.begin(), datas.end(),
+		[](const std::pair<int, std::string>& iter)
+	{
+		std::cout << iter.first << "\t" << iter.second << std::endl;
+	});
+	printf("\n");
+
+	printf("--- map lower_bound 3\n");
+	auto iter1 = datas.lower_bound(3); // æŒ‡å‘3
+	printf("--- iter1.first:%d\n", iter1->first);
+	for (auto iter = datas.begin(); iter != iter1; iter++)
+		std::cout << iter->first << "\t" << iter->second << std::endl;
+	printf("\n");
+
+	printf("--- map upper_bound 7\n");
+	auto iter2 = datas.upper_bound(7); //æŒ‡å‘7
+	for (auto iter = datas.begin(); iter != iter2; iter++)
+		std::cout << iter->first << "\t" << iter->second << std::endl;
+	printf("\n");
+
+	printf("--- map lower_bound 3 upper_bound 7\n");
+	for (auto iter = iter1; iter != iter2; iter++)
+		std::cout << iter->first << "\t" << iter->second << std::endl;
+	printf("\n");
+}
+
+//æœ‰åºåºåˆ—å½’å¹¶
+void testMerge()
+{
+	auto cmpFunc = [](const int& a, const int& b)->bool
+	{
+		return a < b ? true : false;
+	};
+
+	std::vector<int> v1 = { 7, 5, 9 };
+	std::vector<int> v2 = { 4, 8, 6 };
+	std::stable_sort(v1.begin(), v1.end(), cmpFunc);
+	std::stable_sort(v2.begin(), v2.end(), cmpFunc);
+
+	std::vector<int> v3(v1.size() + v2.size());
+	std::merge(v1.begin(), v1.end(), v2.begin(), v2.end(), v3.begin());
+	printVec(v3);
+}
+
+void ppfunctest(const Person* _p)
+{
+	_p->ShowName();
+}
+
+void testMemFun()
+{
+	Person* p1 = new Person(111, "aaa");
+	Person* p2 = new Person(222, "bbb");
+	Person* p3 = new Person(333, "ccc");
+
+	//éœ€è¦include <functional>
+	std::vector<Person*> perVec = { p1, p2, p3 };
+
+	//ptr_fun
+	std::for_each(perVec.begin(), perVec.end(), std::ptr_fun(ppfunctest));
+	printf("\n");
+
+	//vecä¸­æ˜¯æŒ‡é’ˆå¯¹è±¡æ—¶ä½¿ç”¨mem_fun
+	std::for_each(perVec.begin(), perVec.end(), std::mem_fun(&Person::ShowName));
+	printf("\n");
+
+	//vecä¸­æ˜¯å®ä½“å¯¹è±¡æ—¶ä½¿ç”¨mem_fun_ref
+	std::vector<Person> perVec2 = { *p1, *p2, *p3 };
+	std::for_each(perVec2.begin(), perVec2.end(), std::mem_fun_ref(&Person::ShowName));
+}
+
+void testbind1stAndBind2nd()
+{
+	std::vector<int> coll;
+	for (int i = 1; i <= 10; ++i)
+		coll.push_back(i);
+
+	/*
+	ç®€å•çš„è¯´ï¼Œbind1st(const Operation& op, const T& x)å°±æ˜¯è¿™ä¹ˆä¸€ä¸ªæ“ä½œï¼švalue op xï¼Œ
+	è€Œbind2nd(const Operation& op, const T& x)å°±æ˜¯è¿™ä¹ˆä¸€ä¸ªæ“ä½œï¼šx op valueï¼Œ
+	å…¶ä¸­valueæ˜¯è¢«åº”ç”¨bindçš„å¯¹è±¡ã€‚è¿™ä¸¤ä¸ªé…æ¥å™¨éƒ½ç”¨äºå°†ä¸€ä¸ªäºŒå…ƒç®—å­è½¬æ¢æˆä¸€ä¸ªä¸€å…ƒç®—å­ã€‚
+	*/
+
+	//æŸ¥æ‰¾å…ƒç´ å€¼å¤§äº10çš„å…ƒç´ çš„ä¸ªæ•°
+	//ä¹Ÿå°±æ˜¯ä½¿å¾—10 < elemæˆç«‹çš„å…ƒç´ ä¸ªæ•° 
+	int res = std::count_if(coll.begin(), coll.end(), std::bind1st(std::less<int>(), 10));
+	printf("--- res:%d\n", res); //0
+
+	//æŸ¥æ‰¾å…ƒç´ å€¼å°äº10çš„å…ƒç´ çš„ä¸ªæ•°
+	//ä¹Ÿå°±æ˜¯ä½¿å¾—elem < 10æˆç«‹çš„å…ƒç´ ä¸ªæ•° 
+	res = std::count_if(coll.begin(), coll.end(), std::bind2nd(std::less<int>(), 10));
+	printf("--- res:%d\n", res);  //9
+
+	//è¿˜ä¸å¦‚è‡ªå·±å®ç°çš„lambdaè¡¨è¾¾å¼æ¥çš„æ¸…æ™°
+	res = std::count_if(coll.begin(), coll.end(), [&](const int& a)->bool{ return 10 > a ? true : false; });
+	printf("--- res:%d\n", res);  //9
+}
+
+void testTransform()
+{
+	std::vector<int> src = { 1, 2, 3, 4, 5 }; // å»ºç«‹æœ¬åœ°æ•°ç»„ï¼Œ
+	std::vector<int> d = { 10, 11, 12 };
+
+	//æŠŠdataä¸­å¤´äº”ä¸ªå…ƒç´ ç§»åˆ°då‰æ®µï¼Œå¹¶ä¸”dataä¸­çš„æ‰€æœ‰å…ƒç´ éƒ½ + 41
+	std::transform(src.begin(), src.begin() + 5,
+		std::inserter(d, d.begin() + 1),//æ’å…¥åˆ°dæŒ‡å®šä½ç½®
+		//std::back_inserter(d), //æ’å…¥åˆ°då°¾éƒ¨
+		std::bind2nd(std::plus<int>(), 40));  //éœ€è¦include <functional>
+	printVec(d);
+}
+
+void testFindIfRemoveIfReplaceIf()
+{
+	//ä½†å‡¡å¸¦_ifçš„éƒ½æ˜¯å¯ä»¥æŒ‡å®šè‡ªå®šä¹‰çš„å‡½æ•°ï¼Œå¤§éƒ¨åˆ†æƒ…å†µä¸‹éƒ½æ˜¯æ¯”è¾ƒå‡½æ•°ï¼Œreturn true or false
+
+	int findNum = 6;
+	std::vector<int> values = { 2, 6, 2, 7, 4, 1, 8, 9, 0, 2 };
+	printf("--- size:%d\n", values.size());
+
+	//æŸ¥æ‰¾ç¬¬ä¸€ä¸ªç¬¦åˆæ¡ä»¶çš„å¯¹è±¡
+	auto iter = std::find_if(values.begin(), values.end(), [&](const int& _src)->bool{ return _src == findNum ? true : false; });
+	if (iter != values.end())
+		printf("--- find:%d\n", *iter);
+	else
+		printf("--- not find\n");
+	printf("\n");
+
+	int srcNum = 2;
+	int dstNum = 99; //æŠŠç¬¦åˆæ¡ä»¶çš„éƒ½æ›¿æ¢æ‰
+	std::replace_if(values.begin(), values.end(), [&](const int& _src)->bool{ return _src == srcNum ? true : false; }, dstNum);
+	 printVec(values);
+	printf("\n");
+
+	int delNum = dstNum; //æŠŠç¬¦åˆæ¡ä»¶çš„éƒ½åˆ é™¤æ‰
+	auto iter2 = std::remove_if(values.begin(), values.end(), [&](const int& _src)->bool{ return _src == delNum ? true : false; });
+	values.erase(iter2, values.end());
+	printf("--- size:%d\n", values.size());
+	printVec(values);
+}
+
+void testBinarysearch()
+{
+	auto printPer = [](const Person* _p) { _p->ShowName(); };
+	auto sortFunc = [](const Person* _p1, const Person* _p2)->bool { return _p1->mAge > _p2->mAge ? true : false; };
+
+	Person* p0 = new Person(5, "aaa");
+	Person* p1 = new Person(3, "bbb");
+	Person* p2 = new Person(1, "ccc");
+	Person* p3 = new Person(0, "ddd");
+	Person* p4 = new Person(6, "eee");
+	Person* p5 = new Person(2, "fff");
+	Person* p6 = new Person(7, "ggg");
+	Person* p7 = new Person(4, "hhh");
+	Person* p8 = new Person(9, "iii");
+	Person* p9 = new Person(8, "jjj");
+	Person* p10 = new Person(100, "zzz");
+	std::vector<Person*> perVec = { p0, p1, p2, p3, p4, p5, p6, p7, p8, p9 };
+
+	std::for_each(perVec.begin(), perVec.end(), printPer);
+	printf("\n");
+	std::stable_sort(perVec.begin(), perVec.end(), sortFunc); //æŒ‰æŒ‡å®šæ¯”è¾ƒå‡½æ•°æ’åº
+	std::for_each(perVec.begin(), perVec.end(), printPer);
+	printf("\n");
+
+	bool b = std::binary_search(perVec.begin(), perVec.end(), p10, sortFunc); //æŒ‡å®šå‡½æ•°å¿…é¡»ä¸æ’åºçš„å‡½æ•°ä¸€è‡´
+	if (b)
+		printf("--- find\n");
+	else
+		printf("--- not find\n");
+
+	(*p10)();//è°ƒç”¨é‡å†™æ“ä½œç¬¦()
+}
+
+void testShinkToFit()
+{
+	std::vector<int> vec3;
+	vec3.reserve(100);
+	printf("--- vec3 size1:%d\n", vec3.capacity());
+	vec3.push_back(1);
+	vec3.push_back(1);
+	vec3.push_back(1);
+	std::vector<int>(vec3).swap(vec3); //ç»™å®¹å™¨å®¹é‡ç˜¦èº«åˆ°sizeå¤§å°
+	printf("--- vec3 size2:%d\n", vec3.capacity());
+}
+
+void testArr()
+{
+	//std::array<int, 5> arr1; //å…¨éƒ¨å€¼æœªåˆå§‹åŒ–
+	//std::array<int, 5> arr1 = { 1 }; //ç¬¬ä¸€ä¸ªåˆå§‹åŒ–ä¸º1ï¼Œå…¶ä½™å…¨éƒ¨ä¸º0
+	std::array<int, 5> arr1 = { 20, 1, 1, 10, 1 }; //å…¨éƒ¨åˆå§‹åŒ–ä¸º1
+	printf("--- arr1 size : %d, addr:0x%x\n", sizeof(arr1), &arr1);
+	printf("--- arr1 first element:%d\n", arr1);
+	printf("--- arr1[3] element:%d\n", arr1[3]);
+
+	//std::for_each(arr1.begin(), arr1.end(),
+	//	[](const int& num)
+	//{
+	//	printf("--- value:%d\n", num);
+	//});
+
+	std::array<int, 5> arr2 = arr1; //å…¨éƒ¨åˆå§‹åŒ–ä¸º1
+	printf("--- arr2 size : %d, addr:0x%x\n", sizeof(arr2), &arr2);
+}
+
+//é˜Ÿåˆ—ä¸­å…ƒç´ ç´¯è®¡
+void testAccumulate()
+{
+	std::vector<int> values = { 5, 6, 2 };
+	//int sum = accumulate(values.begin(), values.end(), 3, std::multiplies<int>());
+	int sum = std::accumulate(values.begin(), values.end(), 0, //ps: accumulateåœ¨<numeric>å¤´æ–‡ä»¶ä¸­
+		[](const int& _a, const int& _b)->int
+	{
+		return _a + _b;
+	});
+	printf("--- sum:%d\n", sum);
+}
+
+void testInnerProduct()
+{
+	auto myaccumulator = [](int x, int y)->int{ return x - y; };
+	auto myproduct = [](int x, int y)->int{ return x + y; };
+
+	int init = 100;
+	std::vector<int> series1 = { 10, 20, 30 };
+	std::vector<int> series2 = { 1, 2, 3 };
+
+   //  æ“ä½œå‰:[beg1,end1)å’Œ[beg2,...)æ ‡ç¤ºè¾“å…¥åºåˆ—.initæ˜¯ç¬¬ä¸€ä¸ªå‚ä¸è¿ç®—çš„å€¼.  
+   //  æ“ä½œå:è®¡ç®—initä¾æ¬¡åŠ ä¸¤ä¸ªè¾“å…¥åºåˆ—å„è‡ªå¯¹åº”å…ƒç´ çš„ä¹˜ç§¯.  
+   //  è¿”å›å€¼:è®¡ç®—æ‰€å¾—çš„å€¼.  
+   //  å¤‡æ³¨:     initæ˜¯ç¬¬ä¸€ä¸ªå‚ä¸è¿ç®—çš„å…ƒç´ .initçš„ç±»å‹å†³å®šè¿”å›å€¼çš„ç±»å‹.  
+   //                  [beg2,...)åºåˆ—è‡³å°‘åŒ[beg1,end1)åºåˆ—ä¸€æ ·å¤§.å¦åˆ™å°†æŠ›å‡ºå¼‚å¸¸.  
+   //                  [beg2,...)ä¸­è¶…å‡º[beg1,end1)é•¿åº¦çš„åºåˆ—ä¸å‚ä¸è¿ç®—.  
+	//10*1 + 20*2 + 30*3 + 100 = 240;
+	std::cout << "--- using default inner_product: ";
+	std::cout << std::inner_product(series1.begin(), series1.end(), series2.begin(), init);
+	std::cout << '\n'; //240
+
+	//  inner_product (beg1, end1, beg2, init, minus<int> (), divides<int> ()) ;  
+	//  æ“ä½œå‰:[beg1,end1)å’Œ[beg2,...)æ ‡ç¤ºè¾“å…¥åºåˆ—.initæ˜¯ç¬¬ä¸€ä¸ªå‚ä¸è¿ç®—çš„å€¼.minus<int> ()å’Œdivides<int> ()æ˜¯äºŒå…ƒå‡½æ•°å¯¹è±¡.  
+	//  æ“ä½œå:è®¡ç®—initä¾æ¬¡åŠ ä¸¤ä¸ªè¾“å…¥åºåˆ—å„è‡ªå¯¹åº”å…ƒç´ çš„ä¹˜ç§¯.  
+	//  è¿”å›å€¼:è®¡ç®—æ‰€å¾—çš„å€¼.  
+	//  å¤‡æ³¨:     initæ˜¯ç¬¬ä¸€ä¸ªå‚ä¸è¿ç®—çš„å…ƒç´ .initçš„ç±»å‹å†³å®šè¿”å›å€¼çš„ç±»å‹.  
+	//                  [beg2,...)åºåˆ—è‡³å°‘åŒ[beg1,end1)åºåˆ—ä¸€æ ·å¤§.å¦åˆ™å°†æŠ›å‡ºå¼‚å¸¸.  
+	//                  [beg2,...)ä¸­è¶…å‡º[beg1,end1)é•¿åº¦çš„åºåˆ—ä¸å‚ä¸è¿ç®—.  
+	//                  minus<int> ()æ‰€åœ¨ä½ç½®ç”¨æ¥æ›¿æ¢ä¸å¸¦æ­¤å‚æ•°ç‰ˆæœ¬ç®—æ³•çš„åŠ .  
+	//                  divides<int> ()æ‰€åœ¨ä½ç½®ç”¨æ¥æ›¿æ¢ä¸å¸¦æ­¤å‚æ•°ç‰ˆæœ¬ç®—æ³•çš„ä¹˜.  
+	//100-(10/1) = 90
+	//90-(20/2) = 80
+	//80-(30/3) = 70
+	std::cout << "--- using functional operations: ";
+	std::cout << std::inner_product(series1.begin(), series1.end(), series2.begin(), init,
+		std::minus<int>(), std::divides<int>());
+	std::cout << '\n'; //70
+
+	//100-(10+1) = 89
+	//89-(20+2) = 67
+	//67-(30+3) = 34
+	std::cout << "--- using custom functions: ";
+	std::cout << std::inner_product(series1.begin(), series1.end(), series2.begin(), init,
+		myaccumulator, myproduct);
+	std::cout << '\n'; //34
+}
+
+void testPartialSum()
+{
+	auto  myop = [](int x, int y) { return x + y + 1; };
+
+	std::vector<int> val = { 1, 2, 3, 4, 5 };
+	std::vector<int> result(5);
+
+	//é»˜è®¤ç´¯åŠ 
+	std::partial_sum(val.begin(), val.end(), result.begin());
+	std::cout << "using default partial_sum: \n";
+	printVec(result);
+
+	//resulté‡Œé¢å¯¹åº”çš„5ä¸ªå…ƒç´ 
+	//1=1
+	//1*2=2
+	//2*3=6
+	//6*4=24
+	//24*5=120
+	std::partial_sum(val.begin(), val.end(), result.begin(), std::multiplies<int>());
+	std::cout << "using functional operation multiplies: \n";
+	printVec(result);
+
+	//resulté‡Œé¢å¯¹åº”çš„5ä¸ªå…ƒç´ 
+	//1=1
+	//1+2+1 = 4
+	//4+3+1 = 8
+	//8+4+1 = 13
+	//13+5+1 = 19
+	std::partial_sum(val.begin(), val.end(), result.begin(), myop);
+	std::cout << "using custom function: \n";
+	printVec(result);
+}
+
+void testAdjacentDifference()
+{
+	std::array<int, 6> ia = { 1, 1, 2, 3, 5, 8 };
+	std::list<int> ilist(ia.begin(), ia.end());
+	std::list<int> ilist_result(ilist.size());
+	std::adjacent_difference(ilist.begin(), ilist.end(), ilist_result.begin());
+	std::for_each(ilist_result.begin(), ilist_result.end(), [](const int& num){ printf("--- num:%d\n", num); });
+	printf("\n"); //1 0 1 1 2 3
+
+
+	//1	2	3	5	8
+	//1	1	2	3	5
+//1 1	2	6	15 40 //ilist_result
+	std::adjacent_difference(ilist.begin(), ilist.end(), ilist_result.begin(), std::multiplies<int>());
+	std::for_each(ilist_result.begin(), ilist_result.end(), [](const int& num){ printf("--- num:%d\n", num); });
+	printf("\n"); //1 1 2 6 15 40
+}
+
+void testMinMaxElement()
+{
+	int val1 = 2;
+	int val2 = 5;
+	const int& c = std::min(val2, val1, [](const int& _a, const int& _b) {return _a < _b ? true : false; });
+	const int& d = std::max(val1, val2, [](const int& _a, const int& _b) {return _a < _b ? true : false; });
+	printf("--- val1:0x%x, val2:0x%x\n", &val1, &val2);
+	printf("--- min val:%d, 0x%x\n", c, &c);
+	printf("--- max val:%d, 0x%x\n", d, &d);
+
+	auto  e = std::minmax(val1, val2, [](const int& _a, const int& _b) {return _a < _b ? true : false; });
+	printf("--- min:%d, max:%d\n", e.first, e.second);
+	printf("\n");
+
+	std::array<int, 6> ia = { 1, 1, 2, 3, 5, 8 };
+	// æ ¹æ®ç»™å®šçš„æ¯”è¾ƒå‡½æ•°ï¼Œæ‰¾å‡ºæœ€å°å…ƒç´ 
+	auto ret1 = std::min_element(ia.begin(), ia.end(), [](const int& _a, const int& _b) {return _a < _b ? true : false; });
+	printf("--- min:%d\n", *ret1);
+
+	// æ ¹æ®ç»™å®šçš„æ¯”è¾ƒå‡½æ•°ï¼Œæ‰¾å‡ºæœ€å¤§å…ƒç´ 
+	auto ret2 = std::max_element(ia.begin(), ia.end(), [](const int& _a, const int& _b) {return _a < _b ? true : false; });
+	printf("--- max:%d\n", *ret2);
+
+	// æ ¹æ®ç»™å®šçš„æ¯”è¾ƒå‡½æ•°ï¼Œæ‰¾å‡ºæœ€å¤§å’Œæœ€å°å…ƒç´ 
+	auto ret3 = std::minmax_element(ia.begin(), ia.end(), [](const int& _a, const int& _b) {return _a < _b ? true : false; });
+	printf("--- min:%d, max:%d\n", *ret3.first, *ret3.second);
+}
+
+void testShuffle()
+{
+	//æ­£çœŸçš„æ´—ç‰Œï¼Œæ ¹æ®éšæœºæ•°
+	std::default_random_engine generator1(time(NULL)); //éšæœºæ•°ç”Ÿäº§å™¨
+	std::vector<int> datas = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	std::shuffle(datas.begin(), datas.end(), generator1); //
+	printVec(datas);
+
+	//æ¯æ¬¡è¿è¡Œéƒ½æ˜¯ä¸€æ ·çš„ç»“æœ
+	auto myrandom = [](int i) { return std::rand() % i; };
+	std::vector<int> datas2 = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	//std::random_shuffle(datas2.begin(), datas2.end());
+	std::random_shuffle(datas2.begin(), datas2.end(), myrandom);
+	printVec(datas2);
+}
+
+void testHeap()
+{
+	//å¤§é¡¶å †
+	auto cmpFunc = [](const int& _a, const int& _b)->bool{ return _a < _b ? true: false; };
+	std::vector<int> datas = { 5, 1, 9, 4, 3, 6, 2, 7, 8, 0 };
+
+	printf("--- å †åŒ–æ•°ç»„\n");
+	std::make_heap(datas.begin(), datas.end(), cmpFunc);
+	printVec(datas); //
+
+	printf("--- ç§»é™¤å †é¡¶å…ƒç´ \n");
+	std::pop_heap(datas.begin(), datas.end(), cmpFunc);
+	datas.pop_back();//åˆ é™¤è¯¥èŠ‚ç‚¹ï¼Œå› ä¸ºåªæ˜¯æŠŠå †é¡¶å…ƒç´ ç§»åŠ¨åˆ°äº†å †å°¾
+	printVec(datas);
+
+	printf("--- ç§»é™¤å †é¡¶å…ƒç´ \n");
+	std::pop_heap(datas.begin(), datas.end(), cmpFunc);
+	datas.pop_back();//åˆ é™¤è¯¥èŠ‚ç‚¹ï¼Œå› ä¸ºåªæ˜¯æŠŠå †é¡¶å…ƒç´ ç§»åŠ¨åˆ°äº†å †å°¾
+	printVec(datas);
+
+	printf("--- å †å°¾æ·»åŠ å…ƒç´ 5\n");
+	datas.push_back(5);
+	std::push_heap(datas.begin(), datas.end(), cmpFunc);
+	printVec(datas);
+
+	printf("--- å°†å †å˜æˆæœ‰åºæ•°ç»„\n");
+	std::sort(datas.begin(), datas.end(), cmpFunc);
+	printVec(datas);
+}
+
+void testNextPermutation()
+{
+	/*
+	åœ¨ã€ŠSTLæºç è§£æã€‹ä¸­æ‰¾åˆ°äº†è¿™ä¸ªå‡½æ•°ï¼Œåœ¨æ­¤ä¹Ÿç®€å•å™è¿°ä¸€ä¸‹åŸç†ï¼š
+	åœ¨STLä¸­ï¼Œé™¤äº†next_permutationå¤–ï¼Œè¿˜æœ‰ä¸€ä¸ªå‡½æ•°prev_permutationï¼Œ
+	ä¸¤è€…éƒ½æ˜¯ç”¨æ¥è®¡ç®—æ’åˆ—ç»„åˆçš„å‡½æ•°ã€‚å‰è€…æ˜¯æ±‚å‡ºä¸‹ä¸€ä¸ªæ’åˆ—ç»„åˆï¼Œè€Œåè€…æ˜¯æ±‚å‡ºä¸Šä¸€ä¸ªæ’åˆ—ç»„åˆã€‚
+	æ‰€è°“â€œä¸‹ä¸€ä¸ªâ€å’Œâ€œä¸Šä¸€ä¸ªâ€ï¼Œä¹¦ä¸­ä¸¾äº†ä¸€ä¸ªç®€å•çš„ä¾‹å­ï¼š
+	å¯¹åºåˆ— {a, b, c}ï¼Œæ¯ä¸€ä¸ªå…ƒç´ éƒ½æ¯”åé¢çš„å°ï¼ŒæŒ‰ç…§å­—å…¸åºåˆ—ï¼Œå›ºå®šaä¹‹åï¼Œaæ¯”bcéƒ½å°ï¼Œcæ¯”bå¤§ï¼Œ
+	å®ƒçš„ä¸‹ä¸€ä¸ªåºåˆ—å³ä¸º{a, c, b}ï¼Œè€Œ{a, c, b}çš„ä¸Šä¸€ä¸ªåºåˆ—å³ä¸º{a, b, c}ï¼Œ
+	åŒç†å¯ä»¥æ¨å‡ºæ‰€æœ‰çš„å…­ä¸ªåºåˆ—ä¸ºï¼š{a, b, c}ã€{a, c, b}ã€{b, a, c}ã€{b, c, a}ã€{c, a, b}ã€{c, b, a}ï¼Œ
+	å…¶ä¸­{a, b, c}æ²¡æœ‰ä¸Šä¸€ä¸ªå…ƒç´ ï¼Œ{c, b, a}æ²¡æœ‰ä¸‹ä¸€ä¸ªå…ƒç´ ã€‚
+	*/
+
+	auto cmpFunc = [](const int& _a, const int& _b)->bool{ return _a < _b ? true : false; };
+	std::vector<int> datas = { 1, 2, 3 };
+	printVec(datas);
+	std::next_permutation(datas.begin(), datas.end(), cmpFunc);
+	printVec(datas);
+	std::next_permutation(datas.begin(), datas.end(), cmpFunc);
+	printVec(datas);
+
+	//std::prev_permutation(datas.begin(), datas.end(), cmpFunc);
+
+}
+
+void testMismatch()
+{
+	auto cmpFunc = [](const int& _a, const int& _b)->bool{ return _a == _b ? true : false; };
+	std::vector<int> datas1 = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	std::vector<int> datas2 = { 0, 1, 2, 3, 4, 0, 6, 7, 8, 9 };
+
+	//è¿”å›ä¸¤ä¸ªvecçš„ä¸åŒç›¸åŒçš„å€¼çš„è¿­ä»£å™¨
+	auto ret = std::mismatch(datas1.begin(), datas1.end(), datas2.begin(), cmpFunc);
+	if (ret.first == datas1.end() && ret.second == datas2.end())
+		printf("å®Œå…¨ç›¸åŒ\n");
+	else
+	{
+		printf("--- ret.first:%d, ret.second:%d \n", *ret.first, *ret.second);
+	}
+}
+
+void testCopy()
+{
+	std::vector<int> datas1 = { 0, 1, 2, 3, 4, 0, 2, 7, 8, 2 };
+	std::vector<int> datas2(datas1.size());
+	std::copy(datas1.begin(), datas1.end(), datas2.begin());
+	printVec(datas2);
+
+	int dstNum = 2;
+	auto cmpFunc = [&](const int& val)->bool{return val == dstNum ? true : false; };
+	std::vector<int> datas3(datas1.size());
+	std::copy_if(datas1.begin(), datas1.end(), datas3.begin(), cmpFunc); // ç›¸ç­‰çš„æ‰æ‹·è¿‡å»
+	printVec(datas3);
+}
+
+void testUnorderMap()
+{
+	auto printMap = [](const std::unordered_map<int, std::string>& datas)
+	{
+		for (auto iter = datas.begin(); iter != datas.end(); iter++)
+			printf("--- key:%d, value:%s\n", iter->first, iter->second.c_str());
+		printf("\n");
+	};
+
+	std::unordered_map<int, std::string> datas;
+	datas.insert(std::pair<int, std::string>(1, "aaa"));
+	datas.insert(std::pair<int, std::string>(9, "bbb"));
+	datas.insert(std::pair<int, std::string>(5, "ccc"));
+	datas.insert(std::pair<int, std::string>(2, "ddd"));
+	datas.insert(std::pair<int, std::string>(7, "eee"));
+	datas.insert(std::pair<int, std::string>(9, "fff"));
+	datas.insert(std::pair<int, std::string>(6, "ggg"));
+	datas.insert(std::pair<int, std::string>(3, "hhh"));
+	datas.insert(std::pair<int, std::string>(4, "iii"));
+	datas.insert(std::pair<int, std::string>(0, "jjj"));
+	printMap(datas);
+
+
+
+	std::map<int, int> datas2;
+}
+
+void testMapWithCmpFunc1()
+{
+	//-------------æŒ‰keyå€¼æ’åº ------------------
+	//è‡ªå®šä¹‰keyæ¯”è¾ƒç±»ï¼Œé‡å†™()æ“ä½œç¬¦ï¼Œmapæ’å…¥æ—¶åˆ™ä¼šæŒ‰é¡ºåºæ’å…¥åˆ°åˆé€‚çš„ä½ç½®
+	struct CmpByKey {
+		bool operator()(const int& k1, const int& k2) {
+			return k1 < k2 ? true : false;
+		}
+	};
+
+	// æœ‰åºmap
+	printf("--------- æœ‰åºmap æŒ‰keyå€¼æ’åº\n");
+	std::map<int, std::string, CmpByKey> datas;
+	datas.insert(std::pair<int, std::string>(1, "aaa"));
+	datas.insert(std::pair<int, std::string>(9, "bbb"));
+	datas.insert(std::pair<int, std::string>(5, "ccc"));
+	datas.insert(std::pair<int, std::string>(2, "ddd"));
+	datas.insert(std::pair<int, std::string>(7, "eee"));
+	datas.insert(std::pair<int, std::string>(9, "fff"));
+	datas.insert(std::pair<int, std::string>(6, "ggg"));
+	datas.insert(std::pair<int, std::string>(3, "hhh"));
+	datas.insert(std::pair<int, std::string>(4, "iii"));
+	datas.insert(std::pair<int, std::string>(0, "jjj"));
+
+	for (auto iter = datas.begin(); iter != datas.end(); iter++)
+		printf("--- key:%d, value:%s\n", iter->first, iter->second.c_str());
+	printf("\n");
+
+	//-------------æŒ‰valueå€¼æ’åº ------------------
+	printf("--------- æœ‰åºmap æŒ‰valueå€¼æ’åº\n");
+	typedef std::pair<int, std::string> PAIR;
+	std::map<int, std::string> datas2;
+	datas2.insert(std::pair<int, std::string>(1, "a"));
+	datas2.insert(std::pair<int, std::string>(9, "bb"));
+	datas2.insert(std::pair<int, std::string>(5, "ccc"));
+	datas2.insert(std::pair<int, std::string>(5, "zzzzzzzzzzz")); //å·²ç»æœ‰ä¸ª5çš„keyï¼Œæ‰€ä»¥ä¸ä¼šè¢«æ’å…¥
+	datas2.insert(std::pair<int, std::string>(2, "ddd"));
+	datas2[2] = "yyyyyyyyyyy"; //æœ‰åˆ™æ›¿æ¢ï¼Œæ— åˆ™æ’å…¥
+	datas2.insert(std::pair<int, std::string>(7, "eeee"));
+	datas2.insert(std::pair<int, std::string>(9, "fff"));
+	datas2.insert(std::pair<int, std::string>(6, "g"));
+	datas2.insert(std::pair<int, std::string>(3, "hh"));
+	datas2.insert(std::pair<int, std::string>(4, "iiiiii"));
+	datas2.insert(std::pair<int, std::string>(0, "j"));
+
+	auto cmpFunc = [](const PAIR& _a, PAIR& _b){return _a.second.length() < _b.second.length() ? true : false; };
+	struct CmpByValue { //ä¹Ÿå¯ä»¥ç”¨ç±»çš„å½¢å¼
+		bool operator()(const PAIR& _a, const PAIR& _b) {
+			return _a.second.length() < _b.second.length() ? true : false;
+		}
+	};
+
+	std::vector<PAIR> vecData(datas2.begin(), datas2.end()); //å°†æ‰€æœ‰çš„pairå¯¹è±¡å­˜å‚¨åˆ°vecä¸­ï¼Œ
+	std::sort(vecData.begin(), vecData.end(), cmpFunc); //ç„¶åæŒ‡å®šæ’åºæ–¹æ³•æ’åº
+	//std::sort(vecData.begin(), vecData.end(), CmpByValue()); //ç„¶åæŒ‡å®šæ’åºæ–¹æ³•æ’åº
+	for (int i = 0; i != vecData.size(); ++i)
+		printf("--- key:%d, value:%s\n", vecData[i].first, vecData[i].second.c_str());
+	printf("\n");
+
+	//å¤§å¤šæ•°æƒ…å†µä¸‹éƒ½æ˜¯è¦ç”¨valueå€¼æ’åºï¼Œæ— åºåˆ—map
+	printf("--------- æ— åºunorder_map æŒ‰valueå€¼æ’åº\n");
+	std::unordered_map<int, std::string> data5;
+	data5.insert(std::pair<int, std::string>(1, "a"));
+	data5.insert(std::pair<int, std::string>(9, "bb"));
+	data5.insert(std::pair<int, std::string>(5, "ccc"));
+	data5.insert(std::pair<int, std::string>(5, "zzzzzzzzzzz")); //å·²ç»æœ‰ä¸ª5çš„keyï¼Œæ‰€ä»¥ä¸ä¼šè¢«æ’å…¥
+	data5.insert(std::pair<int, std::string>(2, "ddd"));
+	data5[2] = "yyyyyyyyyyy"; //æœ‰åˆ™æ›¿æ¢ï¼Œæ— åˆ™æ’å…¥
+	data5.insert(std::pair<int, std::string>(7, "eeee"));
+	data5.insert(std::pair<int, std::string>(9, "fff"));
+	data5.insert(std::pair<int, std::string>(6, "g"));
+	data5.insert(std::pair<int, std::string>(3, "hh"));
+	data5.insert(std::pair<int, std::string>(4, "iiiiii"));
+	data5.insert(std::pair<int, std::string>(0, "j"));
+
+	std::for_each(data5.begin(), data5.end(), 
+		[](const PAIR& iter)
+	{ printf("--- key:%d, value:%s\n", iter.first, iter.second.c_str()); });
+	printf("\n");
+
+	std::vector<PAIR> vecData2(data5.begin(), data5.end()); //å°†æ‰€æœ‰çš„pairå¯¹è±¡å­˜å‚¨åˆ°vecä¸­ï¼Œ
+	std::sort(vecData2.begin(), vecData2.end(), cmpFunc); //ç„¶åæŒ‡å®šæ’åºæ–¹æ³•æ’åº
+	for (int i = 0; i != vecData2.size(); ++i)
+		printf("--- key:%d, value:%s\n", vecData2[i].first, vecData2[i].second.c_str());
+	printf("\n");
+
+	auto iter5 = data5.find(9);
+	if (iter5 != data5.end())
+		printf("--- key:%d, value:%s\n", iter5->first, iter5->second.c_str());
+	else
+		printf("--- not find\n");
+	 
+}
+
+struct person
+{
+	std::string name;
+	int age;
+
+	person(std::string name, int age)
+	{
+		this->name = name;
+		this->age = age;
+	}
+
+	//bool operator== (const person& p) const
+	//{
+	//	return name == p.name && age == p.age;
+	//}
+
+	bool operator < (const person& p) const
+	{
+		return age < p.age ? true : false;
+	}
+};
+
+void testMapWithCmpFunc2()
+{
+	/*
+	ç”¨æ³•çš„åŒºåˆ«å°±æ˜¯ï¼Œstl::map çš„keyéœ€è¦å®šä¹‰operator< ã€‚
+	è€Œboost::unordered_mapéœ€è¦å®šä¹‰hash_valueã€equalå‡½æ•°ã€‚
+	å¯¹äºå†…ç½®ç±»å‹ï¼Œå¦‚stringï¼Œè¿™äº›éƒ½ä¸ç”¨æ“å¿ƒã€‚
+	å¯¹äºè‡ªå®šä¹‰çš„ç±»å‹åškeyï¼Œå°±éœ€è¦è‡ªå·±é‡è½½operator< æˆ–è€…hash_value()äº†ã€‚
+	*/
+	typedef std::pair<person, int> PAIR;
+	std::map<person, int> m;
+	person p1("Tom1", 20);
+	person p2("Tom2", 22);
+	person p3("Tom3", 22);
+	person p4("Tom4", 23);
+	person p5("Tom5", 24);
+	m.insert(std::make_pair(p3, 100));
+	m.insert(std::make_pair(p4, 100));
+	m.insert(std::make_pair(p5, 100));
+	m.insert(std::make_pair(p1, 100));
+	m.insert(std::make_pair(p2, 100));
+
+	//mapçš„å¦ä¸€ç§éå†æ–¹å¼1 (c++11)
+	printf("--- std::for_each(m.begin(), m.end(), \n");
+	std::for_each(m.begin(), m.end(),
+		[](const PAIR& iter)
+	{
+			std::cout << iter.first.name << "\t" << iter.first.age << std::endl;
+	});
+	printf("\n");
+
+	//mapçš„å¦ä¸€ç§éå†æ–¹å¼2 (c++11)
+	printf("--- for (auto iter : m) \n");
+	for (auto iter : m)
+		std::cout << iter.first.name << "\t" << iter.first.age << std::endl;
+	printf("\n");
+
+	//mapçš„å¦ä¸€ç§éå†æ–¹å¼3
+	printf("--- for (auto iter = m.begin(); iter != m.end(); iter++) \n");
+	for (auto iter = m.begin(); iter != m.end(); iter++)
+		std::cout << iter->first.name << "\t" << iter->first.age << std::endl;
+}
+
+
+//--------------------------- unorder_map é‡å†™hashã€equalå‡½æ•° begin ----------
+//éƒ½æ˜¯å¯¹keyå€¼è€Œè¨€
+//å¦‚æœä½ å¸Œæœ›åˆ©ç”¨ç³»ç»Ÿå®šä¹‰çš„å­—ç¬¦ä¸²hashå‡½æ•°ï¼Œä½ å¯ä»¥è¿™æ ·å†™ï¼š
+struct str_hash{
+	size_t operator()(const std::string& str) const
+	{
+		return std::hash_value(str.c_str());
+	}
+};
+
+//struct str_hash{      //è‡ªå†™hashå‡½æ•°
 //	size_t operator()(const std::string& str) const
 //	{
-//		return std::hash_value(str.c_str());
+//		unsigned long __h = 0;
+//		for (size_t i = 0; i < str.size(); i++)
+//		{
+//			__h = 51 * __h + str[i];
+//		}
+//		return size_t(__h);
 //	}
 //};
-//
-////struct str_hash{      //×ÔĞ´hashº¯Êı
-////	size_t operator()(const std::string& str) const
-////	{
-////		unsigned long __h = 0;
-////		for (size_t i = 0; i < str.size(); i++)
-////		{
-////			__h = 51 * __h + str[i];
-////		}
-////		return size_t(__h);
-////	}
-////};
-//
-//struct str_equal{      //string ÅĞ¶ÏÏàµÈº¯Êı
-//	bool operator()(const std::string& s1, const std::string& s2) const
-//	{
-//		return strcmp(s1.c_str(), s2.c_str()) == 0;
-//	}
-//};
-//
-//class Plane
-//{
-//public:
-//	Plane(int _speed) { mSpeed = _speed; }
-//	bool operator==(const Plane& p) const
-//	{
-//		return mSpeed == p.mSpeed ? true : false;
-//	}
-//
-//public:
-//	int mSpeed;
-//};
-//
-//struct plane_hash{
-//	size_t operator()(const Plane& p) const
-//	{
-//		return p.mSpeed >> 1;
-//	}
-//};
-//
-//void testUnorderHashKey()
-//{
-//	std::unordered_map<std::string, int, str_hash, str_equal> myMap;
-//	myMap.insert(std::make_pair("hello", 123));
-//	myMap.insert(std::make_pair("world", 456));
-//	myMap.insert(std::make_pair("I", 555));
-//	myMap.insert(std::make_pair("am", 333));
-//	myMap.insert(std::make_pair("Test", 888));
-//
-//	std::for_each(myMap.begin(), myMap.end(),
-//		[](const std::pair<std::string, int>& iter)
-//	{ printf("--- key:%s, value:%d\n", iter.first.c_str(), iter.second); });
-//	printf("\n");
-//
-//	printf("--- ¶ÔÓÚ×Ô¶¨µÄkey£¬¿ÉÒÔÖØĞ´==²Ù×÷·ûÌæ´ústr_equalÀà\n");
-//	//¶ÔÓÚ×Ô¶¨µÄkey£¬¿ÉÒÔÖØĞ´==²Ù×÷·ûÌæ´ústr_equalÀà
-//	//Ö¼ÔÚÓÃÀ´ÔÚkeyÖµµÄhashÖµÏàÍ¬Ê±£¬½øÒ»²½ÅĞ¶ÏÊÇ·ñÏàÍ¬£¬Èç¹ûÏàÍ¬Ôò²»²åÈë½øÈ¥
-//	//»¹ÓĞ²éÕÒÊ±ÏàÍ¬µÄhashÖµÊ±£¬½øÒ»²½ÅĞ¶ÏÊÇ·ñÏàÍ¬£¬Èç¹ûÏàÍ¬Ôò·µ»Ø¸Äµü´úÆ÷£»
-//	std::unordered_map<Plane, int, plane_hash> myPlane;
-//	myPlane.insert(std::make_pair(Plane(123), 123));
-//	myPlane.insert(std::make_pair(Plane(456), 456));
-//	myPlane.insert(std::make_pair(Plane(789), 789));
-//	std::for_each(myPlane.begin(), myPlane.end(),
-//		[](const std::pair<Plane, int>& iter)
-//	{ printf("--- speed:%d, value:%d\n", iter.first.mSpeed, iter.second); });
-//
-//	auto iter = myPlane.find(Plane(123));
-//	if (iter != myPlane.end())
-//		printf("--- find\n");
-//	else
-//		printf("--- not find\n");
-//}
-////--------------------------- unorder_map ÖØĞ´hashº¯Êı end ----------
-//
-//int main()
-//{
-//	//testSTLVec();
-//	//testSTLMap();
-//	//testVecDel();
-//	//testMapDel();
-//	//testInsertVector();
-//	//testList();
-//	//testVecInsert();
-//	//testPartialSort();
-//	//testNth_element();
-//	testPartition();
-//	//testRemoveAndErase();
-//	//testSearch();
-//	//testSearchForMap();
-//	//testMerge();
-//	//testMemFun();
-//	//testbind1stAndBind2nd();
-//	//testTransform();
-//	//testFindIfRemoveIfReplaceIf();
-//	//testBinarysearch();
-//	//testShinkToFit();
-//	//testArr();
-//
-//	//---- #include <numeric> begin ---
-//	//testAccumulate();
-//	//testInnerProduct();
-//	//testPartialSum();
-//	//testAdjacentDifference();
-//	//---- #include <numeric> end ---
-//
-//	//testMinMaxElement();
-//	//testShuffle();
-//	//testHeap();
-//	//testNextPermutation();
-//	//testMismatch();
-//	//testCopy();
-//	//testUnorderMap();
-//	//testMapWithCmpFunc1();
-//	//testMapWithCmpFunc2();
-//	//testUnorderHashKey();
-//
-//	system("pause");
-//	return 0;
-//}
-//
-///*
-//ÏûºÄ×ÊÔ´Ô½ÉÙµÄÅÅÔÚÇ°Ãæ£º
-//1. partition
-//2. stable_partition
-//3. nth_element
-//4. partial_sort
-//5. sort
-//6. stable_sort
-//*/
+
+struct str_equal{      //string åˆ¤æ–­ç›¸ç­‰å‡½æ•°
+	bool operator()(const std::string& s1, const std::string& s2) const
+	{
+		return strcmp(s1.c_str(), s2.c_str()) == 0;
+	}
+};
+
+class Plane
+{
+public:
+	Plane(int _speed) { mSpeed = _speed; }
+	bool operator==(const Plane& p) const
+	{
+		return mSpeed == p.mSpeed ? true : false;
+	}
+
+public:
+	int mSpeed;
+};
+
+struct plane_hash{
+	size_t operator()(const Plane& p) const
+	{
+		return p.mSpeed >> 1;
+	}
+};
+
+void testUnorderHashKey()
+{
+	std::unordered_map<std::string, int, str_hash, str_equal> myMap;
+	myMap.insert(std::make_pair("hello", 123));
+	myMap.insert(std::make_pair("world", 456));
+	myMap.insert(std::make_pair("I", 555));
+	myMap.insert(std::make_pair("am", 333));
+	myMap.insert(std::make_pair("Test", 888));
+
+	std::for_each(myMap.begin(), myMap.end(),
+		[](const std::pair<std::string, int>& iter)
+	{ printf("--- key:%s, value:%d\n", iter.first.c_str(), iter.second); });
+	printf("\n");
+
+	printf("--- å¯¹äºè‡ªå®šçš„keyï¼Œå¯ä»¥é‡å†™==æ“ä½œç¬¦æ›¿ä»£str_equalç±»\n");
+	//å¯¹äºè‡ªå®šçš„keyï¼Œå¯ä»¥é‡å†™==æ“ä½œç¬¦æ›¿ä»£str_equalç±»
+	//æ—¨åœ¨ç”¨æ¥åœ¨keyå€¼çš„hashå€¼ç›¸åŒæ—¶ï¼Œè¿›ä¸€æ­¥åˆ¤æ–­æ˜¯å¦ç›¸åŒï¼Œå¦‚æœç›¸åŒåˆ™ä¸æ’å…¥è¿›å»
+	//è¿˜æœ‰æŸ¥æ‰¾æ—¶ç›¸åŒçš„hashå€¼æ—¶ï¼Œè¿›ä¸€æ­¥åˆ¤æ–­æ˜¯å¦ç›¸åŒï¼Œå¦‚æœç›¸åŒåˆ™è¿”å›æ”¹è¿­ä»£å™¨ï¼›
+	std::unordered_map<Plane, int, plane_hash> myPlane;
+	myPlane.insert(std::make_pair(Plane(123), 123));
+	myPlane.insert(std::make_pair(Plane(456), 456));
+	myPlane.insert(std::make_pair(Plane(789), 789));
+	std::for_each(myPlane.begin(), myPlane.end(),
+		[](const std::pair<Plane, int>& iter)
+	{ printf("--- speed:%d, value:%d\n", iter.first.mSpeed, iter.second); });
+
+	auto iter = myPlane.find(Plane(123));
+	if (iter != myPlane.end())
+		printf("--- find\n");
+	else
+		printf("--- not find\n");
+}
+//--------------------------- unorder_map é‡å†™hashå‡½æ•° end ----------
+
+void main()
+{
+	//testSTLVec();
+	//testSTLMap();
+	//testVecDel();
+	//testMapDel();
+	//testInsertVector();
+	//testList();
+	//testVecInsert();
+	//testPartialSort();
+	//testNth_element();
+	testPartition();
+	//testRemoveAndErase();
+	//testSearch();
+	//testSearchForMap();
+	//testMerge();
+	//testMemFun();
+	//testbind1stAndBind2nd();
+	//testTransform();
+	//testFindIfRemoveIfReplaceIf();
+	//testBinarysearch();
+	//testShinkToFit();
+	//testArr();
+
+	//---- #include <numeric> begin ---
+	//testAccumulate();
+	//testInnerProduct();
+	//testPartialSum();
+	//testAdjacentDifference();
+	//---- #include <numeric> end ---
+
+	//testMinMaxElement();
+	//testShuffle();
+	//testHeap();
+	//testNextPermutation();
+	//testMismatch();
+	//testCopy();
+	//testUnorderMap();
+	//testMapWithCmpFunc1();
+	//testMapWithCmpFunc2();
+	//testUnorderHashKey();
+}
+
+/*
+æ¶ˆè€—èµ„æºè¶Šå°‘çš„æ’åœ¨å‰é¢ï¼š
+1. partition
+2. stable_partition
+3. nth_element
+4. partial_sort
+5. sort
+6. stable_sort
+*/
+} // STLtest

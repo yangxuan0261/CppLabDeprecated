@@ -1,141 +1,146 @@
-//#include <stdlib.h>
-//#include <iostream>
-//#include <sstream>
-//#include <string>
-//#include <vector>
-//#include <type_traits>
-////-------------------------- defaut ÏÔÊ¾Ö¸¶¨ÎªÈ±Ê¡£¬ÓĞÖúÓÚ×Ô¶¨ÒåÎŞ²ÎÊıµÄ¹¹Ôìº¯ÊıµÄÀà»Ö¸´PODÌØÖÆ
-////-------------------------------test1 Æ½·²µÄ£¨trivial£©
-//struct Trivial1 {};
-//
-//struct Trivial2 { 
-//public:
-//	int a;
+#include <stdlib.h>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <type_traits>
+
+
+namespace PodTest
+{
+    
+
+
+//-------------------------- defaut æ˜¾ç¤ºæŒ‡å®šä¸ºç¼ºçœï¼Œæœ‰åŠ©äºè‡ªå®šä¹‰æ— å‚æ•°çš„æ„é€ å‡½æ•°çš„ç±»æ¢å¤PODç‰¹åˆ¶
+//-------------------------------test1 å¹³å‡¡çš„ï¼ˆtrivialï¼‰
+struct Trivial1 {};
+
+struct Trivial2 { 
+public:
+	int a;
+private:
+	int b;
+};
+
+struct Trivial3 {
+	Trivial1 a;
+	Trivial2 b;
+};
+
+struct Trivial4 {
+	Trivial2 a[23];
+};
+
+struct Trivial5 {
+	int x;
+	static int y;
+};
+
+struct Trivial6 {
+	Trivial6() = default; //å£°æ˜äº†æ„é€ å‡½æ•°ï¼Œä½†åŒæ—¶æŒ‡å®šä¸ºdefault
+	int w;
+};
+
+struct Trivial7 {
+	Trivial7() = default; //å£°æ˜äº†æ„é€ å‡½æ•°ï¼Œä½†åŒæ—¶æŒ‡å®šä¸ºdefaultï¼Œ
+	Trivial7(int _w) : w(_w) {} //åªè¦ç¼–è¯‘å™¨é»˜è®¤æä¾›çš„è¢«ä½ è‡ªå®šä¹‰ï¼Œä½†defaultæŒ‡å®šä¸ºé»˜è®¤çš„ï¼Œ
+	int w;						//æ­¤æ—¶ä¸ç®¡æ˜¯å¦æœ‰å…¶ä»–æ„é€ å‡½æ•°ï¼Œéƒ½æ˜¯trivialç±»å‹
+};								//ä½†æ˜¯ï¼Œåªèƒ½åœ¨å£°æ˜æ˜¯æŒ‡å®šï¼Œåœ¨å¤–éƒ¨å®ç°æŒ‡å®šæ— æ•ˆï¼Œå¦‚ä¸‹é¢çš„NonTrivial2
+
+struct NonTrivial1 { //å£°æ˜äº†æ„é€ å‡½æ•°ï¼Œä¸ç¬¦åˆï¼ˆ1ï¼‰
+	NonTrivial1() : z(24) {}
+	int z;
+};
+
+struct NonTrivial2 {
+	NonTrivial2(); //å£°æ˜äº†æ„é€ å‡½æ•°ï¼Œå³ä½¿å®ç°ä¸­æŒ‡å®šä¸ºdefaultï¼Œä¹Ÿæ˜¯ nonTrivialï¼Œä¸ç¬¦åˆï¼ˆ1ï¼‰
+	int w;
+};
+NonTrivial2::NonTrivial2() = default;
+
+struct NonTrivial3 {
+	Trivial5 c;
+	virtual void f(); //åŒ…å«æœ‰è™šå‡½æ•°ï¼Œä¸ç¬¦åˆ(4)
+};
+
+void testTrivial()
+{
+	std::cout << std::is_trivial<Trivial1>::value << std::endl; // 1
+	std::cout << std::is_trivial<Trivial2>::value << std::endl; // 1
+	std::cout << std::is_trivial<Trivial3>::value << std::endl; // 1
+	std::cout << std::is_trivial<Trivial4>::value << std::endl; // 1
+	std::cout << std::is_trivial<Trivial5>::value << std::endl; // 1
+	std::cout << std::is_trivial<Trivial6>::value << std::endl; // 1
+	std::cout << std::is_trivial<Trivial7>::value << std::endl; // 1
+	std::cout << std::is_trivial<NonTrivial1>::value << std::endl; // 0
+	std::cout << std::is_trivial<NonTrivial2>::value << std::endl; // 0
+	std::cout << std::is_trivial<NonTrivial3>::value << std::endl; // 0
+}
+
+
+//-------------------------------test2 æ ‡å‡†å¸ƒå±€çš„ï¼ˆstandard layoutï¼‰
+struct B1{};
+struct B2{};
+
+struct D1 : B1 {
+	B1 b;
+	int i;
+};
+
+struct D2 : B1 {
+	B2 b;
+	int i;
+};
+
+void testStandardLayout()
+{
+	D1 d1;
+	D2 d2;
+	std::cout << (&d1) << std::endl; //0018F730 
+	std::cout << (&d1.b) << std::endl; //0018F730 //ä¸ä¹¦ä¸Šçš„ä¸ç¬¦ï¼Œè¿˜æ˜¯ä¸åŸºç±»å…±äº«åœ°å€
+	std::cout << (&d1.i) << std::endl; //0018F734
+
+	std::cout << std::endl;
+
+	std::cout << (&d2) << std::endl; //0018F720
+	std::cout << (&d2.b) << std::endl; //0018F720
+	std::cout << (&d2.i) << std::endl; //0018F724
+	std::cout << std::endl;
+
+	std::cout << std::is_standard_layout<D1>::value << std::endl; // 0
+	std::cout << std::is_standard_layout<D2>::value << std::endl; // 1
+}
+
+//-------------------------- delete æ˜¾ç¤ºåˆ é™¤ç¼ºçœå‡½æ•°ï¼Œè¾¾åˆ°privateæŸå‡½æ•°çš„æ•ˆæœ
+class NoCopy
+{
+public:
+	NoCopy() = default; //ç”±äºä¸‹é¢å£°æ˜äº†NoCopy(int a, int b);æ„é€ å‡½æ•°ï¼Œæ‰€ä»¥é»˜è®¤æ„é€ å‡½æ•°ä¼šè¢«åˆ é™¤ï¼Œå¯ä»¥é€šè¿‡è¿™æ ·æŒ‡å®šä¸ºdefaultï¼Œå¦åˆ™NoCopy a;ä¼šç¼–è¯‘é”™è¯¯
+	NoCopy(const NoCopy& _nc) = delete;//æ‹·è´æ„é€ æ˜¾ç¤ºæŒ‡å®šä¸ºdeleteï¼Œæ‰€ä»¥NoCopy b(a); ä¼šç¼–è¯‘æŠ¥é”™
+
+	NoCopy(int a, int b);
+
+	void* operator new(std::size_t) = delete;//newæ“ä½œç¬¦æŒ‡å®šä¸ºdeleteï¼Œæ‰€ä»¥new NoCopy();ä¼šç¼–è¯‘æŠ¥é”™
 //private:
-//	int b;
-//};
-//
-//struct Trivial3 {
-//	Trivial1 a;
-//	Trivial2 b;
-//};
-//
-//struct Trivial4 {
-//	Trivial2 a[23];
-//};
-//
-//struct Trivial5 {
-//	int x;
-//	static int y;
-//};
-//
-//struct Trivial6 {
-//	Trivial6() = default; //ÉùÃ÷ÁË¹¹Ôìº¯Êı£¬µ«Í¬Ê±Ö¸¶¨Îªdefault
-//	int w;
-//};
-//
-//struct Trivial7 {
-//	Trivial7() = default; //ÉùÃ÷ÁË¹¹Ôìº¯Êı£¬µ«Í¬Ê±Ö¸¶¨Îªdefault£¬
-//	Trivial7(int _w) : w(_w) {} //Ö»Òª±àÒëÆ÷Ä¬ÈÏÌá¹©µÄ±»Äã×Ô¶¨Òå£¬µ«defaultÖ¸¶¨ÎªÄ¬ÈÏµÄ£¬
-//	int w;						//´ËÊ±²»¹ÜÊÇ·ñÓĞÆäËû¹¹Ôìº¯Êı£¬¶¼ÊÇtrivialÀàĞÍ
-//};								//µ«ÊÇ£¬Ö»ÄÜÔÚÉùÃ÷ÊÇÖ¸¶¨£¬ÔÚÍâ²¿ÊµÏÖÖ¸¶¨ÎŞĞ§£¬ÈçÏÂÃæµÄNonTrivial2
-//
-//struct NonTrivial1 { //ÉùÃ÷ÁË¹¹Ôìº¯Êı£¬²»·ûºÏ£¨1£©
-//	NonTrivial1() : z(24) {}
-//	int z;
-//};
-//
-//struct NonTrivial2 {
-//	NonTrivial2(); //ÉùÃ÷ÁË¹¹Ôìº¯Êı£¬¼´Ê¹ÊµÏÖÖĞÖ¸¶¨Îªdefault£¬Ò²ÊÇ nonTrivial£¬²»·ûºÏ£¨1£©
-//	int w;
-//};
-//NonTrivial2::NonTrivial2() = default;
-//
-//struct NonTrivial3 {
-//	Trivial5 c;
-//	virtual void f(); //°üº¬ÓĞĞéº¯Êı£¬²»·ûºÏ(4)
-//};
-//
-//void testTrivial()
-//{
-//	std::cout << std::is_trivial<Trivial1>::value << std::endl; // 1
-//	std::cout << std::is_trivial<Trivial2>::value << std::endl; // 1
-//	std::cout << std::is_trivial<Trivial3>::value << std::endl; // 1
-//	std::cout << std::is_trivial<Trivial4>::value << std::endl; // 1
-//	std::cout << std::is_trivial<Trivial5>::value << std::endl; // 1
-//	std::cout << std::is_trivial<Trivial6>::value << std::endl; // 1
-//	std::cout << std::is_trivial<Trivial7>::value << std::endl; // 1
-//	std::cout << std::is_trivial<NonTrivial1>::value << std::endl; // 0
-//	std::cout << std::is_trivial<NonTrivial2>::value << std::endl; // 0
-//	std::cout << std::is_trivial<NonTrivial3>::value << std::endl; // 0
-//}
-//
-//
-////-------------------------------test2 ±ê×¼²¼¾ÖµÄ£¨standard layout£©
-//struct B1{};
-//struct B2{};
-//
-//struct D1 : B1 {
-//	B1 b;
-//	int i;
-//};
-//
-//struct D2 : B1 {
-//	B2 b;
-//	int i;
-//};
-//
-//void testStandardLayout()
-//{
-//	D1 d1;
-//	D2 d2;
-//	std::cout << (&d1) << std::endl; //0018F730 
-//	std::cout << (&d1.b) << std::endl; //0018F730 //ÓëÊéÉÏµÄ²»·û£¬»¹ÊÇÓë»ùÀà¹²ÏíµØÖ·
-//	std::cout << (&d1.i) << std::endl; //0018F734
-//
-//	std::cout << std::endl;
-//
-//	std::cout << (&d2) << std::endl; //0018F720
-//	std::cout << (&d2.b) << std::endl; //0018F720
-//	std::cout << (&d2.i) << std::endl; //0018F724
-//	std::cout << std::endl;
-//
-//	std::cout << std::is_standard_layout<D1>::value << std::endl; // 0
-//	std::cout << std::is_standard_layout<D2>::value << std::endl; // 1
-//}
-//
-////-------------------------- delete ÏÔÊ¾É¾³ıÈ±Ê¡º¯Êı£¬´ïµ½privateÄ³º¯ÊıµÄĞ§¹û
-//class NoCopy
-//{
-//public:
-//	NoCopy() = default; //ÓÉÓÚÏÂÃæÉùÃ÷ÁËNoCopy(int a, int b);¹¹Ôìº¯Êı£¬ËùÒÔÄ¬ÈÏ¹¹Ôìº¯Êı»á±»É¾³ı£¬¿ÉÒÔÍ¨¹ıÕâÑùÖ¸¶¨Îªdefault£¬·ñÔòNoCopy a;»á±àÒë´íÎó
-//	NoCopy(const NoCopy& _nc) = delete;//¿½±´¹¹ÔìÏÔÊ¾Ö¸¶¨Îªdelete£¬ËùÒÔNoCopy b(a); »á±àÒë±¨´í
-//
-//	NoCopy(int a, int b);
-//
-//	void* operator new(std::size_t) = delete;//new²Ù×÷·ûÖ¸¶¨Îªdelete£¬ËùÒÔnew NoCopy();»á±àÒë±¨´í
-////private:
-////	NoCopy(const NoCopy& _nc) {}
-//};
-//#include <typeinfo>
-//
-//void testDeleteFunc()
-//{
-//	NoCopy a;
-//	//NoCopy b(a); //±àÒë±¨´í£¬±»É¾³ıµÄº¯Êı
-//	//NoCopy* d = new NoCopy(); //±àÒë±¨´í£¬±»É¾³ıµÄº¯Êı
-//	std::cout << std::is_trivial<NoCopy>::value << std::endl; //0£¬ÏÔÊ¾É¾³ıÁË¿½±´¹¹Ôì¾Í±ä³ÉÁË·ÇpodÀà
-//	NoCopy& b = a;
-//	const char* name = typeid(b).name();
-//	printf("------- name:%s\n", name);
-//}
-//
-//int main()
-//{
-//	//testTrivial();
-//	//testStandardLayout();
-//	testDeleteFunc();
-//
-//	system("pause");
-//	return 0;
-//}
+//	NoCopy(const NoCopy& _nc) {}
+};
+#include <typeinfo>
+
+void testDeleteFunc()
+{
+	NoCopy a;
+	//NoCopy b(a); //ç¼–è¯‘æŠ¥é”™ï¼Œè¢«åˆ é™¤çš„å‡½æ•°
+	//NoCopy* d = new NoCopy(); //ç¼–è¯‘æŠ¥é”™ï¼Œè¢«åˆ é™¤çš„å‡½æ•°
+	std::cout << std::is_trivial<NoCopy>::value << std::endl; //0ï¼Œæ˜¾ç¤ºåˆ é™¤äº†æ‹·è´æ„é€ å°±å˜æˆäº†épodç±»
+	NoCopy& b = a;
+	const char* name = typeid(b).name();
+	printf("------- name:%s\n", name);
+}
+
+void main()
+{
+	//testTrivial();
+	//testStandardLayout();
+	testDeleteFunc();
+}
+} // PodTest

@@ -1,77 +1,76 @@
-//#include <stdlib.h>
-//#include <iostream>
-//#include <sstream>
-//#include <string>
-//
-//void GFuncTest() { printf("--- GFuncTest\n"); }
-//
-//enum EM_A
-//{
-//	aaa = 0,
-//	bbb,
-//	ccc,
-//};
-//
-//enum class EM_B
-//{
-//	qqq = 0,
-//	www,
-//	eee,
-//};
-//
-//class Yun
-//{
-//public:
-//	enum class EM_C
-//	{
-//		xxx = 0,
-//		yyy,
-//		zzz,
-//	};
-//
-//public:
-//	Yun(){}
-//	virtual ~Yun(){}
-//
-//	void test1()
-//	{
-//		::GFuncTest(); //::xxx £¬xxxÊÇ¸öÈ«¾Öº¯Êı£¬²»ÊÇ¶ÔÏóº¯¡£::¿ÉÒÔÃ÷ÏÔÊÇÈ«¾Öº¯Êı
-//	}
-//
-//	void test2(){ printf("--- Yun test2"); }
-//};
-//
-//void testEnum()
-//{
-//	int a = bbb;
-//	//int b = EM_B::eee; //error, c++11Ã¶¾ÙÀà£¬±ØĞëÊ¹ÓÃ×÷ÓÃÓòEM_B, ÇÒ×ª»»±ØĞëÊ¹ÓÃÏÔÊ¾Ç¿×ª£¬²»È»±àÒë±¨´í
-//	int b = (int)EM_B::eee; //ÕıÈ·
-//
-//	Yun y;
-//	int c = (int)Yun::EM_C::xxx;
-//
-//	printf("--- a:%d, b:%d, c:%d\n", a, b, c);
-//}
-//
-//enum BitSet
-//{
-//	V0 = 1 << 0,
-//	V1 = 1 << 1,
-//	V2 = 1 << 2,
-//	VMAX = 1 << 3,
-//};
-//
-//void testScope()
-//{
-//	auto p = new Yun();
-//	p->test1();
-//}
-//
-//int main()
-//{
-//	//testEnum();
-//	//testScope();
-//
-//	system("pause");
-//	return 0;
-//}
+#include <stdlib.h>
+#include <iostream>
+#include <sstream>
+#include <string>
+
+void GFuncTest() { printf("--- GFuncTest\n"); }
+namespace EnumClassScope {
+
+enum EM_A
+{
+	aaa = 0,
+	bbb,
+	ccc,
+};
+
+enum class EM_B
+{
+	qqq = 0,
+	www,
+	eee,
+};
+
+class Yun
+{
+public:
+	enum class EM_C
+	{
+		xxx = 0,
+		yyy,
+		zzz,
+	};
+
+public:
+	Yun(){}
+	virtual ~Yun(){}
+
+	void test1()
+	{
+		::GFuncTest(); //::xxx ï¼Œxxxæ˜¯ä¸ªå…¨å±€å‡½æ•°ï¼Œä¸æ˜¯å¯¹è±¡å‡½ã€‚::å¯ä»¥æ˜æ˜¾æ˜¯å…¨å±€å‡½æ•°
+	}
+
+	void test2(){ printf("--- Yun test2"); }
+};
+
+void testEnum()
+{
+	int a = bbb;
+	//int b = EM_B::eee; //error, c++11æšä¸¾ç±»ï¼Œå¿…é¡»ä½¿ç”¨ä½œç”¨åŸŸEM_B, ä¸”è½¬æ¢å¿…é¡»ä½¿ç”¨æ˜¾ç¤ºå¼ºè½¬ï¼Œä¸ç„¶ç¼–è¯‘æŠ¥é”™
+	int b = (int)EM_B::eee; //æ­£ç¡®
+
+	Yun y;
+	int c = (int)Yun::EM_C::xxx;
+
+	printf("--- a:%d, b:%d, c:%d\n", a, b, c);
+}
+
+enum BitSet
+{
+	V0 = 1 << 0,
+	V1 = 1 << 1,
+	V2 = 1 << 2,
+	VMAX = 1 << 3,
+};
+
+void testScope()
+{
+	auto p = new Yun();
+	p->test1();
+}
+
+void main()
+{
+	//testEnum();
+	testScope();
+}
+}

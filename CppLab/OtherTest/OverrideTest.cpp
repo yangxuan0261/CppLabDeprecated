@@ -2,19 +2,25 @@
 #include <sstream>
 #include <string>
 
+
+namespace OverrideTest
+{
+	
+
+
 class CBase
 {
 public:
-	CBase() { printf("--- CBase ¹¹Ôì\n"); }
-	virtual ~CBase(){ printf("--- CBase Îö¹¹\n"); }
+	CBase() { printf("--- CBase æ„é€ \n"); }
+	virtual ~CBase(){ printf("--- CBase ææ„\n"); }
 
-	//¸²¸ÇÊÇÖ¸ÅÉÉúÀàº¯Êı¸²¸Ç»ùÀàº¯Êı£¬º¯ÊıÃû¡¢²ÎÊı¶¼Ò»ÖÂ
+	//è¦†ç›–æ˜¯æŒ‡æ´¾ç”Ÿç±»å‡½æ•°è¦†ç›–åŸºç±»å‡½æ•°ï¼Œå‡½æ•°åã€å‚æ•°éƒ½ä¸€è‡´
 	virtual void test1(int _a, std::string _b) { printf("--- CBase test1\n"); }
 
-	//Òş²Ø£¬º¯ÊıÃûÒ»ÖÂ¡¢²ÎÊı²»Ò»ÖÂ£¬¸ù¾İÖ¸ÕëµÄ¾ßÌåÀàĞÍµ÷ÓÃ¶ÔÓ¦µÄ·½·¨£¬
+	//éšè—ï¼Œå‡½æ•°åä¸€è‡´ã€å‚æ•°ä¸ä¸€è‡´ï¼Œæ ¹æ®æŒ‡é’ˆçš„å…·ä½“ç±»å‹è°ƒç”¨å¯¹åº”çš„æ–¹æ³•ï¼Œ
 	virtual void test2(int _a, std::string _b) { printf("--- CBase test2\n"); }
 
-	//Ã»ÓĞvirtual¹Ø¼ü×Ö£¬º¯ÊıÃû¡¢²ÎÊı¶¼Ò»ÖÂ£¬ÒÀÈ»ÊÇ¸ù¾İÖ¸ÕëµÄ¾ßÌåÀàĞÍµ÷ÓÃ¶ÔÓ¦µÄ·½·¨£¬
+	//æ²¡æœ‰virtualå…³é”®å­—ï¼Œå‡½æ•°åã€å‚æ•°éƒ½ä¸€è‡´ï¼Œä¾ç„¶æ˜¯æ ¹æ®æŒ‡é’ˆçš„å…·ä½“ç±»å‹è°ƒç”¨å¯¹åº”çš„æ–¹æ³•ï¼Œ
 	void test3(int _a, std::string _b) { printf("--- CBase test3\n"); }
 
 private:
@@ -24,8 +30,8 @@ private:
 class CDev : public CBase
 {
 public:
-	CDev() { printf("--- CDev ¹¹Ôì\n"); }
-	virtual ~CDev(){ printf("--- CDev Îö¹¹\n"); }
+	CDev() { printf("--- CDev æ„é€ \n"); }
+	virtual ~CDev(){ printf("--- CDev ææ„\n"); }
 
 	virtual void test1(int _a, std::string _b) { printf("--- CDev test1\n"); }
 
@@ -54,10 +60,10 @@ void testOverride()
 
 }
 
-//int main()
-//{
-//
-//	testOverride();
-//	system("pause");
-//	return 0;
-//}
+void main()
+{
+
+	testOverride();
+}
+
+} // OverrideTest

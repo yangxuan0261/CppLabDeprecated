@@ -1,100 +1,106 @@
-//#include <stdlib.h>
-//#include <iostream>
-//#include <sstream>
-//#include <string>
-//#include <typeinfo>
-//
-///*
-//Æ«ÌØ»¯¾ÍÊÇ²¿·ÖÌØ»¯¡£
-//*/
-//
-//template <typename T>
-//class A			//Í¨ÓÃµÄÄ£°åÉú²ú
-//{
-//public:
-//	A(T _t)
-//	{
-//		std::cout << "--- common type:" << typeid(T).name() << ", value:" << _t << std::endl;
-//	}
-//
-//	template<typename TP2>
-//	void output(TP2 _arg) {
-//		std::cout << "------ output type:" << typeid(TP2).name() << ", value:" << _arg << std::endl;
-//	}
-//};
-//
-//template<>
-//class A<int>	//ÌØÀı»¯int£¬Ê¹Ö®Ê¹ÓÃÕâ¸öÄ£°åÉú²ú
-//{
-//public:
-//	A(int _t)
-//	{
-//		std::cout << "--- special int value:" << _t << std::endl;
-//	}
-//
-//	template<typename TP3>
-//	void myPrintf() {
-//		std::cout << "------ myPrintf type:" << typeid(TP3).name() << std::endl;
-//	}
-//};
-//
-//
-////------------ ¿ØÖÆÄ³Ğ©ÌØ»¯ÊÇ²»¸ø±àÒëÍ¨¹ı£¬±ÈÈçÈçÏÂµÄintÀàĞÍÌØ»¯Ê±²»¸ø±àÒëÍ¨¹ı
-//template <typename T>
-//class B
-//{
-//public:
-//	B(T _t)
-//	{
-//		std::cout << "--- value:" << _t << std::endl;
-//	}
-//};
-//
-//template<>
-//class B<int>; //ÌØÀı»¯intĞÍ²»¸øÊµÏÖ£¬ÈÃ±àÒëÊ±±¨´íÎ´¶¨Òå
-//
-//void testTemplate()
-//{
-//	A<int> a(111);
-//	a.myPrintf<double>(); //intÌØ»¯µÄÊµÀı£¬ÓĞmyPrintf·½·¨
-//	//a.template myPrintf<double>(); //¾¹È»Ò²¿ÉÒÔÕâÑù¼Ó¸ötemplateµ÷ÓÃ£¬´ÓcocosÖĞµÄrapidjsonÖĞ¿´µ½²ÅÖªµÀ
-//	std::cout << std::endl;
-//
-//	A<double> b(123.23f);//²»ÊÇintÌØ»¯µÄÊµÀı£¬ÓĞoutput·½·¨
-//	b.output(false);
-//	std::cout << std::endl;
-//
-//	A<bool> c(true);
-//	c.output(123.456f);
-//	std::cout << std::endl;
-//
-//	float x = 123.4f;
-//	B<decltype(x)> b1(x); //ÀûÓÃdecltypeÍÆµ¼³ö³õÊ¼»¯²ÎÊıµÄÀàĞÍ
-//
-//	//int y = 111;
-//	//B<decltype(y)> b2(y); //error, Î´¶¨ÒåintµÄBÀà
-//
-//}
-//
-//
-//
-//template <typename T>
-//inline T myClamp(T value, T low, T high)
-//{
-//	return value < low ? low : (value > high ? high : value);
-//}
-//
-//void testTemplate3()
-//{
-//	int num = myClamp(2.f, 1.f, 3.f);
-//	printf("--- num:%d\n", num);
-//}
-//
-//int main()
-//{
-//	testTemplate();
-//	//testTemplate3();
-//
-//	system("pause");
-//	return 0;
-//}
+#include <stdlib.h>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <typeinfo>
+
+
+namespace PartialTemplateSpecialization
+{
+    
+
+
+/*
+åç‰¹åŒ–å°±æ˜¯éƒ¨åˆ†ç‰¹åŒ–ã€‚
+*/
+
+template <typename T>
+class A			//é€šç”¨çš„æ¨¡æ¿ç”Ÿäº§
+{
+public:
+	A(T _t)
+	{
+		std::cout << "--- common type:" << typeid(T).name() << ", value:" << _t << std::endl;
+	}
+
+	template<typename TP2>
+	void output(TP2 _arg) {
+		std::cout << "------ output type:" << typeid(TP2).name() << ", value:" << _arg << std::endl;
+	}
+};
+
+template<>
+class A<int>	//ç‰¹ä¾‹åŒ–intï¼Œä½¿ä¹‹ä½¿ç”¨è¿™ä¸ªæ¨¡æ¿ç”Ÿäº§
+{
+public:
+	A(int _t)
+	{
+		std::cout << "--- special int value:" << _t << std::endl;
+	}
+
+	template<typename TP3>
+	void myPrintf() {
+		std::cout << "------ myPrintf type:" << typeid(TP3).name() << std::endl;
+	}
+};
+
+
+//------------ æ§åˆ¶æŸäº›ç‰¹åŒ–æ˜¯ä¸ç»™ç¼–è¯‘é€šè¿‡ï¼Œæ¯”å¦‚å¦‚ä¸‹çš„intç±»å‹ç‰¹åŒ–æ—¶ä¸ç»™ç¼–è¯‘é€šè¿‡
+template <typename T>
+class B
+{
+public:
+	B(T _t)
+	{
+		std::cout << "--- value:" << _t << std::endl;
+	}
+};
+
+template<>
+class B<int>; //ç‰¹ä¾‹åŒ–intå‹ä¸ç»™å®ç°ï¼Œè®©ç¼–è¯‘æ—¶æŠ¥é”™æœªå®šä¹‰
+
+void testTemplate()
+{
+	A<int> a(111);
+	a.myPrintf<double>(); //intç‰¹åŒ–çš„å®ä¾‹ï¼Œæœ‰myPrintfæ–¹æ³•
+	//a.template myPrintf<double>(); //ç«Ÿç„¶ä¹Ÿå¯ä»¥è¿™æ ·åŠ ä¸ªtemplateè°ƒç”¨ï¼Œä»cocosä¸­çš„rapidjsonä¸­çœ‹åˆ°æ‰çŸ¥é“
+	std::cout << std::endl;
+
+	A<double> b(123.23f);//ä¸æ˜¯intç‰¹åŒ–çš„å®ä¾‹ï¼Œæœ‰outputæ–¹æ³•
+	b.output(false);
+	std::cout << std::endl;
+
+	A<bool> c(true);
+	c.output(123.456f);
+	std::cout << std::endl;
+
+	float x = 123.4f;
+	B<decltype(x)> b1(x); //åˆ©ç”¨decltypeæ¨å¯¼å‡ºåˆå§‹åŒ–å‚æ•°çš„ç±»å‹
+
+	//int y = 111;
+	//B<decltype(y)> b2(y); //error, æœªå®šä¹‰intçš„Bç±»
+
+}
+
+
+
+template <typename T>
+inline T myClamp(T value, T low, T high)
+{
+	return value < low ? low : (value > high ? high : value);
+}
+
+void testTemplate3()
+{
+	int num = myClamp(2.f, 1.f, 3.f);
+	printf("--- num:%d\n", num);
+}
+
+void main()
+{
+	testTemplate();
+	//testTemplate3();
+
+}
+
+} // PartialTemplateSpecialization

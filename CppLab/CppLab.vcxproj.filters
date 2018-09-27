@@ -192,14 +192,15 @@
     <ClCompile Include="OtherTest\VitualTableTest.cpp">
       <Filter>OtherTest</Filter>
     </ClCompile>
-    <ClCompile Include="OtherTest\源.cpp">
-      <Filter>OtherTest</Filter>
-    </ClCompile>
-    <ClCompile Include="OtherTest\源1.cpp">
-      <Filter>OtherTest</Filter>
-    </ClCompile>
     <ClCompile Include="AlgorithmTest\Entry.cpp">
       <Filter>AlgorithmTest</Filter>
+    </ClCompile>
+    <ClCompile Include="a_main.cpp" />
+    <ClCompile Include="OtherTest\Greedy.cpp">
+      <Filter>OtherTest</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherTest\BaseTest.cpp">
+      <Filter>OtherTest</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

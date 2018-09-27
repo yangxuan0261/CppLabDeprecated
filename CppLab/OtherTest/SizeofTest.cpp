@@ -1,94 +1,99 @@
-//#include <stdlib.h>
-//#include <iostream>
-//#include <sstream>
-//#include <string>
-//
-//struct BB
-//{
-//	int id;             //[0]....[3]
-//	double weight;      //[8].....[15]¡¡¡¡¡¡¡¡¡¡¡¡Ô­Ôò£±
-//	short height;      //[16]..[19],×Ü³¤ÒªÎª£¸µÄÕûÊı±¶,²¹Æë[20]...[23]¡¡¡¡¡¡¡¡¡¡Ô­Ôò£³
-//};
-//
-//struct AA
-//{
-//	char name[2];     //[0],[1]
-//	int  id;         //[4]...[7]¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡Ô­Ôò£±
-//	float score;     //[8]....[11]¡¡¡¡¡¡¡¡
-//	short grade;    //[12],[13]¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡
-//	BB b;             //[16]......[47]¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡Ô­Ôò£²
-//};
-//
-////×Ö½Ú¶ÔÆëÏà¹Ø
-//void testSizeof2()
-//{
-//	printf("--- sizeAA:%d, sizeBB:%d\n", sizeof(AA), sizeof(BB)); //AA:40 BB:24
-//}
-//
-//void testSizeof()
-//{
-//	//Ç°Ìá¶¼ÊÇ32Î»±àÒëÆ÷±àÒë
-//
-//	int size = 0;
-//	size = sizeof(char);
-//	printf("--- sizeof int = %d\n", size); //1
-//	size = sizeof(bool);
-//	printf("--- sizeof bool = %d\n", size);//1
-//	size = sizeof(short);
-//	printf("--- sizeof short = %d\n", size);//2
-//	size = sizeof(int);
-//	printf("--- sizeof int = %d\n", size);//4
-//	size = sizeof(long);
-//	printf("--- sizeof long = %d\n", size);//4
-//	size = sizeof(long long);
-//	printf("--- sizeof long long = %d\n", size);//8
-//	size = sizeof(float);
-//	printf("--- sizeof float = %d\n", size);//4
-//	size = sizeof(double);
-//	printf("--- sizeof double = %d\n", size);//8
-//
-//	printf("\n");
-//	int arrInt[10];
-//	size = sizeof(arrInt);
-//	printf("--- sizeof arrInt[10] = %d\n", size);//40
-//
-//	int arrInt2[] = { 1, 2, 3, 4, 5 };
-//	size = sizeof(arrInt2);
-//	printf("--- sizeof arrInt2[] = %d\n", size);//20
-//
-//	int* pInt = arrInt2;
-//	size = sizeof(pInt);
-//	printf("--- sizeof pInt = %d\n", size);//4
-//
-//	//string ÀïÃæÓĞ ,_Myres,_Mysize,_Alval,_Myfirstiter µÈ³ÉÔ±±äÁ¿ ºÍ Ò»¸ö char*Ö¸ÕëÖ¸Ïò×Ö·û´®Êı×é
-//	//ËùÒÔstring µÄÄÚÈİÎŞÂÛ¶à³¤£¬sizeof(std::string)´óĞ¡¶¼²»»á±ä
-//	std::string str("321sdfsdfsfsdfsdssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssfsdf");
-//	str.length();
-//	size = sizeof(str);
-//	printf("--- sizeof str = %d\n", size);//28
-//
-//}
-//
-//class Door
-//{
-//public:
-//	static int g; //gÊÇÔÚÈ«¾Ö¾²Ì¬Çø£¬²¢²»»áÔö¼ÓDoorÀàµÄÄÚ´æ´óĞ¡£¬Ò²²»·Ö²¼ÔÚ¶ÔÏóÄ£ĞÍÖĞ
-//	int a;
-//	int b;
-//};
-//
-//void testSizeof3()
-//{
-//	Door d;
-//	printf("--- door size:%d\n", sizeof(Door));
-//	printf("--- g size:%d\n", sizeof(Door::g));
-//}
-//
-//int main()
-//{
-//	//testSizeof();
-//	//testSizeof2();
-//	testSizeof3();
-//	system("pause");
-//	return 0;
-//}
+#include <stdlib.h>
+#include <iostream>
+#include <sstream>
+#include <string>
+
+
+namespace SizeofTest
+{
+
+
+struct BB
+{
+	int id;             //[0]....[3]
+	double weight;      //[8].....[15]ã€€ã€€ã€€ã€€ã€€ã€€åŸåˆ™ï¼‘
+	short height;      //[16]..[19],æ€»é•¿è¦ä¸ºï¼˜çš„æ•´æ•°å€,è¡¥é½[20]...[23]ã€€ã€€ã€€ã€€ã€€åŸåˆ™ï¼“
+};
+
+struct AA
+{
+	char name[2];     //[0],[1]
+	int  id;         //[4]...[7]ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€åŸåˆ™ï¼‘
+	float score;     //[8]....[11]ã€€ã€€ã€€ã€€
+	short grade;    //[12],[13]ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€
+	BB b;             //[16]......[47]ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€åŸåˆ™ï¼’
+};
+
+//å­—èŠ‚å¯¹é½ç›¸å…³
+void testSizeof2()
+{
+	printf("--- sizeAA:%d, sizeBB:%d\n", sizeof(AA), sizeof(BB)); //AA:40 BB:24
+}
+
+void testSizeof()
+{
+	//å‰æéƒ½æ˜¯32ä½ç¼–è¯‘å™¨ç¼–è¯‘
+
+	int size = 0;
+	size = sizeof(char);
+	printf("--- sizeof int = %d\n", size); //1
+	size = sizeof(bool);
+	printf("--- sizeof bool = %d\n", size);//1
+	size = sizeof(short);
+	printf("--- sizeof short = %d\n", size);//2
+	size = sizeof(int);
+	printf("--- sizeof int = %d\n", size);//4
+	size = sizeof(long);
+	printf("--- sizeof long = %d\n", size);//4
+	size = sizeof(long long);
+	printf("--- sizeof long long = %d\n", size);//8
+	size = sizeof(float);
+	printf("--- sizeof float = %d\n", size);//4
+	size = sizeof(double);
+	printf("--- sizeof double = %d\n", size);//8
+
+	printf("\n");
+	int arrInt[10];
+	size = sizeof(arrInt);
+	printf("--- sizeof arrInt[10] = %d\n", size);//40
+
+	int arrInt2[] = { 1, 2, 3, 4, 5 };
+	size = sizeof(arrInt2);
+	printf("--- sizeof arrInt2[] = %d\n", size);//20
+
+	int* pInt = arrInt2;
+	size = sizeof(pInt);
+	printf("--- sizeof pInt = %d\n", size);//4
+
+	//string é‡Œé¢æœ‰ ,_Myres,_Mysize,_Alval,_Myfirstiter ç­‰æˆå‘˜å˜é‡ å’Œ ä¸€ä¸ª char*æŒ‡é’ˆæŒ‡å‘å­—ç¬¦ä¸²æ•°ç»„
+	//æ‰€ä»¥string çš„å†…å®¹æ— è®ºå¤šé•¿ï¼Œsizeof(std::string)å¤§å°éƒ½ä¸ä¼šå˜
+	std::string str("321sdfsdfsfsdfsdssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssfsdf");
+	str.length();
+	size = sizeof(str);
+	printf("--- sizeof str = %d\n", size);//28
+
+}
+
+class Door
+{
+public:
+	static int g; //gæ˜¯åœ¨å…¨å±€é™æ€åŒºï¼Œå¹¶ä¸ä¼šå¢åŠ Doorç±»çš„å†…å­˜å¤§å°ï¼Œä¹Ÿä¸åˆ†å¸ƒåœ¨å¯¹è±¡æ¨¡å‹ä¸­
+	int a;
+	int b;
+};
+
+void testSizeof3()
+{
+	Door d;
+	printf("--- door size:%d\n", sizeof(Door));
+	printf("--- g size:%d\n", sizeof(Door::g));
+}
+
+void main()
+{
+	//testSizeof();
+	//testSizeof2();
+	testSizeof3();
+}
+
+} // SizeofTest

@@ -1,30 +1,29 @@
-////×îÓÅ¶ş²æ²éÕÒÊ÷
-//
 //#include <iostream>
-//
 //using namespace std;
+//namespace OptimalBST2 {
+//	//æœ€ä¼˜äºŒå‰æŸ¥æ‰¾æ ‘
 //
 //const int MaxVal = 9999;
 //
 //const int n = 5;
-////ËÑË÷µ½¸ù½ÚµãºÍĞéÄâ¼üµÄ¸ÅÂÊ
+////æœç´¢åˆ°æ ¹èŠ‚ç‚¹å’Œè™šæ‹Ÿé”®çš„æ¦‚ç‡
 //double p[n + 1] = { -1, 0.15, 0.1, 0.05, 0.1, 0.2 };
 //double q[n + 1] = { 0.05, 0.1, 0.05, 0.05, 0.05, 0.1 };
 //
-//int root[n + 1][n + 1];//¼ÇÂ¼¸ù½Úµã
-//double w[n + 2][n + 2];//×ÓÊ÷¸ÅÂÊ×ÜºÍ
-//double e[n + 2][n + 2];//×ÓÊ÷ÆÚÍû´ú¼Û
+//int root[n + 1][n + 1];//è®°å½•æ ¹èŠ‚ç‚¹
+//double w[n + 2][n + 2];//å­æ ‘æ¦‚ç‡æ€»å’Œ
+//double e[n + 2][n + 2];//å­æ ‘æœŸæœ›ä»£ä»·
 //
 //void optimalBST(double *p, double *q, int n)
 //{
-//	//³õÊ¼»¯Ö»°üÀ¨ĞéÄâ¼üµÄ×ÓÊ÷
+//	//åˆå§‹åŒ–åªåŒ…æ‹¬è™šæ‹Ÿé”®çš„å­æ ‘
 //	for (int i = 1; i <= n + 1; ++i)
 //	{
 //		w[i][i - 1] = q[i - 1];
 //		e[i][i - 1] = q[i - 1];
 //	}
 //
-//	//ÓÉÏÂµ½ÉÏ£¬ÓÉ×óµ½ÓÒÖğ²½¼ÆËã
+//	//ç”±ä¸‹åˆ°ä¸Šï¼Œç”±å·¦åˆ°å³é€æ­¥è®¡ç®—
 //	for (int len = 1; len <= n; ++len)
 //	{
 //		for (int i = 1; i <= n - len + 1; ++i)
@@ -32,7 +31,7 @@
 //			int j = i + len - 1;
 //			e[i][j] = MaxVal;
 //			w[i][j] = w[i][j - 1] + p[j] + q[j];
-//			//ÇóÈ¡×îĞ¡´ú¼ÛµÄ×ÓÊ÷µÄ¸ù
+//			//æ±‚å–æœ€å°ä»£ä»·çš„å­æ ‘çš„æ ¹
 //			for (int k = i; k <= j; ++k)
 //			{
 //				double temp = e[i][k - 1] + e[k + 1][j] + w[i][j];
@@ -46,10 +45,10 @@
 //	}
 //}
 //
-////Êä³ö×îÓÅ¶ş²æ²éÕÒÊ÷ËùÓĞ×ÓÊ÷µÄ¸ù
+////è¾“å‡ºæœ€ä¼˜äºŒå‰æŸ¥æ‰¾æ ‘æ‰€æœ‰å­æ ‘çš„æ ¹
 //void printRoot()
 //{
-//	cout << "¸÷×ÓÊ÷µÄ¸ù£º" << endl;
+//	cout << "å„å­æ ‘çš„æ ¹ï¼š" << endl;
 //	for (int i = 1; i <= n; ++i)
 //	{
 //		for (int j = 1; j <= n; ++j)
@@ -61,15 +60,15 @@
 //	cout << endl;
 //}
 //
-////´òÓ¡×îÓÅ¶ş²æ²éÕÒÊ÷µÄ½á¹¹
-////´òÓ¡³ö[i,j]×ÓÊ÷£¬ËüÊÇ¸ùrµÄ×ó×ÓÊ÷ºÍÓÒ×ÓÊ÷
+////æ‰“å°æœ€ä¼˜äºŒå‰æŸ¥æ‰¾æ ‘çš„ç»“æ„
+////æ‰“å°å‡º[i,j]å­æ ‘ï¼Œå®ƒæ˜¯æ ¹rçš„å·¦å­æ ‘å’Œå³å­æ ‘
 //void printOptimalBST(int i, int j, int r)
 //{
-//	int rootChild = root[i][j];//×ÓÊ÷¸ù½Úµã
+//	int rootChild = root[i][j];//å­æ ‘æ ¹èŠ‚ç‚¹
 //	if (rootChild == root[1][n])
 //	{
-//		//Êä³öÕû¿ÃÊ÷µÄ¸ù
-//		cout << "k" << rootChild << "ÊÇ¸ù" << endl;
+//		//è¾“å‡ºæ•´æ£µæ ‘çš„æ ¹
+//		cout << "k" << rootChild << "æ˜¯æ ¹" << endl;
 //		printOptimalBST(i, rootChild - 1, rootChild);
 //		printOptimalBST(rootChild + 1, j, rootChild);
 //		return;
@@ -79,35 +78,43 @@
 //	{
 //		return;
 //	}
-//	else if (j == i - 1)//Óöµ½ĞéÄâ¼ü
+//	else if (j == i - 1)//é‡åˆ°è™šæ‹Ÿé”®
 //	{
 //		if (j < r)
 //		{
-//			cout << "d" << j << "ÊÇ" << "k" << r << "µÄ×óº¢×Ó" << endl;
+//			printf("d=%d æ˜¯ k=%d çš„ å·¦å­©å­", j, r);
+//			//cout << "d" << j << "æ˜¯" << "k" << r << "çš„å·¦å­©å­" << endl;
+//		} 
+//		else 
+//		{
+//			printf("d=%d æ˜¯ k=%d çš„ å³å­©å­", j, r);
+//			//cout << "d" << j << "æ˜¯" << "k" << r << "çš„ å³å­©å­" << endl;
 //		}
-//		else
-//			cout << "d" << j << "ÊÇ" << "k" << r << "µÄÓÒº¢×Ó" << endl;
 //		return;
 //	}
-//	else//Óöµ½ÄÚ²¿½áµã
+//	else//é‡åˆ°å†…éƒ¨ç»“ç‚¹
 //	{
 //		if (rootChild < r)
 //		{
-//			cout << "k" << rootChild << "ÊÇ" << "k" << r << "µÄ×óº¢×Ó" << endl;
+//			printf("k=%d æ˜¯ k=%d çš„ å·¦å­©å­", rootChild, r);
+//			//cout << "k" << rootChild << "æ˜¯" << "k" << r << "çš„ å·¦å­©å­" << endl;
 //		}
-//		else
-//			cout << "k" << rootChild << "ÊÇ" << "k" << r << "µÄÓÒº¢×Ó" << endl;
+//		else {
+//			printf("k=%d æ˜¯ k=%d çš„ å³å­©å­", rootChild, r);
+//			//cout << "k" << rootChild << "æ˜¯" << "k" << r << "çš„ å³å­©å­" << endl;
+//		}
 //	}
 //
 //	printOptimalBST(i, rootChild - 1, rootChild);
 //	printOptimalBST(rootChild + 1, j, rootChild);
 //}
 //
-//int main()
+//void main()
 //{
 //	optimalBST(p, q, n);
 //	printRoot();
-//	cout << "×îÓÅ¶ş²æÊ÷½á¹¹£º" << endl;
+//	cout << "æœ€ä¼˜äºŒå‰æ ‘ç»“æ„ï¼š" << endl;
 //	printOptimalBST(1, n, -1);
-//	system("pause");
+//}
+//
 //}

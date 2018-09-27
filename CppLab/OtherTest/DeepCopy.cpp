@@ -5,6 +5,9 @@
 #include "AAA.h"
 using namespace std;
 
+namespace DeepCopy {
+
+
 class BBB
 {
 public:
@@ -15,12 +18,12 @@ public:
 		b = new string;
 		*b = "helloworld";
 	}
-	//ǳ����
-	//���������û����ʽ������һ���������캯����
-	//��ô�������������Զ�����һ��Ĭ�ϵĿ������캯����
-	//�ù��캯����ɶ���֮���λ������λ�����ֳ�ǳ����
+	//浅拷贝
+	//如果在类中没有显式地声明一个拷贝构造函数，
+	//那么，编译器将会自动生成一个默认的拷贝构造函数，
+	//该构造函数完成对象之间的位拷贝。位拷贝又称浅拷贝
 
-	//���
+	//深拷贝
 	BBB(const BBB& _b)
 	{
 		a = new int;
@@ -60,27 +63,27 @@ void testCopyConstruct()
 {
 	BBB b1;
 	b1.Show();
-	BBB b2 = b1;//���ø�ֵ���캯��
+	BBB b2 = b1;//调用赋值构造函数
 	b2.Show();
 	system("pause");
 
-	//�������������֮�󣬻��ͷ�ջ��b1,b2���ڴ�
-	//�����ǳ�������� b1��b2 �е� a��b�ֱ�ָ����ͬ�ĵ�ַ��
-	//b1�����ͷ����ab���ڴ��b2��ab�ͳ���Ұָ�룬�����е�if�жϻ��ǻ��ܽ�ȥ��deleteҰָ��ͻ���ɱ���
+	//这个方法调用完之后，会释放栈中b1,b2的内存
+	//如果是浅拷贝，则 b1和b2 中的 a和b分别指向相同的地址，
+	//b1析构释放完后ab的内存后，b2中ab就成了野指针，析构中的if判断还是会跑进去，delete野指针就会造成崩溃
 
-	//������������b2 �е�abָ���µĵ�ַ����b1�е�ab��ȫ�޹�
-	//����b1 b2������������������������
+	//如果是深拷贝，则b2 中的ab指向新的地址，和b1中的ab完全无关
+	//所以b1 b2都正常析构，方法正常跑完
 
-	//ʲôʱ���õ�����������
-	//	a.һ��������ֵ���ݵķ�ʽ���뺯���壻
-	//	b.һ��������ֵ���ݵķ�ʽ�Ӻ������أ�
-	//	c.һ��������Ҫͨ������һ��������г�ʼ����
+	//什么时候用到拷贝函数？
+	//	a.一个对象以值传递的方式传入函数体；
+	//	b.一个对象以值传递的方式从函数返回；
+	//	c.一个对象需要通过另外一个对象进行初始化。
 
 }
 
-//int main()
-//{
-//	testCopyConstruct();
-//	system("pause");
-//	return 0;
-//}
+void main()
+{
+	testCopyConstruct();
+}
+
+}

@@ -1,49 +1,52 @@
-//#include <stdlib.h>
-//#include <iostream>
-//#include <sstream>
-//#include <string>
-//
-///*
-//Î¯ÅÉ¹¹Ôìº¯ÊıµÄÊ¹ÓÃ£¬ÀàËÆÓë¹¹Ôì»ùÀà
-//*/
-//
-//class Info
-//{
-//public:
-//	Info() { init(); }
-//	//Info(int _age) : Info(), mName("qwe") //ÎŞ·¨±àÒëÍ¨¹ı£¬²»ÄÜÍ¬Ê± Î¯ÅÉ ºÍ ³õÊ¼»¯³ÉÔ±£¬Èç¹ûĞèÒª³õÊ¼»¯³ÉÔ±£¬±ØĞë·ÅÔÚ¹¹Ôìº¯ÊıÌåÖĞ
-//	Info(int _age) : Info()
-//	{ 
-//		mAge = _age; 
-//		printf("--- one param mAge:%d\n", mAge);
-//	}
-//	Info(int _age, std::string _name) : Info(_age)
-//	{
-//		mName = _name; 
-//		printf("--- two param mName:%s\n", mName.c_str());
-//	}
-//
-//private:
-//	void init(){ mHeight = 1.23f; printf("--- init mheight:%f\n", mHeight); }
-//	int mAge;
-//	std::string mName;
-//	float mHeight;
-//};
-//
-//void testDelegatingConstructor()
-//{
-//	Info info(77, "yang");
-//	/*
-//	--- init mheight:1.230000
-//	--- one param mAge:77
-//	--- two param mName:yang
-//	Çë°´ÈÎÒâ¼ü¼ÌĞø. . .
-//	*/
-//}
-//
-//int main()
-//{
-//	testDelegatingConstructor();
-//	system("pause");
-//	return 0;
-//}
+#include <stdlib.h>
+#include <iostream>
+#include <sstream>
+#include <string>
+
+namespace DelegatingConstructor {
+
+
+/*
+å§”æ´¾æ„é€ å‡½æ•°çš„ä½¿ç”¨ï¼Œç±»ä¼¼ä¸æ„é€ åŸºç±»
+*/
+
+class Info
+{
+public:
+	Info() { init(); }
+	//Info(int _age) : Info(), mName("qwe") //æ— æ³•ç¼–è¯‘é€šè¿‡ï¼Œä¸èƒ½åŒæ—¶ å§”æ´¾ å’Œ åˆå§‹åŒ–æˆå‘˜ï¼Œå¦‚æœéœ€è¦åˆå§‹åŒ–æˆå‘˜ï¼Œå¿…é¡»æ”¾åœ¨æ„é€ å‡½æ•°ä½“ä¸­
+	Info(int _age) : Info()
+	{ 
+		mAge = _age; 
+		printf("--- one param mAge:%d\n", mAge);
+	}
+	Info(int _age, std::string _name) : Info(_age)
+	{
+		mName = _name; 
+		printf("--- two param mName:%s\n", mName.c_str());
+	}
+
+private:
+	void init(){ mHeight = 1.23f; printf("--- init mheight:%f\n", mHeight); }
+	int mAge;
+	std::string mName;
+	float mHeight;
+};
+
+void testDelegatingConstructor()
+{
+	Info info(77, "yang");
+	/*
+	--- init mheight:1.230000
+	--- one param mAge:77
+	--- two param mName:yang
+	è¯·æŒ‰ä»»æ„é”®ç»§ç»­. . .
+	*/
+}
+
+void main()
+{
+	testDelegatingConstructor();
+}
+
+}

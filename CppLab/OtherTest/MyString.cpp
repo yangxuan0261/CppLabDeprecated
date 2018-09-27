@@ -1,5 +1,8 @@
 #include "MyString.h"
 
+
+	
+
 CMyString::CMyString(const char* _str /* = NULL */)
 :mCharArr(nullptr)
 {
@@ -12,7 +15,7 @@ CMyString::CMyString(const char* _str /* = NULL */)
 	}
 }
 
-// …ÓøΩ±¥
+// Ê∑±Êã∑Ë¥ù
 CMyString::CMyString(const CMyString& _str)
 {
 	if (!_str.mCharArr)
@@ -117,11 +120,11 @@ int CMyString::FindStrPos(const char* _dst)
 		int j;
 		for (j = 0; j < dstLen; j++)
 		{
-			if (mCharArr[m] != _dst[j])  //”–≤ª∆•≈‰◊÷∑˚÷±Ω”Ã¯≥ˆ
+			if (mCharArr[m] != _dst[j])  //Êúâ‰∏çÂåπÈÖçÂ≠óÁ¨¶Áõ¥Êé•Ë∑≥Âá∫
 				break;
 			m++;
 		}
-		if (j == dstLen)  //’“µΩ∆•≈‰£¨Ã¯≥ˆ—≠ª∑
+		if (j == dstLen)  //ÊâæÂà∞ÂåπÈÖçÔºåË∑≥Âá∫Âæ™ÁéØ
 			break;
 	}
 	return i < len - dstLen ? i : -1;
@@ -144,25 +147,26 @@ std::ostream& operator<<(std::ostream& _os, const CMyString& _str)
 	return _os;
 }
 
-//int main()
-//{
-//	CMyString str1("aaa");
-//	CMyString str2("bbbccc");
-//	CMyString str3 = str1 + str2;
-//	std::cout << "--- str1: " << str1 << std::endl;
-//	std::cout << "--- str2: " << str2 << std::endl;
-//	std::cout << "--- str3: " << str3 << std::endl;
-//	std::cout << "str3[3]= " << str3[0] << std::endl;
-//	std::cout << "str3 length: " << str3.GetLength() << std::endl;
-//
-//	CMyString str4 = str2;
-//	std::cout << "str4: " << str4 << std::endl;
-//	std::cout << (str4 == str2) << std::endl;
-//
-//	printf("------- str3 tostring: %s\n", str3.ToString());
-//
-//	int pos = str3.FindStrPos("ab");
-//	printf("--- pos:%d\n", pos);
-//	system("pause");
-//	return 0;
-//}
+namespace MyString {
+	void main()
+{
+	CMyString str1("aaa");
+	CMyString str2("bbbccc");
+	CMyString str3 = str1 + str2;
+	std::cout << "--- str1: " << str1 << std::endl;
+	std::cout << "--- str2: " << str2 << std::endl;
+	std::cout << "--- str3: " << str3 << std::endl;
+	std::cout << "str3[3]= " << str3[0] << std::endl;
+	std::cout << "str3 length: " << str3.GetLength() << std::endl;
+
+	CMyString str4 = str2;
+	std::cout << "str4: " << str4 << std::endl;
+	std::cout << (str4 == str2) << std::endl;
+
+	printf("------- str3 tostring: %s\n", str3.ToString());
+
+	int pos = str3.FindStrPos("ab");
+	printf("--- pos:%d\n", pos);
+}
+
+} // MyString

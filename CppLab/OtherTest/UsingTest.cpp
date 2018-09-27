@@ -1,92 +1,98 @@
-//#include <stdlib.h>
-//#include <iostream>
-//#include <sstream>
-//#include <string>
-//#include <vector>
-//#include <map>
-//
-////---------------------------------------test1
-//using namespace std;
-//
-//class Base
-//{
-//public:
-//	void menfcn()
-//	{
-//		cout << "Base function" << endl;
-//	}
-//
-//	void menfcn(int n)
-//	{
-//		cout << "Base function with int" << endl;
-//	}
-////private: 
-////	void menfcn(std::string _name) {}//»áÈÃ»ùÀàusingÊ±±¨²»¿É·ÃÎÊµÄ´í
-//};
-//
-//class Derived : private Base
-//{
-//public:
-//	using Base::menfcn;//usingÉùÃ÷Ö»ÄÜÖ¸¶¨Ò»¸öÃû×Ö£¬²»ÄÜ´øÐÎ²Î±í£¬ÇÒ»ùÀàµÄ¸Ãº¯Êý²»ÄÜÓÐË½ÓÐ°æ±¾£¬·ñÔò±àÒë±¨´í
-//						//using¸¸Àà·½·¨£¬Ö÷ÒªÊÇÓÃÀ´ÊµÏÖ¿ÉÒÔÔÚ×ÓÀàÊµÀýÖÐµ÷ÓÃµ½¸¸ÀàµÄÖØÔØ°æ±¾
-//	int menfcn(int num)
-//	{
-//		cout << "Derived function with int : "<< num << endl;
-//		return num;
-//	}
-//};
-//
-///*
-//¡°Òþ²Ø¡±ÊÇÖ¸ÅÉÉúÀàµÄº¯ÊýÆÁ±ÎÁËÓëÆäÍ¬ÃûµÄ»ùÀàº¯Êý£¬¹æÔòÈçÏÂ£º
-//1¡¢Èç¹ûÅÉÉúÀàµÄº¯ÊýÓë»ùÀàµÄº¯ÊýÍ¬Ãû£¬µ«ÊÇ²ÎÊý²»Í¬¡£´ËÊ±£¬²»ÂÛÓÐÎÞvirtual¹Ø¼ü×Ö£¬»ùÀàµÄº¯Êý½«±»Òþ²Ø£¨×¢Òâ±ðÓëÖØÔØ»ìÏý£©
-//2¡¢Èç¹ûÅÉÉúÀàµÄº¯ÊýÓë»ùÀàµÄº¯ÊýÍ¬Ãû£¬²¢ÇÒ²ÎÊýÒ²ÏàÍ¬£¬µ«ÊÇ»ùÀàº¯ÊýÃ»ÓÐvirtual¹Ø¼ü×Ö¡£´ËÊ±£¬»ùÀàµÄº¯Êý±»Òþ²Ø£¨×¢Òâ±ðÓë¸²¸Ç»ìÏý£©
-//Ê¹ÓÃÁËusing¹Ø¼ü×Ö£¬¾Í¿ÉÒÔ±ÜÃâ1µÄÇé¿ö£¬ÊÇµÄ¸¸ÀàÍ¬Ãûº¯ÊýÔÚ×ÓÀàÖÐµÃÒÔÖØÔØ£¬²»±»Òþ²Ø
-//*/
-//
-//void testUsing1()
-//{
-//	Base b;
-//	Derived d;
-//	b.menfcn();
-//	d.menfcn();//Èç¹ûÈ¥µôDerivedÀàÖÐµÄusingÉùÃ÷£¬»á³öÏÖ´íÎó£ºerror C2660: 'Derived::menfcn' : function does not take 0 arguments    
-//	d.menfcn(123);
-//	/*
-//	Base function
-//	Base function
-//	Derived function with int : 123
-//	*/
-//}
-//
-////---------------------------------------test2 ¿ÉÒÔÈ¡´útypedefÁË,¶øÇÒ¸ü¼ÓÁé»î
-//using myIntVec = std::vector<int>;
-//void testUsing2()
-//{
-//	myIntVec mvec = { 1, 2, 3, 4, 5 };
-//	mvec.push_back(123);
-//	for (int num : mvec)
-//		printf("--- num:%d\n", num);
-//
-//	std::cout << is_same < std::vector<int>, myIntVec>::value << std::endl; // 1
-//}
-//
-//template <typename T>
-//using MapStr = std::map<T, std::string>;
-//void testUsing3()
-//{
-//	MapStr<int> intStrMap;
-//	intStrMap.insert(make_pair(123, "aaa"));
-//	intStrMap.insert(make_pair(456, "bbb"));
-//
-//	MapStr<std::string> strstrMap;
-//	strstrMap.insert(make_pair("ccc", "ddd"));
-//	strstrMap.insert(make_pair("eee", "fff"));
-//}
-//
-//int main()
-//{
-//	testUsing1();
-//	//testUsing2();
-//	//testUsing3();
-//	system("pause");
-//	return 0;
-//}
+#include <stdlib.h>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <map>
+
+//---------------------------------------test1
+using namespace std;
+
+
+namespace UsingTest {
+    
+
+
+class Base
+{
+public:
+	void menfcn()
+	{
+		cout << "Base function" << endl;
+	}
+
+	void menfcn(int n)
+	{
+		cout << "Base function with int" << endl;
+	}
+//private: 
+//	void menfcn(std::string _name) {}//ä¼šè®©åŸºç±»usingæ—¶æŠ¥ä¸å¯è®¿é—®çš„é”™
+};
+
+class Derived : private Base
+{
+public:
+	using Base::menfcn;//usingå£°æ˜Žåªèƒ½æŒ‡å®šä¸€ä¸ªåå­—ï¼Œä¸èƒ½å¸¦å½¢å‚è¡¨ï¼Œä¸”åŸºç±»çš„è¯¥å‡½æ•°ä¸èƒ½æœ‰ç§æœ‰ç‰ˆæœ¬ï¼Œå¦åˆ™ç¼–è¯‘æŠ¥é”™
+						//usingçˆ¶ç±»æ–¹æ³•ï¼Œä¸»è¦æ˜¯ç”¨æ¥å®žçŽ°å¯ä»¥åœ¨å­ç±»å®žä¾‹ä¸­è°ƒç”¨åˆ°çˆ¶ç±»çš„é‡è½½ç‰ˆæœ¬
+	int menfcn(int num)
+	{
+		cout << "Derived function with int : "<< num << endl;
+		return num;
+	}
+};
+
+/*
+â€œéšè—â€æ˜¯æŒ‡æ´¾ç”Ÿç±»çš„å‡½æ•°å±è”½äº†ä¸Žå…¶åŒåçš„åŸºç±»å‡½æ•°ï¼Œè§„åˆ™å¦‚ä¸‹ï¼š
+1ã€å¦‚æžœæ´¾ç”Ÿç±»çš„å‡½æ•°ä¸ŽåŸºç±»çš„å‡½æ•°åŒåï¼Œä½†æ˜¯å‚æ•°ä¸åŒã€‚æ­¤æ—¶ï¼Œä¸è®ºæœ‰æ— virtualå…³é”®å­—ï¼ŒåŸºç±»çš„å‡½æ•°å°†è¢«éšè—ï¼ˆæ³¨æ„åˆ«ä¸Žé‡è½½æ··æ·†ï¼‰
+2ã€å¦‚æžœæ´¾ç”Ÿç±»çš„å‡½æ•°ä¸ŽåŸºç±»çš„å‡½æ•°åŒåï¼Œå¹¶ä¸”å‚æ•°ä¹Ÿç›¸åŒï¼Œä½†æ˜¯åŸºç±»å‡½æ•°æ²¡æœ‰virtualå…³é”®å­—ã€‚æ­¤æ—¶ï¼ŒåŸºç±»çš„å‡½æ•°è¢«éšè—ï¼ˆæ³¨æ„åˆ«ä¸Žè¦†ç›–æ··æ·†ï¼‰
+ä½¿ç”¨äº†usingå…³é”®å­—ï¼Œå°±å¯ä»¥é¿å…1çš„æƒ…å†µï¼Œæ˜¯çš„çˆ¶ç±»åŒåå‡½æ•°åœ¨å­ç±»ä¸­å¾—ä»¥é‡è½½ï¼Œä¸è¢«éšè—
+*/
+
+void testUsing1()
+{
+	Base b;
+	Derived d;
+	b.menfcn();
+	d.menfcn();//å¦‚æžœåŽ»æŽ‰Derivedç±»ä¸­çš„usingå£°æ˜Žï¼Œä¼šå‡ºçŽ°é”™è¯¯ï¼šerror C2660: 'Derived::menfcn' : function does not take 0 arguments    
+	d.menfcn(123);
+	/*
+	Base function
+	Base function
+	Derived function with int : 123
+	*/
+}
+
+//---------------------------------------test2 å¯ä»¥å–ä»£typedefäº†,è€Œä¸”æ›´åŠ çµæ´»
+using myIntVec = std::vector<int>;
+void testUsing2()
+{
+	myIntVec mvec = { 1, 2, 3, 4, 5 };
+	mvec.push_back(123);
+	for (int num : mvec)
+		printf("--- num:%d\n", num);
+
+	std::cout << is_same < std::vector<int>, myIntVec>::value << std::endl; // 1
+}
+
+template <typename T>
+using MapStr = std::map<T, std::string>;
+void testUsing3()
+{
+	MapStr<int> intStrMap;
+	intStrMap.insert(make_pair(123, "aaa"));
+	intStrMap.insert(make_pair(456, "bbb"));
+
+	MapStr<std::string> strstrMap;
+	strstrMap.insert(make_pair("ccc", "ddd"));
+	strstrMap.insert(make_pair("eee", "fff"));
+}
+
+int main()
+{
+	testUsing1();
+	//testUsing2();
+	//testUsing3();
+	system("pause");
+	return 0;
+}
+} 

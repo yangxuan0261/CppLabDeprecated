@@ -1,68 +1,72 @@
-//#include <iostream>
-//using namespace std;
-//
-////------------------------¹é²¢ÅÅĞò----------------------------
-////½«ÓĞ¶ş¸öÓĞĞòÊıÁĞa[first...mid]ºÍa[mid...last]ºÏ²¢¡£
-//void mergearray(int a[], int first, int mid, int last, int temp[])
-//{
-//	int i = first, j = mid + 1;
-//	int m = mid, n = last;
-//	int k = 0;
-//
-//	while (i <= m && j <= n)
-//	{
-//		if (a[i] < a[j])
-//			temp[k++] = a[i++];
-//		else
-//			temp[k++] = a[j++];
-//	}
-//
-//	while (i <= m)
-//		temp[k++] = a[i++];
-//
-//	while (j <= n)
-//		temp[k++] = a[j++];
-//
-//	for (i = 0; i < k; i++)
-//		a[first + i] = temp[i];
-//}
-//void mergesort(int a[], int first, int last, int temp[])
-//{
-//	if (first < last)
-//	{
-//		int mid = (first + last) / 2;
-//		mergesort(a, first, mid, temp);    //×ó±ßÓĞĞò
-//		mergesort(a, mid + 1, last, temp); //ÓÒ±ßÓĞĞò
-//		mergearray(a, first, mid, last, temp); //ÔÙ½«¶ş¸öÓĞĞòÊıÁĞºÏ²¢
-//	}
-//}
-//bool MergeSort(int a[], int n)
-//{
-//	int *p = new int[n];
-//	if (p == NULL)
-//		return false;
-//	mergesort(a, 0, n - 1, p);
-//	return true;
-//}
-//
-//void PrintArr(int a[], int len)
-//{
-//	for (size_t i = 0; i < len; i++)
-//	{
-//		cout << a[i] << " - ";
-//	}
-//	cout << endl;
-//}
-//
-//int main()
-//{
-//	int a[10] = { 9, 12, 17, 30, 50, 20, 60, 65, 4, 49 };
-//	int length = sizeof(a) / sizeof(int);
-//	PrintArr(a, length);
-//
-//	MergeSort(a, length);
-//	PrintArr(a, length);
-//
-//	system("pause");
-//	return 0;
-//}
+#include <iostream>
+using namespace std;
+
+
+namespace MergeSort
+{
+    
+
+
+//------------------------å½’å¹¶æ’åº----------------------------
+//å°†æœ‰äºŒä¸ªæœ‰åºæ•°åˆ—a[first...mid]å’Œa[mid...last]åˆå¹¶ã€‚
+void mergearray(int a[], int first, int mid, int last, int temp[])
+{
+	int i = first, j = mid + 1;
+	int m = mid, n = last;
+	int k = 0;
+
+	while (i <= m && j <= n)
+	{
+		if (a[i] < a[j])
+			temp[k++] = a[i++];
+		else
+			temp[k++] = a[j++];
+	}
+
+	while (i <= m)
+		temp[k++] = a[i++];
+
+	while (j <= n)
+		temp[k++] = a[j++];
+
+	for (i = 0; i < k; i++)
+		a[first + i] = temp[i];
+}
+void mergesort(int a[], int first, int last, int temp[])
+{
+	if (first < last)
+	{
+		int mid = (first + last) / 2;
+		mergesort(a, first, mid, temp);    //å·¦è¾¹æœ‰åº
+		mergesort(a, mid + 1, last, temp); //å³è¾¹æœ‰åº
+		mergearray(a, first, mid, last, temp); //å†å°†äºŒä¸ªæœ‰åºæ•°åˆ—åˆå¹¶
+	}
+}
+bool MergeSort(int a[], int n)
+{
+	int *p = new int[n];
+	if (p == NULL)
+		return false;
+	mergesort(a, 0, n - 1, p);
+	return true;
+}
+
+void PrintArr(int a[], int len)
+{
+	for (size_t i = 0; i < len; i++)
+	{
+		cout << a[i] << " - ";
+	}
+	cout << endl;
+}
+
+void main()
+{
+	int a[10] = { 9, 12, 17, 30, 50, 20, 60, 65, 4, 49 };
+	int length = sizeof(a) / sizeof(int);
+	PrintArr(a, length);
+
+	MergeSort(a, length);
+	PrintArr(a, length);
+}
+} // MergeSort

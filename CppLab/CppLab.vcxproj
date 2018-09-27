@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AlgorithmTest\Entry.cpp" />
+    <ClCompile Include="a_main.cpp" />
     <ClCompile Include="ExternTest\deVar2.cpp" />
     <ClCompile Include="ExternTest\deVar4.cpp" />
     <ClCompile Include="ExternTest\deVar5.c" />
@@ -72,8 +73,8 @@
     <ClCompile Include="OtherTest\UnionTest.cpp" />
     <ClCompile Include="OtherTest\UsingTest.cpp" />
     <ClCompile Include="OtherTest\VitualTableTest.cpp" />
-    <ClCompile Include="OtherTest\源.cpp" />
-    <ClCompile Include="OtherTest\源1.cpp" />
+    <ClCompile Include="OtherTest\BaseTest.cpp" />
+    <ClCompile Include="OtherTest\Greedy.cpp" />
     <ClCompile Include="ThreadTest\main.cpp" />
     <ClCompile Include="ThreadTest\main2.cpp" />
     <ClCompile Include="ThreadTest\main3.cpp" />

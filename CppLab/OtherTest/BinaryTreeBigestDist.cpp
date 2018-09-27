@@ -1,107 +1,110 @@
-//#include <stdlib.h>
-//#include <stdio.h>
-//#include <iostream>
-//
-//typedef struct Node {
-//	struct Node *pleft;     //×óº¢×Ó
-//	struct Node *pright;    //ÓÒº¢×Ó
-//	char chValue;           //¸Ã½ÚµãµÄÖµ
-//
-//	int leftMaxValue;       //×ó×ÓÊ÷×î³¤¾àÀë
-//	int rightMaxValue;      //ÓÒ×ÓÊ÷×î³¤¾àÀë
-//}LNode, BinTree;
-//
-//void findMaxLen(BinTree* root, int *maxLen) {
-//	//±éÀúµ½Ò¶×Ó½áµã£¬·µ»Ø
-//	if (root == NULL)
-//		return;
-//
-//	//Èç¹û×ó×ÓÊ÷Îª¿Õ£¬ÄÇÃ´¸Ã½Úµã×ó±ß×î³¤¾àÀëÎª0
-//	if (root->pleft == NULL)
-//		root->leftMaxValue = 0;
-//
-//	//Èç¹ûÓÒ×ÓÊ÷Îª¿Õ£¬ÄÇÃ´¸Ã½ÚµãÓÒ±ß×î³¤¾àÀëÎª0
-//	if (root->pright == NULL)
-//		root->rightMaxValue = 0;
-//
-//	//Èç¹û×ó×ÓÊ÷²»Îª¿Õ£¬µÝ¹éÑ°ÕÒ×ó×ÓÊ÷×î³¤¾àÀë
-//	if (root->pleft != NULL)
-//		findMaxLen(root->pleft, maxLen);
-//
-//	//Èç¹ûÓÒ×ÓÊ÷²»Îª¿Õ£¬µÝ¹éÑ°ÕÒÓÒ×ÓÊ÷×î³¤¾àÀë
-//	if (root->pright != NULL)
-//		findMaxLen(root->pright, maxLen);
-//
-//	//¼ÆËã×ó×ÓÊ÷ÖÐ¾àÀë¸ù½ÚµãµÄ×î³¤¾àÀë
-//	if (root->pleft != NULL) {
-//		if (root->pleft->leftMaxValue > root->pleft->rightMaxValue)
-//			root->leftMaxValue = root->pleft->leftMaxValue + 1;
-//		else
-//			root->leftMaxValue = root->pleft->rightMaxValue + 1;
-//	}
-//
-//	//¼ÆËãÓÒ×ÓÊ÷ÖÐ¾àÀë¸ù½ÚµãµÄ×î³¤¾àÀë
-//	if (root->pright != NULL) {
-//		if (root->pright->leftMaxValue > root->pright->rightMaxValue)
-//			root->rightMaxValue = root->pright->leftMaxValue + 1;
-//		else
-//			root->rightMaxValue = root->pright->rightMaxValue + 1;
-//	}
-//
-//	//¸üÐÂ×î³¤¾àÀë
-//	if (root->leftMaxValue + root->rightMaxValue > *maxLen)
-//		*maxLen = root->leftMaxValue + root->rightMaxValue;
-//}
-//
-////´´½¨¶þ²æÊ÷
-//void buildBinTree(BinTree *root)
-//{
-//	char ch;
-//	scanf_s("%c", &ch);    //ÊäÈëÒ»¸öÔªËØ
-//	std::cin;
-//	if (ch == 'u')        //ÈôÊäÈëµÄÊÇ¿Õ¸ñ·û£¬±íÃ÷¶þ²æÊ÷Îª¿Õ£¬ÖÃ*rootÎªNULL
-//		root = NULL;
-//	else {               //ÈôÊäÈëµÄ²»ÊÇ¿Õ¸ñ·û£¬Ôò½«¸ÃÖµ¸³Öµ¸ø¸ù½ÚµãµÄchValue, µÝ¹é½¨Á¢×ó×ÓÊ÷ºÍÓÒ×ÓÊ÷
-//		root = (BinTree*)malloc(sizeof(BinTree));
-//		root->chValue = ch;
-//		root->leftMaxValue = 0;
-//		root->rightMaxValue = 0;
-//
-//		buildBinTree(root->pleft);
-//		buildBinTree(root->pright);
-//	}
-//}
-//
-////Ïú»Ù¶þ²æÊ÷£¬ÊÍ·ÅÄÚ´æ
-//void destroyBinTree(BinTree *root)
-//{
-//	if (root != NULL) {
-//		destroyBinTree(root->pleft);
-//		destroyBinTree(root->pright);
-//
-//		free(root);
-//		root = NULL;
-//	}
-//}
-//
-////Ç°Ðò±éÀú¶þ²æÊ÷
-//void preOrderTraverse(BinTree* root)
-//{
-//	if (root != NULL) {
-//		preOrderTraverse(root->pleft);
-//		printf("%c", root->chValue);
-//		preOrderTraverse(root->pright);
-//	}
-//}
-//
-//int main() {
-//	BinTree* root = nullptr;
-//	buildBinTree(root);
-//	preOrderTraverse(root);
-//	printf("\n");
-//	int maxLen = 0;
-//	findMaxLen(root, &maxLen);
-//	printf("maxLen = %d\n", maxLen);
-//	destroyBinTree(root);
-//	system("pause");
-//}
+#include <stdlib.h>
+#include <stdio.h>
+#include <iostream>
+
+namespace BinaryTreeBigestDist {
+
+
+typedef struct Node {
+	struct Node *pleft;     //å·¦å­©å­
+	struct Node *pright;    //å³å­©å­
+	char chValue;           //è¯¥èŠ‚ç‚¹çš„å€¼
+
+	int leftMaxValue;       //å·¦å­æ ‘æœ€é•¿è·ç¦»
+	int rightMaxValue;      //å³å­æ ‘æœ€é•¿è·ç¦»
+}LNode, BinTree;
+
+void findMaxLen(BinTree* root, int *maxLen) {
+	//éåŽ†åˆ°å¶å­ç»“ç‚¹ï¼Œè¿”å›ž
+	if (root == NULL)
+		return;
+
+	//å¦‚æžœå·¦å­æ ‘ä¸ºç©ºï¼Œé‚£ä¹ˆè¯¥èŠ‚ç‚¹å·¦è¾¹æœ€é•¿è·ç¦»ä¸º0
+	if (root->pleft == NULL)
+		root->leftMaxValue = 0;
+
+	//å¦‚æžœå³å­æ ‘ä¸ºç©ºï¼Œé‚£ä¹ˆè¯¥èŠ‚ç‚¹å³è¾¹æœ€é•¿è·ç¦»ä¸º0
+	if (root->pright == NULL)
+		root->rightMaxValue = 0;
+
+	//å¦‚æžœå·¦å­æ ‘ä¸ä¸ºç©ºï¼Œé€’å½’å¯»æ‰¾å·¦å­æ ‘æœ€é•¿è·ç¦»
+	if (root->pleft != NULL)
+		findMaxLen(root->pleft, maxLen);
+
+	//å¦‚æžœå³å­æ ‘ä¸ä¸ºç©ºï¼Œé€’å½’å¯»æ‰¾å³å­æ ‘æœ€é•¿è·ç¦»
+	if (root->pright != NULL)
+		findMaxLen(root->pright, maxLen);
+
+	//è®¡ç®—å·¦å­æ ‘ä¸­è·ç¦»æ ¹èŠ‚ç‚¹çš„æœ€é•¿è·ç¦»
+	if (root->pleft != NULL) {
+		if (root->pleft->leftMaxValue > root->pleft->rightMaxValue)
+			root->leftMaxValue = root->pleft->leftMaxValue + 1;
+		else
+			root->leftMaxValue = root->pleft->rightMaxValue + 1;
+	}
+
+	//è®¡ç®—å³å­æ ‘ä¸­è·ç¦»æ ¹èŠ‚ç‚¹çš„æœ€é•¿è·ç¦»
+	if (root->pright != NULL) {
+		if (root->pright->leftMaxValue > root->pright->rightMaxValue)
+			root->rightMaxValue = root->pright->leftMaxValue + 1;
+		else
+			root->rightMaxValue = root->pright->rightMaxValue + 1;
+	}
+
+	//æ›´æ–°æœ€é•¿è·ç¦»
+	if (root->leftMaxValue + root->rightMaxValue > *maxLen)
+		*maxLen = root->leftMaxValue + root->rightMaxValue;
+}
+
+//åˆ›å»ºäºŒå‰æ ‘
+void buildBinTree(BinTree *root)
+{
+	char ch;
+	scanf_s("%c", &ch);    //è¾“å…¥ä¸€ä¸ªå…ƒç´ 
+	std::cin;
+	if (ch == 'u')        //è‹¥è¾“å…¥çš„æ˜¯ç©ºæ ¼ç¬¦ï¼Œè¡¨æ˜ŽäºŒå‰æ ‘ä¸ºç©ºï¼Œç½®*rootä¸ºNULL
+		root = NULL;
+	else {               //è‹¥è¾“å…¥çš„ä¸æ˜¯ç©ºæ ¼ç¬¦ï¼Œåˆ™å°†è¯¥å€¼èµ‹å€¼ç»™æ ¹èŠ‚ç‚¹çš„chValue, é€’å½’å»ºç«‹å·¦å­æ ‘å’Œå³å­æ ‘
+		root = (BinTree*)malloc(sizeof(BinTree));
+		root->chValue = ch;
+		root->leftMaxValue = 0;
+		root->rightMaxValue = 0;
+
+		buildBinTree(root->pleft);
+		buildBinTree(root->pright);
+	}
+}
+
+//é”€æ¯äºŒå‰æ ‘ï¼Œé‡Šæ”¾å†…å­˜
+void destroyBinTree(BinTree *root)
+{
+	if (root != NULL) {
+		destroyBinTree(root->pleft);
+		destroyBinTree(root->pright);
+
+		free(root);
+		root = NULL;
+	}
+}
+
+//å‰åºéåŽ†äºŒå‰æ ‘
+void preOrderTraverse(BinTree* root)
+{
+	if (root != NULL) {
+		preOrderTraverse(root->pleft);
+		printf("%c", root->chValue);
+		preOrderTraverse(root->pright);
+	}
+}
+
+void main() {
+	BinTree* root = nullptr;
+	buildBinTree(root);
+	preOrderTraverse(root);
+	printf("\n");
+	int maxLen = 0;
+	findMaxLen(root, &maxLen);
+	printf("maxLen = %d\n", maxLen);
+	destroyBinTree(root);
+}
+}

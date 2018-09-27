@@ -8,8 +8,6 @@
 using namespace std;
 
 namespace UnionTest {
-
-
 	void test222()
 	{
 		union testasd
@@ -70,13 +68,10 @@ namespace UnionTest {
 		else
 			printf("is big endian\n");
 	}
-};
 
-//int main()
-//{
-//	//testUnion();
-//	//test222();
-//	UnionTest::testLittleOrBigEndian();
-//	system("pause");
-//	return 0;
-//}
+	void main() {
+		//testUnion();
+		//test222();
+		testLittleOrBigEndian();
+	}
+};

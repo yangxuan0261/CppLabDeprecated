@@ -4,9 +4,10 @@
 
 using namespace std;
 
+namespace BitTest {
 
 
-// ËùÓĞÆæÊı
+// æ‰€æœ‰å¥‡æ•°
 void test1()
 {
 	for (int i = 0; i < 100; ++i)
@@ -17,7 +18,7 @@ void test1()
 
 }
 
-// ½»»»Êı×Ö
+// äº¤æ¢æ•°å­—
 void test2()
 {
 	auto func = [](int& a, int& b)
@@ -46,9 +47,9 @@ struct Data1
 
 struct Data2
 {
-	int a : 16; //µÚ1~16Î»
-	int : 14; //µÚ17~30Î»,14Î»²»ÄÜÊ¹ÓÃ
-	int b : 10; //´ÓÏÂÒ»µ¥Ôª¿ªÊ¼£¬
+	int a : 16; //ç¬¬1~16ä½
+	int : 14; //ç¬¬17~30ä½,14ä½ä¸èƒ½ä½¿ç”¨
+	int b : 10; //ä»ä¸‹ä¸€å•å…ƒå¼€å§‹ï¼Œ
 	int c : 16;
 };
 
@@ -86,9 +87,9 @@ void testBitFields()
 	Date4 d4;
 	Date5 d5;
 	Date6 d6;
-	int size1 = sizeof(d1);	//12×Ö½Ú
-	int size2 = sizeof(d2); //8×Ö½Ú
-	int size3 = sizeof(d3); //4×Ö½Ú
+	int size1 = sizeof(d1);	//12å­—èŠ‚
+	int size2 = sizeof(d2); //8å­—èŠ‚
+	int size3 = sizeof(d3); //4å­—èŠ‚
 	int size4 = sizeof(d4); 
 	int size5 = sizeof(d5); 
 	int size6 = sizeof(d6); 
@@ -98,12 +99,10 @@ void testBitFields()
 	printf("size6:%d\n", size6);
 }
 
-//int main()
-//{
-//	//test1();
-//	//test2();
-//	testBitFields();
-//	
-//	system("pause");
-//	return 0;
-//}
+void main()
+{
+	//test1();
+	//test2();
+	testBitFields();
+}
+}

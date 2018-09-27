@@ -1,36 +1,42 @@
-//#include <stdlib.h>
-//#include <iostream>
-//#include <sstream>
-//#include <string>
-////------------ test1
-//template <typename T = int> //c++98±àÒëÍ¨¹ı£¬c++11±àÒëÍ¨¹ı
-//class DefClass{};
-//
-//template <typename T = int> //c++98±àÒëÊ§°Ü£¬c++11±àÒëÍ¨¹ı£¬º¯ÊıÄ£°åµÄÄ¬ÈÏÄ£°å²ÎÊıÏŞÖÆ±»½â³ı
-//void DefTempParm(){};
-//
-////------------ test2 ÀàÄ£°å
-//template <typename T1, int i = 0> //ÀàÄ£°åµÄÄ¬ÈÏÄ£°å²ÎÊı±ØĞë×ñÕÕ¡°´ÓÓÒÍù×ó¡±µÄ¹æÔò£¬Ö¸¶¨Ä¬ÈÏ²ÎÊıÒ»¶¨ÒªÔÚ×îÓÒ¶Ë
-//class DefClass1{};
-//
-////template <int i = 0, typename T2> //ËùÒÔÕâ¸ö±àÒëÊ§°Ü
-////class DefClass2{};
-//
-////------------ test3 º¯ÊıÄ£°å£¬¶ÔÓÚº¯ÊıÄ£°å£¬ÔÚc++11ÖĞ²»ĞèÒª×ñÕÕ¡°´ÓÓÒÍù×ó¡±µÄ¹æÔò
-//template <typename T1 = int, typename T2>
-//void DefFunc1(T1 a, T2 b){}
-//
-//template <int i = 0, typename T2> 
-//void DefFunc2(T2 a) {}
-//
-//void testTemplate()
-//{
-//	
-//}
-//
-//int main()
-//{
-//	testTemplate();
-//	system("pause");
-//	return 0;
-//}
+#include <stdlib.h>
+#include <iostream>
+#include <sstream>
+#include <string>
+
+
+namespace TemplateTest
+{
+
+
+//------------ test1
+template <typename T = int> //c++98ç¼–è¯‘é€šè¿‡ï¼Œc++11ç¼–è¯‘é€šè¿‡
+class DefClass{};
+
+template <typename T = int> //c++98ç¼–è¯‘å¤±è´¥ï¼Œc++11ç¼–è¯‘é€šè¿‡ï¼Œå‡½æ•°æ¨¡æ¿çš„é»˜è®¤æ¨¡æ¿å‚æ•°é™åˆ¶è¢«è§£é™¤
+void DefTempParm(){};
+
+//------------ test2 ç±»æ¨¡æ¿
+template <typename T1, int i = 0> //ç±»æ¨¡æ¿çš„é»˜è®¤æ¨¡æ¿å‚æ•°å¿…é¡»éµç…§â€œä»å³å¾€å·¦â€çš„è§„åˆ™ï¼ŒæŒ‡å®šé»˜è®¤å‚æ•°ä¸€å®šè¦åœ¨æœ€å³ç«¯
+class DefClass1{};
+
+//template <int i = 0, typename T2> //æ‰€ä»¥è¿™ä¸ªç¼–è¯‘å¤±è´¥
+//class DefClass2{};
+
+//------------ test3 å‡½æ•°æ¨¡æ¿ï¼Œå¯¹äºå‡½æ•°æ¨¡æ¿ï¼Œåœ¨c++11ä¸­ä¸éœ€è¦éµç…§â€œä»å³å¾€å·¦â€çš„è§„åˆ™
+template <typename T1 = int, typename T2>
+void DefFunc1(T1 a, T2 b){}
+
+template <int i = 0, typename T2> 
+void DefFunc2(T2 a) {}
+
+void testTemplate()
+{
+	
+}
+
+void main()
+{
+	testTemplate();
+}
+
+} // TemplateTest

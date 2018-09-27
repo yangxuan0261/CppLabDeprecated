@@ -1,68 +1,72 @@
-//#include <stdlib.h>
-//#include <iostream>
-//#include <sstream>
-//#include <string>
-//#include <vector>
-//
-////----------------------------------test1 ºêÊµÏÖ
-//#define  GetProperty(Var,VarName) inline auto Get##VarName() const ->decltype(Var) { return Var;}
-//#define  SetProperty(Var,VarName) inline void Set##VarName(decltype(Var) _v){ Var = _v;}
-//#define  GetSetProperty(Var,VarName)\
-//	GetProperty(Var, VarName)\
-//	SetProperty(Var, VarName)
-//
-////decltype(Var) ¸ù¾İVarÊµ¼ÊµÄÀàĞÍÍÆµ¼³öÀàĞÍ 
-//
-//class Pig
-//{
-//private:
-//	int mAge;
-//	std::string mName;
-//
-//public:
-//	GetSetProperty(mAge, Age); //Ò»¶¨ÒªÔÚÉùÃ÷µÄ±äÁ¿ÃûÏÂÃæ(ÓĞµãÏ°¹ßĞÔµÄ°Ñ·½·¨Ğ´ÔÚÉÏÃæ£¬±äÁ¿ÔÚÏÂÃæ)£¬²»È»±àÒë±¨´í£¬Î´¶¨ÒåmAge
-//	GetSetProperty(mName, Name);
-//};
-//
-//void testDeclType()
-//{
-//	int  iarr[10] = { 0 };
-//	decltype(iarr) ib; //Õâ¸öÊ±ºòibµÄ¶¨ÒåµÈ¼ÛÓÚ int ib[10];Á½ÕßÊÇÒ»ÑùµÄ£¬²»ÒªÈÏÎªibÊÇÒ»¸öÖ¸ÕëÁË£¬ËüÊÇÒ»¸öÕı×ÚµÄÊı×é¡£
-//	printf("--- sizeof ib:%d\n",sizeof(ib)); //40
-//
-//	Pig p;
-//	p.SetAge(123);
-//	p.SetName("uuu");
-//
-//	printf("--- pig age:%d, name:%s\n",p.GetAge(), p.GetName().c_str());
-//
-//	/*
-//	--- sizeof ib:40
-//	--- pig age:123, name:uuu
-//	*/
-//}
-//
-////----------------------------------test3 º¯Êı×ª·¢
-//double foo(int _a) { return (double)_a + 0.1; }
-//int foo(double _a){ return (int)_a + 1; }
-//
-//template <typename T>
-//auto Forward(T _t) -> decltype(foo(_t))
-//{
-//	return foo(_t);
-//}
-//
-//void testDeclType3()
-//{
-//	std::cout << Forward(2) << std::endl; //2.1
-//	std::cout << Forward(0.2) << std::endl; //1
-//}
-//
-//int main()
-//{
-//	testDeclType();
-//	//testDeclType3();
-//
-//	system("pause");
-//	return 0;
-//}
+#include <stdlib.h>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+
+namespace AutoDecltypeTest
+{
+
+//----------------------------------test1 å®å®ç°
+#define GetProperty(Var, VarName) \
+    inline auto Get##VarName() const->decltype(Var) { return Var; }
+#define SetProperty(Var, VarName) \
+    inline void Set##VarName(decltype(Var) _v) { Var = _v; }
+#define GetSetProperty(Var, VarName) \
+    GetProperty(Var, VarName)        \
+        SetProperty(Var, VarName)
+
+//decltype(Var) æ ¹æ®Varå®é™…çš„ç±»å‹æ¨å¯¼å‡ºç±»å‹
+
+class Pig
+{
+  private:
+    int mAge;
+    std::string mName;
+
+  public:
+    GetSetProperty(mAge, Age); //ä¸€å®šè¦åœ¨å£°æ˜çš„å˜é‡åä¸‹é¢(æœ‰ç‚¹ä¹ æƒ¯æ€§çš„æŠŠæ–¹æ³•å†™åœ¨ä¸Šé¢ï¼Œå˜é‡åœ¨ä¸‹é¢)ï¼Œä¸ç„¶ç¼–è¯‘æŠ¥é”™ï¼Œæœªå®šä¹‰mAge
+    GetSetProperty(mName, Name);
+};
+
+void testDeclType()
+{
+    int iarr[10] = {0};
+    decltype(iarr) ib;                        //è¿™ä¸ªæ—¶å€™ibçš„å®šä¹‰ç­‰ä»·äº int ib[10];ä¸¤è€…æ˜¯ä¸€æ ·çš„ï¼Œä¸è¦è®¤ä¸ºibæ˜¯ä¸€ä¸ªæŒ‡é’ˆäº†ï¼Œå®ƒæ˜¯ä¸€ä¸ªæ­£å®—çš„æ•°ç»„ã€‚
+    printf("--- sizeof ib:%d\n", sizeof(ib)); //40
+
+    Pig p;
+    p.SetAge(123);
+    p.SetName("uuu");
+
+    printf("--- pig age:%d, name:%s\n", p.GetAge(), p.GetName().c_str());
+
+    /*
+	--- sizeof ib:40
+	--- pig age:123, name:uuu
+	*/
+}
+
+//----------------------------------test3 å‡½æ•°è½¬å‘
+double foo(int _a) { return (double)_a + 0.1; }
+int foo(double _a) { return (int)_a + 1; }
+
+template <typename T>
+auto Forward(T _t) -> decltype(foo(_t))
+{
+    return foo(_t);
+}
+
+void testDeclType3()
+{
+    std::cout << Forward(2) << std::endl;   //2.1
+    std::cout << Forward(0.2) << std::endl; //1
+}
+
+void main()
+{
+    testDeclType();
+    //testDeclType3();
+}
+
+} // namespace AutoDecltypeTest
