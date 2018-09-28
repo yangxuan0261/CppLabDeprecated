@@ -51,7 +51,7 @@ int main() {
 	// ACompareSort::main();
 	// AutoDecltypeTest::main();
 	// BaseTest::main();
-	 BinaryTree::main();
+	// BinaryTree::main();
 	// BinaryTreeBigestDist::main();
 	// BitTest::main();
 	// ByteAlign::main();
@@ -88,7 +88,7 @@ int main() {
 	// TemplateTest2::main();
 	// UnionTest::main();
 	// UsingTest::main();
-	//VitualTableTest::main();
+	VitualTableTest::main();
 	
 	system("pause");
 	return 0;

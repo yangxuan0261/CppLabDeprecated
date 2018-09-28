@@ -31,6 +31,24 @@
                 "kind": "build",
                 "isDefault": true
             }
-        }
+        },
+        {
+            "label": "pyHelper",
+            "type": "shell",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared"
+            },
+            "command": "python",
+            "args": [
+                "${workspaceRoot}/CppLab/vscode_helper.py",
+                "--dir=${workspaceRoot}/CppLab",
+                "--output=${workspaceRoot}/CppLab/CppLab.exe",
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
     ]
 }

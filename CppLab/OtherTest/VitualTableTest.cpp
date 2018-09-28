@@ -13,7 +13,7 @@ using namespace std;
 namespace VitualTableTest {
 
 
-	typedef std::function<void(void)> Fun0;  //ÊÊÓÃÓÚÓĞÊµÀı¶ÔÏó
+	typedef std::function<void(void)> Fun0;  //é€‚ç”¨äºæœ‰å®ä¾‹å¯¹è±¡
 
 	class Base0 {
 	public:
@@ -27,8 +27,8 @@ namespace VitualTableTest {
 		Fun0 pFun = nullptr;
 
 		Base0 b;
-		cout << "Ğéº¯Êı±íµØÖ·£º" << (int*)(&b) << endl;
-		cout << "Ğéº¯Êı±í ¡ª µÚÒ»¸öº¯ÊıµØÖ·£º" << (int*)*(int*)(&b) << endl;
+		cout << "è™šå‡½æ•°è¡¨åœ°å€ï¼š" << (int*)(&b) << endl;
+		cout << "è™šå‡½æ•°è¡¨ â€” ç¬¬ä¸€ä¸ªå‡½æ•°åœ°å€ï¼š" << (int*)*(int*)(&b) << endl;
 
 		// Invoke the first virtual function 
 		//pFun = (Fun0)*((int*)*(int*)(&b));
@@ -38,7 +38,7 @@ namespace VitualTableTest {
 		return 0;
 	}
 
-	typedef void(*Fun)(void);   //voidÀàĞÍµÄº¯ÊıÖ¸Õë //ÊÊÓÃÓÚÎŞÊµÀı¶ÔÏó£¬ÀıÈçÈ«¾Öº¯ÊıµÈ
+	typedef void(*Fun)(void);   //voidç±»å‹çš„å‡½æ•°æŒ‡é’ˆ //é€‚ç”¨äºæ— å®ä¾‹å¯¹è±¡ï¼Œä¾‹å¦‚å…¨å±€å‡½æ•°ç­‰
 
 	// ------------------------------------------------ test1 -------------------------
 	class Tmp {
@@ -88,7 +88,7 @@ namespace VitualTableTest {
 		char* str;
 		dev* child;
 		Tmp tmp;
-		//double price; //¼ÓÁË¸ö8¸ö×Ö½ÚµÄdouble£¬×Ö½Ú¶ÔÆëÊ±»áÕ¼ÓÃ¸ü¶à×Ö½Ú£¬¶ÔÏó´óĞ¡Ôö´ó
+		//double price; //åŠ äº†ä¸ª8ä¸ªå­—èŠ‚çš„doubleï¼Œå­—èŠ‚å¯¹é½æ—¶ä¼šå ç”¨æ›´å¤šå­—èŠ‚ï¼Œå¯¹è±¡å¤§å°å¢å¤§
 	};
 
 	void testVirtualTable() {
@@ -106,16 +106,16 @@ namespace VitualTableTest {
 		d.tmp.c = 888;
 		//d.f();             //compile error
 
-		cout << "Ğéº¯Êı±íµØÖ·£º" << (int*)(&d) << endl;
-		cout << "Ğéº¯Êı±í ¡ª µÚÒ»¸öº¯ÊıµØÖ·£º" << (int*)*(int*)(&d) << endl;
+		cout << "è™šå‡½æ•°è¡¨åœ°å€ï¼š" << (int*)(&d) << endl;
+		cout << "è™šå‡½æ•°è¡¨ â€” ç¬¬ä¸€ä¸ªå‡½æ•°åœ°å€ï¼š" << (int*)*(int*)(&d) << endl;
 		printf("\n");
 
-		//Í¨¹ıº¯ÊıÖ¸Õë·ÃÎÊµ½Ë½ÓĞµÄj(), j()¶ÔÓÚ¶ÔÏóÀ´½²±¾À´ÊÇ²»¿É¼ûµÄ,Ö¸ÕëÌ«Ç¿´ó
+		//é€šè¿‡å‡½æ•°æŒ‡é’ˆè®¿é—®åˆ°ç§æœ‰çš„j(), j()å¯¹äºå¯¹è±¡æ¥è®²æœ¬æ¥æ˜¯ä¸å¯è§çš„,æŒ‡é’ˆå¤ªå¼ºå¤§
 		Fun pFun2 = nullptr;
-		//µÚÒ»¸öĞéº¯Êı±íÖ¸ÕëÖ¸Ïò
-		//pFun2 = (Fun)*((int*)*(int*)(&d) + 0); //Base::~Base //Îö¹¹²»ÄÜµ÷
+		//ç¬¬ä¸€ä¸ªè™šå‡½æ•°è¡¨æŒ‡é’ˆæŒ‡å‘
+		//pFun2 = (Fun)*((int*)*(int*)(&d) + 0); //Base::~Base //ææ„ä¸èƒ½è°ƒ
 		//pFun2();
-		pFun2 = (Fun)*((int*)*(int*)(&d) + 1); //dev::f //devÖØĞ´BaseµÄf
+		pFun2 = (Fun)*((int*)*(int*)(&d) + 1); //dev::f //devé‡å†™Baseçš„f
 		pFun2();
 		pFun2 = (Fun)*((int*)*(int*)(&d) + 2); //Base::g
 		pFun2();
@@ -125,26 +125,26 @@ namespace VitualTableTest {
 		pFun2();
 		pFun2 = (Fun)*((int*)*(int*)(&d) + 5); //dev::k
 		pFun2();
-		//Base base1NumµÄ´æ´¢Æ«ÒÆÔÚĞéº¯Êı±íÖ¸ÕëµÄÏÂ4¸ö×Ö½Ú
+		//Base base1Numçš„å­˜å‚¨åç§»åœ¨è™šå‡½æ•°è¡¨æŒ‡é’ˆçš„ä¸‹4ä¸ªå­—èŠ‚
 		int base1Num = (int)*((int*)(&d) + 1);
 		printf("--- base1Num:%d\n", base1Num); //123
 		printf("\n");
 
-		//µÚ¶ş¸öĞéº¯Êı±íÖ¸ÕëÖ¸Ïò
-		//pFun2 = (Fun)*((int*)*((int*)(&d) + 1) + 0);  //Base2::~Base2 //Îö¹¹²»ÄÜµ÷
+		//ç¬¬äºŒä¸ªè™šå‡½æ•°è¡¨æŒ‡é’ˆæŒ‡å‘
+		//pFun2 = (Fun)*((int*)*((int*)(&d) + 1) + 0);  //Base2::~Base2 //ææ„ä¸èƒ½è°ƒ
 		//pFun2();
 		pFun2 = (Fun)*((int*)*((int*)(&d) + 2) + 1);//Base2::y
 		pFun2();
 		pFun2 = (Fun)*((int*)*((int*)(&d) + 2) + 2); //Base2::y
 		pFun2();
-		pFun2 = (Fun)*((int*)*((int*)(&d) + 2) + 3); //dev::z //devÖØĞ´Base2µÄz
+		pFun2 = (Fun)*((int*)*((int*)(&d) + 2) + 3); //dev::z //devé‡å†™Base2çš„z
 		pFun2();
-		//Base2 base2NumµÄ´æ´¢Æ«ÒÆÔÚĞéº¯Êı±íÖ¸ÕëµÄÏÂ4¸ö×Ö½Ú
+		//Base2 base2Numçš„å­˜å‚¨åç§»åœ¨è™šå‡½æ•°è¡¨æŒ‡é’ˆçš„ä¸‹4ä¸ªå­—èŠ‚
 		int base2Num = (int)*((int*)(&d) + 3);
 		printf("--- base2Num:%d\n", base2Num); //456
 		printf("\n");
 
-		//Í¨¹ıµØÖ·»ñÈ¡³ÉÔ±±äÁ¿
+		//é€šè¿‡åœ°å€è·å–æˆå‘˜å˜é‡
 		int num = (int)*((int*)(&d) + 4);
 		char* str = (char*)*((int*)(&d) + 5);
 		printf("--- dev.num:%d\n", num);
@@ -153,7 +153,7 @@ namespace VitualTableTest {
 
 		//(base vtp + base1num + base2 vtp + base2num + dev::num + dev::str + dev::dev*) * 4 = 28
 		//printf("--- dev size : %d\n", sizeof(dev)); //28
-		//Èç¹û dev ¼Ó¶à¸ö double ĞÍ³ÉÔ±£¬ÒòÎª×Ö½Ú¶ÔÆëÊÇ¸ü¾ß×î´óÔªËØÀ´¶Ô½ç£¬»áµÃµ½sizeofÎª40£¬²Î¿¼ByteAlign.cpp; 
+		//å¦‚æœ dev åŠ å¤šä¸ª double å‹æˆå‘˜ï¼Œå› ä¸ºå­—èŠ‚å¯¹é½æ˜¯æ›´å…·æœ€å¤§å…ƒç´ æ¥å¯¹ç•Œï¼Œä¼šå¾—åˆ°sizeofä¸º40ï¼Œå‚è€ƒByteAlign.cpp; 
 
 		printf("--- Tmp size : %d\n", sizeof(Tmp));
 		printf("--- dev size : %d\n", sizeof(dev));
@@ -174,9 +174,9 @@ namespace VitualTableTest {
 		//printf("--- child num:%d\n", child->num);
 
 		//Base* b2 = new dev();
-		////b2->k();           //compile error,¸¸ÀàÖ¸ÕëÎŞ·¨call×ÓÀàÌØÓĞµÄĞéº¯Êı
+		////b2->k();           //compile error,çˆ¶ç±»æŒ‡é’ˆæ— æ³•callå­ç±»ç‰¹æœ‰çš„è™šå‡½æ•°
 
-		////Í¨¹ıº¯ÊıÖ¸Õë·ÃÎÊµ½×ÓÀàÌØÓĞµÄĞéº¯Êık(), Ö¸ÕëÌ«Ç¿´ó
+		////é€šè¿‡å‡½æ•°æŒ‡é’ˆè®¿é—®åˆ°å­ç±»ç‰¹æœ‰çš„è™šå‡½æ•°k(), æŒ‡é’ˆå¤ªå¼ºå¤§
 		//Fun pFun3 = (Fun)*((int*)*(int*)b2 + 4);
 		//pFun3();
 	}
@@ -228,16 +228,16 @@ namespace VitualTableTest {
 			cout << "This is  drived_class2's normal_func()" << endl;
 			return 0;
 		}
-		virtual int virtual_fuc() override //Ö»ÓĞĞé¼Ì³ĞµÄº¯Êı²ÅÄÜÖØĞ´
+		virtual int virtual_fuc() override //åªæœ‰è™šç»§æ‰¿çš„å‡½æ•°æ‰èƒ½é‡å†™
 		{
-			//base_class::virtual_fuc(); //µ÷ÓÃ¸¸Àà·½·¨
+			//base_class::virtual_fuc(); //è°ƒç”¨çˆ¶ç±»æ–¹æ³•
 			cout << "This is  drived_class2's virtual_fuc()" << endl;
 			return 0;
 		}
 	};
 
 	int test2() {
-		base_class * pbc = NULL; //¸¸ÀàÖ¸Õë
+		base_class * pbc = NULL; //çˆ¶ç±»æŒ‡é’ˆ
 		base_class bc;
 		drived_class1 dc1;
 		drived_class2 dc2;
@@ -247,12 +247,12 @@ namespace VitualTableTest {
 		pbc->virtual_fuc();
 
 		pbc = &dc1;
-		pbc->normal_func(); //Ã»ÓĞvirtual¹Ø¼ü×Ö£¬¸¸ÀàÖ¸Õë»áµ÷¸¸ÀàµÄnormal_func·½·¨
-		pbc->virtual_fuc(); //ÓĞvirtual¹Ø¼ü×Ö£¬µ÷×ÓÀàvirtual_fuc·½·¨
+		pbc->normal_func(); //æ²¡æœ‰virtualå…³é”®å­—ï¼Œçˆ¶ç±»æŒ‡é’ˆä¼šè°ƒçˆ¶ç±»çš„normal_funcæ–¹æ³•
+		pbc->virtual_fuc(); //æœ‰virtualå…³é”®å­—ï¼Œè°ƒå­ç±»virtual_fucæ–¹æ³•
 
 		pbc = &dc2;
-		pbc->normal_func();//Ã»ÓĞvirtual¹Ø¼ü×Ö£¬¸¸ÀàÖ¸Õë»áµ÷¸¸ÀàµÄnormal_func·½·¨
-		pbc->virtual_fuc();//ÓĞvirtual¹Ø¼ü×Ö£¬µ÷×ÓÀàvirtual_fuc·½·¨
+		pbc->normal_func();//æ²¡æœ‰virtualå…³é”®å­—ï¼Œçˆ¶ç±»æŒ‡é’ˆä¼šè°ƒçˆ¶ç±»çš„normal_funcæ–¹æ³•
+		pbc->virtual_fuc();//æœ‰virtualå…³é”®å­—ï¼Œè°ƒå­ç±»virtual_fucæ–¹æ³•
 
 		system("pause");
 		return 0;
@@ -261,9 +261,9 @@ namespace VitualTableTest {
 	// ------------------------------------------------ test3 -------------------------
 	class Dog {
 	public:
-		virtual void method1() { printf("--- Dog metho1\n"); } //µÚÒ»¸öĞéº¯Êı»áÉú³ÉÒ»¸öĞéº¯Êı±íµÄÖ¸Õë£¬4¸ö×Ö½Ú
-		virtual void method2() { printf("--- Dog metho2\n"); } //ÒÔºóÔö¼ÓµÄĞéº¯Êı¶¼»á·ÅÔÚĞéº¯Êı±íÖĞ£¬²»»áÔö¼Ó´óĞ¡
-		void method3() {} //ÆÕÍ¨·½·¨²»»áÔö¼Ó´óĞ¡
+		virtual void method1() { printf("--- Dog metho1\n"); } //ç¬¬ä¸€ä¸ªè™šå‡½æ•°ä¼šç”Ÿæˆä¸€ä¸ªè™šå‡½æ•°è¡¨çš„æŒ‡é’ˆï¼Œ4ä¸ªå­—èŠ‚
+		virtual void method2() { printf("--- Dog metho2\n"); } //ä»¥åå¢åŠ çš„è™šå‡½æ•°éƒ½ä¼šæ”¾åœ¨è™šå‡½æ•°è¡¨ä¸­ï¼Œä¸ä¼šå¢åŠ å¤§å°
+		void method3() {} //æ™®é€šæ–¹æ³•ä¸ä¼šå¢åŠ å¤§å°
 	};
 
 	struct Cat {
@@ -271,7 +271,7 @@ namespace VitualTableTest {
 
 	void testEmptyClass() {
 		printf("--- dog size:%d\n", sizeof(Dog)); //4
-		printf("--- cat size:%d\n", sizeof(Cat)); //1£¬¿ÕÀà»òÔò½á¹¹Ìå¶¼»áÓĞ1¸ö×Ö½Ú´óĞ¡£¬Ä¿µÄÊÇÔÚnewÊÇ·ÖÅäÄÚ´æ£¬¿ÉÒÔÍ¨¹ıµØÖ·Ñ°ÕÒµ½
+		printf("--- cat size:%d\n", sizeof(Cat)); //1ï¼Œç©ºç±»æˆ–åˆ™ç»“æ„ä½“éƒ½ä¼šæœ‰1ä¸ªå­—èŠ‚å¤§å°ï¼Œç›®çš„æ˜¯åœ¨newæ˜¯åˆ†é…å†…å­˜ï¼Œå¯ä»¥é€šè¿‡åœ°å€å¯»æ‰¾åˆ°
 		printf("\n");
 	}
 
@@ -294,8 +294,8 @@ namespace VitualTableTest {
 		hv.d2 = 222;
 		hv.d3 = 333;
 
-		//ÎŞÂÛĞéº¯Êı·ÅÔÚ¶ÔÏóµÄÄÄ¸öÎ»ÖÃ£¬¶ÔÏóÖĞµÄĞéº¯Êı±í¶¼ÊÇÎ»ÓÚ¶ÔÏóÄÚ´æ·Ö²¼µÄ¶¥¶Ë
-		Fun pFunc = (Fun)*((int*)(*((int*)(&hv) + 0)) + 0); //foo·½·¨ 
+		//æ— è®ºè™šå‡½æ•°æ”¾åœ¨å¯¹è±¡çš„å“ªä¸ªä½ç½®ï¼Œå¯¹è±¡ä¸­çš„è™šå‡½æ•°è¡¨éƒ½æ˜¯ä½äºå¯¹è±¡å†…å­˜åˆ†å¸ƒçš„é¡¶ç«¯
+		Fun pFunc = (Fun)*((int*)(*((int*)(&hv) + 0)) + 0); //fooæ–¹æ³• 
 		pFunc();
 
 		int d1 = (int)*((int*)(&hv) + 1); //111
