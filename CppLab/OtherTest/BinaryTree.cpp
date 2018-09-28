@@ -3,6 +3,10 @@
 #include <malloc.h>
 #include <Stack>
 #include <Queue>
+#include <vector>
+#include <string>
+#include <map>
+
 using namespace std;
 #define Element char
 #define format "%c"
@@ -68,7 +72,6 @@ namespace BinaryTree {
 	}
 
 	void main() {
-
 		//上图所示的二叉树先序遍历序列,其中用'#'表示结点无左子树或无右子树
 		Element data[15] = { 'A', 'B', 'D', '#', '#', 'E', '#', '#', 'C', 'F', '#', '#', 'G', '#', '#' };
 		Tree tree;
@@ -79,3 +82,18 @@ namespace BinaryTree {
 		breadthFirstSearch(tree);
 	}
 }
+
+	int main() {
+		system("chcp 65001"); // 防止中文乱码, 设置字符集
+		//上图所示的二叉树先序遍历序列,其中用'#'表示结点无左子树或无右子树
+		Element data[15] = { 'A', 'B', 'D', '#', '#', 'E', '#', '#', 'C', 'F', '#', '#', 'G', '#', '#' };
+		BinaryTree::Tree tree;
+		BinaryTree::treeNodeConstructor(tree, data);
+		printf("深度优先遍历二叉树结果: ");
+		BinaryTree::depthFirstSearch(tree);
+		printf("\n\n广度优先遍历二叉树结果: ");
+		BinaryTree::breadthFirstSearch(tree);
+		printf("\n");
+		system("pause");
+		return 0;
+	}

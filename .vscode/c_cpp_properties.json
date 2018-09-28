@@ -3,7 +3,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "C:/my_install/vs2015/VC/include"
             ],
             "defines": [
                 "_DEBUG",
