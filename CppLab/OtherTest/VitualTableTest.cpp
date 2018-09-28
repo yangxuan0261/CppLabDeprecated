@@ -27,8 +27,8 @@ namespace VitualTableTest {
 		Fun0 pFun = nullptr;
 
 		Base0 b;
-		cout << "虚函数表地址：" << (int*)(&b) << endl;
-		cout << "虚函数表 — 第一个函数地址：" << (int*)*(int*)(&b) << endl;
+		//cout << "虚函数表地址：" << (int*)(&b) << endl;
+		//cout << "虚函数表 — 第一个函数地址：" << (int*)*(int*)(&b) << endl;
 
 		// Invoke the first virtual function 
 		//pFun = (Fun0)*((int*)*(int*)(&b));
@@ -106,8 +106,8 @@ namespace VitualTableTest {
 		d.tmp.c = 888;
 		//d.f();             //compile error
 
-		cout << "虚函数表地址：" << (int*)(&d) << endl;
-		cout << "虚函数表 — 第一个函数地址：" << (int*)*(int*)(&d) << endl;
+		//cout << "虚函数表地址：" << (int*)(&d) << endl;
+		//cout << "虚函数表 — 第一个函数地址：" << (int*)*(int*)(&d) << endl;
 		printf("\n");
 
 		//通过函数指针访问到私有的j(), j()对于对象来讲本来是不可见的,指针太强大

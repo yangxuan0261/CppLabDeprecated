@@ -4,6 +4,7 @@
 
 namespace BinaryTreeBigestDist {
 
+	int index = 0;  //全局索引变量
 
 typedef struct Node {
 	struct Node *pleft;     //左孩子
@@ -12,7 +13,7 @@ typedef struct Node {
 
 	int leftMaxValue;       //左子树最长距离
 	int rightMaxValue;      //右子树最长距离
-}LNode, BinTree;
+} BinTree;
 
 void findMaxLen(BinTree* root, int *maxLen) {
 	//遍历到叶子结点，返回
@@ -75,6 +76,23 @@ void buildBinTree(BinTree *root)
 	}
 }
 
+//创建二叉树
+void buildBinTreeByData(BinTree *&root, char data[])
+{
+	char ch =  data[index++];
+	if (ch == '#')        //若输入的是空格符，表明二叉树为空，置*root为NULL
+		root = NULL;
+	else {               //若输入的不是空格符，则将该值赋值给根节点的chValue, 递归建立左子树和右子树
+		root = (BinTree*)malloc(sizeof(BinTree));
+		root->chValue = ch;
+		root->leftMaxValue = 0;
+		root->rightMaxValue = 0;
+
+		buildBinTreeByData(root->pleft, data);
+		buildBinTreeByData(root->pright, data);
+	}
+}
+
 //销毁二叉树，释放内存
 void destroyBinTree(BinTree *root)
 {
@@ -87,17 +105,17 @@ void destroyBinTree(BinTree *root)
 	}
 }
 
-//前序遍历二叉树
+//中序遍历二叉树
 void preOrderTraverse(BinTree* root)
 {
 	if (root != NULL) {
-		preOrderTraverse(root->pleft);
 		printf("%c", root->chValue);
+		preOrderTraverse(root->pleft);
 		preOrderTraverse(root->pright);
 	}
 }
 
-void main() {
+void main2() {
 	BinTree* root = nullptr;
 	buildBinTree(root);
 	preOrderTraverse(root);
@@ -107,4 +125,24 @@ void main() {
 	printf("maxLen = %d\n", maxLen);
 	destroyBinTree(root);
 }
+
+void main() {
+	// 构建的二叉树如图: http://p7kuppz6y.bkt.clouddn.com/QQ截图20180928192111.png
+	char data[17] = { 'A', 'B', 'D', '#', '#', 'E', '#', '#', 'C', 'F', '#', '#', 'G', 'X', '#', '#', '#' };
+	BinTree* root = nullptr;
+	buildBinTreeByData(root, data);
+	preOrderTraverse(root);
+	printf("\n");
+	int maxLen = 0;
+	findMaxLen(root, &maxLen);
+	printf("maxLen = %d\n", maxLen);
+	destroyBinTree(root);
 }
+}
+
+//int main(int argc, char const *argv[])
+//{
+//	/* code */
+//	BinaryTreeBigestDist::main2();
+//	return 0;
+//}

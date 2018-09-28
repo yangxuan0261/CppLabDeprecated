@@ -45,14 +45,14 @@ namespace UsingTest { void main(); }
 namespace VitualTableTest { void main(); }
 
 int main() {
-	system("chcp 65001"); // 防止中文乱码, 设置字符集
+	//system("chcp 65001"); // 防止中文乱码, 设置字符集
 
 	// AT1::main();
 	// ACompareSort::main();
 	// AutoDecltypeTest::main();
 	// BaseTest::main();
 	// BinaryTree::main();
-	// BinaryTreeBigestDist::main();
+	 BinaryTreeBigestDist::main();
 	// BitTest::main();
 	// ByteAlign::main();
 	// ConstTest::main();
@@ -88,7 +88,7 @@ int main() {
 	// TemplateTest2::main();
 	// UnionTest::main();
 	// UsingTest::main();
-	VitualTableTest::main();
+	//VitualTableTest::main();
 	
 	system("pause");
 	return 0;
