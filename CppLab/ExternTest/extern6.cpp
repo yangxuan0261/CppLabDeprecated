@@ -3,11 +3,11 @@
 //#include <iostream>
 //using namespace std;
 //
-////ÉùÃ÷Íâ²¿ÓĞ¸öi, ÔÚÍ·ÎÄ¼şÖĞdeVar6.hÖĞ ¸øi¸³Öµ£¬²¢ÊµÏÖfunc·½·¨
+////å£°æ˜å¤–éƒ¨æœ‰ä¸ªi, åœ¨å¤´æ–‡ä»¶ä¸­deVar6.hä¸­ ç»™ièµ‹å€¼ï¼Œå¹¶å®ç°funcæ–¹æ³•
 //extern "C"
 //{
 //	extern int i;
-//	//extern void func(); //ÊµÏÖÔÚÍ·ÎÄ¼şÖĞ±ØĞëÒªÓÃÒıÈë#includeµÄĞÎÊ½
+//	//extern void func(); //å®ç°åœ¨å¤´æ–‡ä»¶ä¸­å¿…é¡»è¦ç”¨å¼•å…¥#includeçš„å½¢å¼
 //	#include "deVar6.h" 
 //}
 //

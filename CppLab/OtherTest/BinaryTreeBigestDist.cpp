@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
+#include <cstring>
 
 namespace BinaryTreeBigestDist {
 
@@ -58,23 +59,23 @@ void findMaxLen(BinTree* root, int *maxLen) {
 }
 
 //创建二叉树
-void buildBinTree(BinTree *root)
-{
-	char ch;
-	scanf_s("%c", &ch);    //输入一个元素
-	std::cin;
-	if (ch == 'u')        //若输入的是空格符，表明二叉树为空，置*root为NULL
-		root = NULL;
-	else {               //若输入的不是空格符，则将该值赋值给根节点的chValue, 递归建立左子树和右子树
-		root = (BinTree*)malloc(sizeof(BinTree));
-		root->chValue = ch;
-		root->leftMaxValue = 0;
-		root->rightMaxValue = 0;
+// void buildBinTree(BinTree *root)
+// {
+// 	char ch;
+// 	scanf_s("%c", &ch);    //输入一个元素
+// 	std::cin;
+// 	if (ch == 'u')        //若输入的是空格符，表明二叉树为空，置*root为NULL
+// 		root = NULL;
+// 	else {               //若输入的不是空格符，则将该值赋值给根节点的chValue, 递归建立左子树和右子树
+// 		root = (BinTree*)malloc(sizeof(BinTree));
+// 		root->chValue = ch;
+// 		root->leftMaxValue = 0;
+// 		root->rightMaxValue = 0;
 
-		buildBinTree(root->pleft);
-		buildBinTree(root->pright);
-	}
-}
+// 		buildBinTree(root->pleft);
+// 		buildBinTree(root->pright);
+// 	}
+// }
 
 //创建二叉树
 void buildBinTreeByData(BinTree *&root, char data[])
@@ -115,16 +116,16 @@ void preOrderTraverse(BinTree* root)
 	}
 }
 
-void main2() {
-	BinTree* root = nullptr;
-	buildBinTree(root);
-	preOrderTraverse(root);
-	printf("\n");
-	int maxLen = 0;
-	findMaxLen(root, &maxLen);
-	printf("maxLen = %d\n", maxLen);
-	destroyBinTree(root);
-}
+// void main2() {
+// 	BinTree* root = nullptr;
+// 	buildBinTree(root);
+// 	preOrderTraverse(root);
+// 	printf("\n");
+// 	int maxLen = 0;
+// 	findMaxLen(root, &maxLen);
+// 	printf("maxLen = %d\n", maxLen);
+// 	destroyBinTree(root);
+// }
 
 void main() {
 	// 构建的二叉树如图: http://p7kuppz6y.bkt.clouddn.com/QQ截图20180928192111.png
@@ -139,10 +140,3 @@ void main() {
 	destroyBinTree(root);
 }
 }
-
-//int main(int argc, char const *argv[])
-//{
-//	/* code */
-//	BinaryTreeBigestDist::main2();
-//	return 0;
-//}

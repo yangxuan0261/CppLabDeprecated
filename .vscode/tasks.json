@@ -8,6 +8,7 @@
             "command": "g++",
             "args": [
                 "-g",
+                "${workspaceRoot}/CppLab/a_main.cpp",
                 "${file}",
                 "-o",
                 "${workspaceRoot}/CppLab/CppLab.exe"

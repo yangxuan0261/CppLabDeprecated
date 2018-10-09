@@ -6,7 +6,7 @@
 //using namespace std;
 //
 //extern int i;
-//extern int  func(int);//ÕâÀïextern±ØĞèµÄ£¬º¯Êı¶¨ÒåÔÚÆäËücppÎÄ¼şÖĞ
+//extern int  func(int);//è¿™é‡Œexternå¿…éœ€çš„ï¼Œå‡½æ•°å®šä¹‰åœ¨å…¶å®ƒcppæ–‡ä»¶ä¸­
 //
 //int main()//typedef wchar_t     _TCHAR;#define _tmain      wmain
 //{

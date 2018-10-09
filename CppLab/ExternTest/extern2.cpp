@@ -5,7 +5,7 @@
 //#include <iostream>
 //using namespace std;
 //
-////ÊµÏÖÔÚdeVar2ÖĞ
+////å®ç°åœ¨deVar2ä¸­
 //extern int i;  
 //extern void func();
 //

@@ -11,7 +11,7 @@ namespace AT1 {
 			printf("%d\n", vec[i]);
 	};
 
-	/*** ÕûÐÎ·´Ðò ***/
+	/*** æ•´å½¢ååº ***/
 	int reverse(int x)
 	{
 		int result = 0;
@@ -37,7 +37,7 @@ namespace AT1 {
 	}
 
 	//---------------------------------------------------------------
-	/* ²éÕÒÖØ¸´ÔªËØ
+	/* æŸ¥æ‰¾é‡å¤å…ƒç´ 
 	// when find a number i, flip the number at position i-1 to negative.
 	// if the number at position i-1 is already negative, i is the number that occurs twice.
 	*/
@@ -95,7 +95,7 @@ namespace AT1 {
 	}
 
 	//https://discuss.leetcode.com/topic/12187/simple-c-solution-8ms-13-lines
-	//²éÕÒ×î³¤µÄ»ØÎÄ×Ó×Ö·û´® 
+	//æŸ¥æ‰¾æœ€é•¿çš„å›žæ–‡å­å­—ç¬¦ä¸² 
 	void test3()
 	{
 		string src = "bababd";
@@ -145,7 +145,7 @@ namespace AT1 {
 	//}
 
 	//https://leetcode.com/problems/median-of-two-sorted-arrays/#/solutions
-	// Á½¸öÒÑÅÅÐòµÄÊý×éµÄÖÐÎ»Êý
+	// ä¸¤ä¸ªå·²æŽ’åºçš„æ•°ç»„çš„ä¸­ä½æ•°
 	//void test3() {
 
 	//}
@@ -179,7 +179,7 @@ namespace AT1 {
 	}
 
 	//https://leetcode.com/problems/merge-two-sorted-lists/#/solutions
-	//ºÏ²¢Á½¸öÓÐÐòÁ´±í
+	//åˆå¹¶ä¸¤ä¸ªæœ‰åºé“¾è¡¨
 	void test4() {
 		ListNode* n1 = new ListNode();
 		n1->val = 1;
@@ -235,7 +235,7 @@ namespace AT1 {
 	}
 
 	//https://leetcode.com/problems/remove-nth-node-from-end-of-list/#/solutions
-	//ÒÆ³ýÁ´±íÖÐµ¹ÊýµÚ¶þ¸ö½Úµã
+	//ç§»é™¤é“¾è¡¨ä¸­å€’æ•°ç¬¬äºŒä¸ªèŠ‚ç‚¹
 	void test5() {
 		ListNode* n1 = new ListNode();
 		n1->val = 1;
@@ -271,7 +271,7 @@ namespace AT1 {
 	//---------------------------------------------------------------
 
 	//https://leetcode.com/problems/swap-nodes-in-pairs/#/solutions
-	//³É¶Ô½»»»ÏàÁÚµÄÁ½¸ö½Úµã
+	//æˆå¯¹äº¤æ¢ç›¸é‚»çš„ä¸¤ä¸ªèŠ‚ç‚¹
 
 	ListNode* swapPairs(ListNode* head) {
 		if (head == nullptr || head->next == nullptr)

@@ -5,6 +5,8 @@
 #include <vector>
 #include <list>
 #include "AAA.h"
+#include <cstring>
+
 using namespace std;
 
 namespace BaseTest {
@@ -47,17 +49,17 @@ namespace BaseTest {
 	}
 
 	void testArrPtr() {
-		// µÃµ½Êı×éµÄ×îºóÒ»¸öÊı - Ê¹ÓÃÖ¸ÏòÊı×éµÄÖ¸ÕëÀ´Íê³É
-		printf("--- µÃµ½Êı×éµÄ×îºóÒ»¸öÊıµÄÈ¤Î¶ÊµÏÖ \n");
+		// å¾—åˆ°æ•°ç»„çš„æœ€åä¸€ä¸ªæ•° - ä½¿ç”¨æŒ‡å‘æ•°ç»„çš„æŒ‡é’ˆæ¥å®Œæˆ
+		printf("--- å¾—åˆ°æ•°ç»„çš„æœ€åä¸€ä¸ªæ•°çš„è¶£å‘³å®ç° \n");
 
 		const int MAXN = 8;
 		int a[MAXN] = { 1, 2, 4, 8, 16, 32, 64, 128 };
 
-		//aµÄµØÖ·ÍùºóÆ«ÒÆ1Î»£¬È¡µÃÁíÒ»¸öµØÖ·ÕâÊÇÖ¸ÏòµÄÊÇÎ»ÖÃµÄ¶«Î÷£¬Ö»Ğè½«Õâ¸öµØÖ·ÍùÇ°Æ«ÒÆ1Î»£¬¾ÍÄÜÈ¡µÃÕıÈ·µÄÊı×éµÄ×îºóÒ»Î»
-		int *p = (int*)(&a + 1);  //&a ÊÇÒ»¸öÖ¸Õë£¬Ö¸Ïò´óĞ¡Îª4µÄÊı×é int(*)[MAXN]
-		printf("--- %d\n", *((int*)p - 1)); //Îª128
+		//açš„åœ°å€å¾€ååç§»1ä½ï¼Œå–å¾—å¦ä¸€ä¸ªåœ°å€è¿™æ˜¯æŒ‡å‘çš„æ˜¯ä½ç½®çš„ä¸œè¥¿ï¼Œåªéœ€å°†è¿™ä¸ªåœ°å€å¾€å‰åç§»1ä½ï¼Œå°±èƒ½å–å¾—æ­£ç¡®çš„æ•°ç»„çš„æœ€åä¸€ä½
+		int *p = (int*)(&a + 1);  //&a æ˜¯ä¸€ä¸ªæŒ‡é’ˆï¼ŒæŒ‡å‘å¤§å°ä¸º4çš„æ•°ç»„ int(*)[MAXN]
+		printf("--- %d\n", *((int*)p - 1)); //ä¸º128
 
-		//aµÄÊ×µØÖ·ÍùºóÆ«ÒÆ7Î»£¬ÔÙÈ¡Öµ
+		//açš„é¦–åœ°å€å¾€ååç§»7ä½ï¼Œå†å–å€¼
 		//int num = *((int*)(&a) + 7); 
 		//printf("--- num:%d\n", num);
 	}
@@ -92,7 +94,7 @@ namespace BaseTest {
 	}
 
 	const char* testFuncName() {
-		return __FUNCTION__; //·µ»Ø·½·¨Ãû
+		return __FUNCTION__; //è¿”å›æ–¹æ³•å
 	}
 
 	struct testAAA {
@@ -122,9 +124,9 @@ namespace BaseTest {
 	}
 
 	void testR() {
-		std::string tmp = " ³Ô·¹ÁË";
-		std::string str = R"(hello \n \t ºÃµÄ
-							world)" " ##ÔçÉÏºÃ" + tmp;
+		std::string tmp = " åƒé¥­äº†";
+		std::string str = R"(hello \n \t å¥½çš„
+							world)" " ##æ—©ä¸Šå¥½" + tmp;
 		std::cout << str << std::endl;
 	}
 
@@ -191,12 +193,20 @@ namespace BaseTest {
 	}
 
 	void testStr3() {
-		std::string str = "asd×¢\n\n\n²á°¢Ë¹¶Ùqwe";
+		std::string str = "asdæ³¨\n\n\nå†Œé˜¿æ–¯é¡¿qwe";
 		str = stringReplace(str, "\n", "");
 		std::string tmp = subUTF8(str.c_str(), 0, 6);
 		std::string tmp2 = subUTF8(str.c_str(), 6, str.length() - 1);
 		printf("--- %s\n", tmp.c_str());
 		printf("--- %s\n", tmp2.c_str());
+	}
+
+	void testStr4() {
+		char* mystr = "hello";
+		printf("len=%d\n", strlen(mystr));
+
+		printf("len2=%d\n", strlen(mystr+3));
+		printf("len2=%d\n", strlen(mystr+5)); //è¶Šç•Œåˆ° \0 å­—ç¬¦, å› æ­¤é•¿åº¦ä¸º 0
 	}
 
 	void testList() {
@@ -211,8 +221,9 @@ namespace BaseTest {
 	}
 
 	void main() {
-		//testStr(56);
+		// testStr(56);
 		//testStr2();
+		testStr4();
 		//testArrPtr();
 		//testArrPtr2();
 		//testFunc();
@@ -221,6 +232,6 @@ namespace BaseTest {
 		//testR();
 		//testStringReplace();
 		//testStr3();
-		testList();
+		// testList();
 	}
 }

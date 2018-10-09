@@ -4,8 +4,8 @@
 //using namespace std;
 //#include "deVar3.h"
 //
-////Ö±½ÓincludeÁËÍ·ÎÄ¼ş£¬ÀïÃæÓĞÊµÏÖ¾Í²»±Ø¼Óextern¹Ø¼üÖµ£¬
-////¼ÓexternÊÇ±íÃ÷±àÒëÊ±ÆäËûcppÎÄ¼şÓĞÊµÏÖ
+////ç›´æ¥includeäº†å¤´æ–‡ä»¶ï¼Œé‡Œé¢æœ‰å®ç°å°±ä¸å¿…åŠ externå…³é”®å€¼ï¼Œ
+////åŠ externæ˜¯è¡¨æ˜ç¼–è¯‘æ—¶å…¶ä»–cppæ–‡ä»¶æœ‰å®ç°
 ////extern int i;
 ////extern void func();
 //
