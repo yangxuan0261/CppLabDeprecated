@@ -8,16 +8,16 @@
             "command": "g++",
             "args": [
                 "-g",
-                "${workspaceRoot}/CppLab/a_main.cpp",
+                "${workspaceFolder}/CppLab/a_main.cpp",
                 "${file}",
                 "-o",
-                "${workspaceRoot}/CppLab/CppLab.exe"
+                "${workspaceFolder}/CppLab/CppLab.exe"
             ],
             "problemMatcher": {
                 "owner": "cpp",
                 "fileLocation": [
                     "relative",
-                    "${workspaceRoot}"
+                    "${workspaceFolder}"
                 ],
                 "pattern": {
                     "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
@@ -44,9 +44,9 @@
             },
             "command": "python",
             "args": [
-                "${workspaceRoot}/CppLab/vscode_helper.py",
-                "--dir=${workspaceRoot}/CppLab",
-                "--output=${workspaceRoot}/CppLab/CppLab.exe",
+                "${workspaceFolder}/CppLab/vscode_helper.py",
+                "--dir=${workspaceFolder}/CppLab",
+                "--output=${workspaceFolder}/CppLab/CppLab.exe",
             ],
             "group": "build",
             "problemMatcher": []
