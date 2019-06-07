@@ -81,6 +81,7 @@ namespace BinaryTree {
 		depthFirstSearch(tree);
 		printf("\n\n广度优先遍历二叉树结果: ");
 		breadthFirstSearch(tree);
+		system("pause");
 	}
 }
 

@@ -3,8 +3,10 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**",
-                "${VS2015_HOME}/VC/include"
+                "${workspaceFolder}",
+                "${MINGW_BIN}/../lib/gcc/i686-w64-mingw32/8.1.0/include",
+                "${MINGW_BIN}/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed",
+                "${MINGW_BIN}/../i686-w64-mingw32/include"
             ],
             "defines": [
                 "_DEBUG",
