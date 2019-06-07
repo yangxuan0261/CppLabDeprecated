@@ -1,11 +1,8 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-
 
 namespace HeapSort
 {
-	
-
 
 inline void Swap(int &a, int &b)
 {
@@ -20,13 +17,13 @@ void MinHeapFixup(int a[], int i)
 	int j, temp;
 
 	temp = a[i];
-	j = (i - 1) / 2;      //父结点
+	j = (i - 1) / 2; //父结点
 	while (j >= 0 && i != 0)
 	{
 		if (a[j] <= temp)
 			break;
 
-		a[i] = a[j];     //把较大的子结点往下移动,替换它的子结点
+		a[i] = a[j]; //把较大的子结点往下移动,替换它的子结点
 		i = j;
 		j = (i - 1) / 2;
 	}
@@ -55,7 +52,7 @@ void MinHeapFixdown(int a[], int i, int n)
 		if (a[j] >= temp)
 			break;
 
-		a[i] = a[j];     //把较小的子结点往上移动,替换它的父结点
+		a[i] = a[j]; //把较小的子结点往上移动,替换它的父结点
 		i = j;
 		j = 2 * i + 1;
 	}
@@ -86,8 +83,8 @@ void PrintArr(int a[], int len)
 
 void main()
 {
-	
-	int a[10] = { 9, 12, 17, 30, 50, 20, 60, 65, 4, 49 };
+
+	int a[10] = {9, 12, 17, 30, 50, 20, 60, 65, 4, 49};
 	int length = sizeof(a) / sizeof(int);
 	PrintArr(a, length);
 
@@ -103,4 +100,4 @@ void main()
 3、添加值，从堆尾添加，再向上调整
 */
 
-} // HeapSort
+} // namespace HeapSort

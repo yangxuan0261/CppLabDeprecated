@@ -64,7 +64,7 @@ int main() {
 	// FriendTrest::main();
 	// Greedy::main();
 	// greedyTest::main();
-	// HeapSort::main();
+	HeapSort::main();
 	// Lambda::main();
 
 	// lruTest::main();
