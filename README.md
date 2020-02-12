@@ -1,3 +1,7 @@
+废弃, 最新使用 CMake 构建, 参考: https://github.com/yangxuan0261/Cpp-Lab
+
+---
+
  - pratice cpp && algorithm
  - 编译方式
    1. 使用 **vs2015** 编译
