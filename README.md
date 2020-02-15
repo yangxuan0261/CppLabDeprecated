@@ -1,4 +1,10 @@
-废弃, 最新使用 CMake 构建, 参考: https://github.com/yangxuan0261/Cpp-Lab
+# Deprecated
+
+---
+
+此仓库已废弃, 不在维护.
+
+最新使用 CMake 构建, 参考: https://github.com/yangxuan0261/CppLab
 
 ---
 
